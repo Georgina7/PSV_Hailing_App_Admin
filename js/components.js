@@ -23,6 +23,15 @@ function userEditModal(userID){
 	//console.log(userID);
 	
 }
+function addModal() {
+    add_modal.classList.remove('hidden');
+	add_modal.classList.add('flex'); 
+}
+
+function closeAddModal(){
+	add_modal.classList.remove('flex');
+	add_modal.classList.add('hidden');
+}
 
 function closeEditModal(){
 	edit_modal.classList.remove('flex');
@@ -72,4 +81,76 @@ $(document).ready(function(){
         }
     });
 });
+$(document).ready(function () {
+    $('#userAdd').submit(function (event1) {
+        event1.preventDefault();
+        //clearMessageField();
+        let formData1 = new FormData($(this)[0]);
+        console.log(formData1);
+        formData1.append("type","createUser");
+        let formEmpty1 = false;
+        for(var value1 of formData1.entries()){
+            formEmpty1 = (value1[1] == "")? true:false;
+        }
+        if(!formEmpty1){
+            $.ajax({
+                url:'Logic.php',
+                enctype:'multipart/form-data',
+                data:formData1,
+                processData: false,
+                contentType: false,
+                type: 'POST',
+                success:function (values) {
+                    $("#userAdd_success").text("User Created Successfully!");
+                },
+                error: function (e) {
+                    alert(e.responseText);
+                    console.log("ERROR : ", e);
+                }     
+            });
+        }else{
+            // $(".error").text("All fields are required");
+            console.log("All fields are required");
+        }
+        
+    });
+    
+});
 
+
+//Driver
+$(document).ready(function () {
+    $('#driverAdd').submit(function (eventDriver) {
+        eventDriver.preventDefault();
+        //clearMessageField();
+        let formDataDriver = new FormData($(this)[0]);
+        console.log(formDataDriver);
+        formDataDriver.append("type","createDriver");
+        let formEmptyDriver = false;
+        for(var valueDriver of formDataDriver.entries()){
+            formEmptyDriver = (valueDriver[1] == "")? true:false;
+        }
+        if(!formEmptyDriver){
+            $.ajax({
+                url:'Logic.php',
+                enctype:'multipart/form-data',
+                data:formDataDriver,
+                processData: false,
+                contentType: false,
+                type: 'POST',
+                success:function (values) {
+                    $("#driver_add_success").text("Driver Created Successfully!");
+                },
+                error: function (e) {
+                    alert(e.responseText);
+                    console.log("ERROR : ", e);
+                }     
+            });
+        }else{
+            // $(".error").text("All fields are required");
+            console.log("All fields are required");
+        }
+        
+    });
+    
+});
