@@ -15,11 +15,11 @@
 		<article>
 
 <!-- {{-- EDIT Modal --}} -->
-    		<div id="edit_modal" class=" bg-black bg-opacity-50 inset-0 hidden justify-center items-center fixed">
-				<div class="bg-gray-50 p-3 rounded-lg">
-					<div class="flex justify-between items-center">
+    		<div id="edit_modal" class="fixed inset-0 items-center justify-center hidden bg-black bg-opacity-50 ">
+				<div class="p-3 rounded-lg bg-gray-50">
+					<div class="flex items-center justify-between">
 						<h4 class="text-lg font-semibold">Edit User</h4>
-						<svg onclick="closeEditModal()" xmlns="http://www.w3.org/2000/svg" class="h-6 w-6" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+						<svg onclick="closeEditModal()" xmlns="http://www.w3.org/2000/svg" class="w-6 h-6" fill="none" viewBox="0 0 24 24" stroke="currentColor">
 						  <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M6 18L18 6M6 6l12 12" />
 						</svg>
 					</div>
@@ -27,56 +27,57 @@
 					<div class="grid grid-cols-6 gap-6 p-4">
 						<div class="col-span-6 sm:col-span-3">
 			                <label for="name" class="block text-sm font-medium text-gray-700">Name</label>
-			                <input type="text" name="name" id="edit_name" class="mt-1 focus:ring-indigo-500 focus:border-indigo-500 block w-full shadow-sm sm:text-sm border-gray-300 rounded-md p-2">
+			                <input type="text" name="name" id="edit_name" class="block w-full p-2 mt-1 border-gray-300 rounded-md shadow-sm focus:ring-indigo-500 focus:border-indigo-500 sm:text-sm">
 			            </div>
 						<div class="col-span-6 sm:col-span-3">
 			                <label for="phone_number" class="block text-sm font-medium text-gray-700">Phone Number</label>
-			                <input type="text" name="phone_number" id="edit_phone_number" class="mt-1 focus:ring-indigo-500 focus:border-indigo-500 block w-full shadow-sm sm:text-sm border-gray-300 rounded-md p-2">
+			                <input type="text" name="phone_number" id="edit_phone_number" class="block w-full p-2 mt-1 border-gray-300 rounded-md shadow-sm focus:ring-indigo-500 focus:border-indigo-500 sm:text-sm">
 			            </div>
 						<div class="col-span-6 sm:col-span-3">
 			                <label for="email" class="block text-sm font-medium text-gray-700">Email</label>
-			                <input type="text" name="email" id="edit_email" class="mt-1 focus:ring-indigo-500 focus:border-indigo-500 block w-full shadow-sm sm:text-sm border-gray-300 rounded-md p-2">
+			                <input type="text" name="email" id="edit_email" class="block w-full p-2 mt-1 border-gray-300 rounded-md shadow-sm focus:ring-indigo-500 focus:border-indigo-500 sm:text-sm">
 			            </div>	
 						<input type="text" class="hide_data" name="user_id" id="user_id" hidden>	
 					</div>
-					<div class="flex justify-center items-center mb-3">
-						<button class="bg-gray-800 px-3 py-1 text-gray-50 rounded hover:opacity-75">Edit</button>						
+					<div class="flex items-center justify-center mb-3">
+						<button class="px-3 py-1 bg-gray-800 rounded text-gray-50 hover:opacity-75">Edit</button>						
 					</div>
-					<p class="flex justify-center items-center text-green-500" id="#userEdit_success"></p>				
+					<p class="flex items-center justify-center text-green-500" id="userEdit_success"></p>				
 				</div>
 				</form>        
     		</div>
 
 <!-- {{-- START OF ADD MODAL --}} -->
-    		<div id="add_modal" class=" bg-black bg-opacity-50 absolute inset-0 hidden justify-center items-center">
-				<div class="bg-gray-50 p-3 rounded-lg">
-					<div class="flex justify-between items-center">
+    		<div id="add_modal" class="absolute inset-0 items-center justify-center hidden bg-black bg-opacity-50 ">
+				<div class="p-3 rounded-lg bg-gray-50">
+					<div class="flex items-center justify-between">
 						<h4 class="text-lg font-semibold">Add Driver</h4>
-						<svg onclick="closeAddModal()" xmlns="http://www.w3.org/2000/svg" class="h-6 w-6" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+						<svg onclick="closeAddModal()" xmlns="http://www.w3.org/2000/svg" class="w-6 h-6" fill="none" viewBox="0 0 24 24" stroke="currentColor">
 						  <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M6 18L18 6M6 6l12 12" />
 						</svg>
 					</div>
-			<form action="/drivers" method="POST">
-				@csrf
+			<form id="userAdd">
+				<!-- @csrf -->
 			
-				<div class="form-group">
+				<div class="h-auto form-group">
 					<div class="grid grid-cols-6 gap-6 p-4">
 						<div class="col-span-6 sm:col-span-3">
 			                <label for="name" class="block text-sm font-medium text-gray-700">Name</label>
-			                <input type="text" name="name" placeholder="Barry " class="mt-1 focus:ring-indigo-500 focus:border-indigo-500 block w-full shadow-sm sm:text-sm border-gray-300 rounded-md p-2">
+			                <input id="new_name" type="text" name="name" placeholder="Barry " class="block w-full p-2 mt-1 border-gray-300 rounded-md shadow-sm focus:ring-indigo-500 focus:border-indigo-500 sm:text-sm">
 			            </div>
 						<div class="col-span-6 sm:col-span-3">
-			                <label for="phone_number" class="block text-sm font-medium text-gray-700">Phone Numbera</label>
-			                <input type="text" name="phone_number"  placeholder="0712345678" class="mt-1 focus:ring-indigo-500 focus:border-indigo-500 block w-full shadow-sm sm:text-sm border-gray-300 rounded-md p-2">
+			                <label for="phone_number" class="block text-sm font-medium text-gray-700">Phone Number</label>
+			                <input id="new_number" type="text" name="phone_number"  placeholder="0712345678" class="block w-full p-2 mt-1 border-gray-300 rounded-md shadow-sm focus:ring-indigo-500 focus:border-indigo-500 sm:text-sm">
 			            </div>
 						<div class="col-span-6 sm:col-span-3">
-			                <label for="licence" class="block text-sm font-medium text-gray-700">Driver's Licence</label>
-			                <input type="text" name="driver_licence"  placeholder="KE56F65" class="mt-1 focus:ring-indigo-500 focus:border-indigo-500 block w-full shadow-sm sm:text-sm border-gray-300 rounded-md p-2">
+			                <label for="licence" class="block text-sm font-medium text-gray-700">Email</label>
+			                <input id="new_email" type="email" name="email"  placeholder="johndoe@gmail.com" class="block w-full p-2 mt-1 border-gray-300 rounded-md shadow-sm focus:ring-indigo-500 focus:border-indigo-500 sm:text-sm">
 			            </div>					
 					</div>
-					<div class="flex justify-center items-center">
-						<button type="submit" class="bg-gray-800 px-3 py-1 text-gray-50 rounded hover:opacity-75">Add</button>
+					<div class="flex items-center justify-center">
+						<button class="px-3 py-1 bg-gray-800 rounded text-gray-50 hover:opacity-75">Add</button>
 					</div>
+					<p class="flex items-center justify-center text-green-500" id="userAdd_success"></p>	
 				</div>  
 			</div>
 			</form>
@@ -90,19 +91,19 @@
             </div>
 			
 			<div class="m-2">
-				<table class="min-w-full divide-y divide-gray-200 box-border">
+				<table class="box-border min-w-full divide-y divide-gray-200">
 			          <thead class="bg-gray-50">
 			            <tr>
-			              <th scope="col" class="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">
+			              <th scope="col" class="px-6 py-3 text-xs font-medium tracking-wider text-left text-gray-500 uppercase">
 			                Number
 			              </th>
-			              <th scope="col" class="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">
+			              <th scope="col" class="px-6 py-3 text-xs font-medium tracking-wider text-left text-gray-500 uppercase">
 			                Name
 			              </th>
-			              <th scope="col" class="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">
+			              <th scope="col" class="px-6 py-3 text-xs font-medium tracking-wider text-left text-gray-500 uppercase">
 			                Phone Number
 			              </th>
-			              <th scope="col" class="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">
+			              <th scope="col" class="px-6 py-3 text-xs font-medium tracking-wider text-left text-gray-500 uppercase">
 			                Email
 			              </th>
 			              <th scope="col" class="relative px-6 py-3">
@@ -134,11 +135,11 @@
 					              <td class="px-6 py-4 whitespace-nowrap">
 					                <div class="text-sm text-gray-900 driver_name"><?php echo $value['fullName']; ?></div>
 					              </td>
-					              <td class="px-6 py-4 whitespace-nowrap text-sm text-gray-500 driver_phone_number"><?php echo $value['number']; ?></td>
-					              <td class="px-6 py-4 whitespace-nowrap text-sm text-gray-500 driver_licence"><?php echo $value['email']; ?></td>
-					              <td class="px-6 py-4 whitespace-nowrap text-right text-sm font-medium">
-					                <button onclick="userEditModal('<?php echo $user; ?>')" class="text-gray-800 hover:underline bg-blue-100 px-3 py-1 rounded">Edit</button>
-									<button onClick="deleteDriver()" class="text-gray-800 hover:underline bg-red-100 px-3 py-1 rounded">Disable</button>
+					              <td class="px-6 py-4 text-sm text-gray-500 whitespace-nowrap driver_phone_number"><?php echo $value['number']; ?></td>
+					              <td class="px-6 py-4 text-sm text-gray-500 whitespace-nowrap driver_licence"><?php echo $value['email']; ?></td>
+					              <td class="px-6 py-4 text-sm font-medium text-right whitespace-nowrap">
+					                <button onclick="userEditModal('<?php echo $user; ?>')" class="px-3 py-1 text-gray-800 bg-blue-100 rounded hover:underline">Edit</button>
+									<button onClick="deleteDriver()" class="px-3 py-1 text-gray-800 bg-red-100 rounded hover:underline">Disable</button>
 					              </td>
 					            </tr> <?php
 
@@ -157,10 +158,13 @@
 			        </table>
 
 			</div>
-			<button onclick="addModal()" class="right-0 bottom-0 p-2 px-4 m-3 fixed bg-red-600 rounded-lg text-gray-50 hover:opacity-75">Add</button>
+			<button  onclick="addModal()" class="fixed bottom-0 right-0 p-2 px-4 m-3 bg-red-600 rounded-lg text-gray-50 hover:opacity-75">Add</button>		
 			
 		</article>
 	</section>
 <script type="text/javascript" src="js/components.js"></script>
+<script src="https://www.gstatic.com/firebasejs/8.9.1/firebase-app.js"></script>
+<script src="https://www.gstatic.com/firebasejs/8.9.1/firebase-database.js"></script>
+<script type="text/javascript" src="js/firebaseConfig.js"></script>
 </body>
 </html>
