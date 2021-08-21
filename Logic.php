@@ -13,10 +13,64 @@ if(isset($_POST['type'])){
 		case 'updateUser':
 			$user_id = $_POST['user_id'];
 			$ref_table = 'Users/'.$user_id;
+			$nNo = $_POST['phone_number'];
+			$nNumber = trim($nNo,"0");
 			$database -> getReference($ref_table)->update([
 				'email' => $_POST['email'],
 				'fullName' => $_POST['name'],
-				'number' => $_POST['phone_number'],
+				'number' => '+254'.$nNumber,
+			]);
+			break;
+			//Disable User
+		case 'disableUserData':
+			$user_id = $_POST['user_id'];
+
+			$updatedUser = $auth->disableUser($user_id);
+			$user_ref ='Users/'.$user_id;
+			$database->getReference($user_ref)
+		->update(
+				$user_data=[
+					'status' => "disabled"
+			]);
+			break;
+
+		// case 'disableUser':
+		// 	$user_id = $_POST['user_id_disable'];
+
+		// 	$updatedUser = $auth->disableUser($user_id);
+		// 	header("location: ./Dashboard.php");
+		// 	break;
+		
+		//enable user
+		case 'enableUser':
+			$user_id = $_POST['user_id'];
+
+			$updatedUser = $auth->enableUser($user_id);
+			$user_ref ='Users/'.$user_id;
+			$database->getReference($user_ref)
+		->update(
+				$user_data=[
+					'status' => "enabled"
+			]);
+			break;
+
+		case 'disableDriver':
+		$user_id = $_POST['user_id'];
+		$driver_ref ='Drivers/'.$user_id;
+		$database->getReference($driver_ref)
+	->update(
+			$driver_data=[
+				'status' => "disabled"
+		]);
+		break;
+
+		case 'enableDriver':
+			$user_id = $_POST['user_id'];
+			$driver_ref ='Drivers/'.$user_id;
+			$database->getReference($driver_ref)
+		->update(
+				$driver_data=[
+					'status' => "enabled"
 			]);
 			break;
 		
@@ -45,7 +99,8 @@ if(isset($_POST['type'])){
 					'email' => $nEmail,
 					'fullName' => $nName,
 					'number' => '+254'.$nNumber,
-					'profileImagePath' => $nProfilePhotoPath
+					'profileImagePath' => $nProfilePhotoPath,
+					'status' => 'enabled'
 			]);
 
 			$database->getReference($uid)->set();
@@ -84,7 +139,8 @@ if(isset($_POST['type'])){
 					'email' => $dEmail,
 					'fullName' => $dName,
 					'number' => '+254'.$dNumber,
-					'profileImagePath' => $dProfilePhotoPath
+					'profileImagePath' => $dProfilePhotoPath,
+					'status' => 'enabled'
 			]);
 
 			//Add Driver to Driver Child
@@ -96,7 +152,8 @@ if(isset($_POST['type'])){
 					'licenceNo' => $dLicense,
 					'matatuPlate' => $dPlate,
 					'routes' => $dRoutes,
-					'seats' => $dSeat
+					'seats' => $dSeat,
+					'status' => 'enabled'
 			]);
 
 			// $database->getReference($dUid)->set();

@@ -8,6 +8,7 @@
     <!-- <link href="{{ asset('css/app.css') }}" rel="stylesheet"> -->
     <!-- <link href="https://unpkg.com/tailwindcss@^1.0/dist/tailwind.min.css" rel="stylesheet"> -->
     <link rel="stylesheet" href="build/styles.css">
+	<link href="http://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.3.0/css/font-awesome.css" rel="stylesheet"  type='text/css'>
 	<script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.5.0/jquery.min.js" integrity="sha256-xNzN2a4ltkB44Mc/Jz3pT4iU1cmeR0FkXs4pru/JxaQ=" crossorigin="anonymous"></script>
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
 </head>
@@ -99,6 +100,62 @@
 		</div>
 				
 				<!-- {{-- END OF ADD MODAL --}} -->
+				<!-- {{-- Disable Driver Modal --}} -->
+			<div id="driver_disable_user_modal" class="fixed inset-0 items-center justify-center hidden bg-black bg-opacity-50 ">
+				<div class="p-3 rounded-lg bg-gray-50">
+					<div class="flex items-center justify-between p-4 text-center">
+						<h4 class="justify-start text-lg font-semibold">Disable User</h4>
+						<svg onclick="closeDriverDisableModal()" xmlns="http://www.w3.org/2000/svg" class="w-6 h-6" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+						<path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M6 18L18 6M6 6l12 12" />
+						</svg>
+					</div>
+					<div class="hidden w-auto p-3 mb-4 font-medium bg-green-300 rounded-sm justify-items-start" id="driver_disable_success_message">
+						<p class="h-auto text-green-800 text-md">Driver Disabled Successfully!</p>
+					</div>
+					<div class="flex flex-row w-auto h-auto p-6 bg-red-300 rounded-md justify-items-start">
+						<i class="mt-1 mr-6 text-red-700 fas fa-exclamation-triangle"></i>
+						<p class="h-auto text-center text-white text-md">Drivers with disabled accounts won't be able to access their accounts as drivers</p>
+					</div>
+					<div class="grid grid-cols-6 gap-6 p-4">
+						
+						<input type="text" class="hide_data" name="user_id_disable" id="user_id" hidden>	
+					</div>
+					<div class="flex items-center justify-center mb-3">
+						<button onclick="closeDriverDisableModal()" class="px-3 py-1 mr-4 text-gray-800 border-2 border-gray-800 rounded bg-gray-50 hover:opacity-75">Okay</button>
+						<button onclick="disableDriverConfirm('<?php echo $user; ?>')" class="hidden px-3 py-1 bg-gray-800 rounded text-gray-50 hover:opacity-75">Disable</button>						
+					</div>
+					<p class="flex items-center justify-center text-green-500" id="userEdit_success"></p>				
+				</div>       
+			</div>
+			<!-- {{-- End of Disable Driver Modal --}} -->
+						<!-- {{-- Enable Driver Modal --}} -->
+			<div id="driver_enable_user_modal" class="fixed inset-0 items-center justify-center hidden bg-black bg-opacity-50 ">
+				<div class="p-3 rounded-lg bg-gray-50">
+					<div class="flex items-center justify-between p-4 text-center">
+						<h4 class="justify-start text-lg font-semibold">Enable User</h4>
+						<svg onclick="closeDriverEnableModal()" xmlns="http://www.w3.org/2000/svg" class="w-6 h-6" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+						<path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M6 18L18 6M6 6l12 12" />
+						</svg>
+					</div>
+					<div class="hidden w-auto p-3 mb-4 font-medium bg-green-300 rounded-sm justify-items-start" id="driver_enable_success_message">
+						<p class="h-auto text-green-800 text-md">Driver Enabled Successfully!</p>
+					</div>
+					<div class="flex flex-row w-auto p-6 bg-gray-700 rounded-md justify-items-start">
+						<i class="mt-1 mr-6 text-white fas fa-info-circle"></i>
+						<p class="h-auto text-center text-white text-md">Drivers with enabled accounts have driver capabilities</p>
+					</div>
+					<div class="grid grid-cols-6 gap-6 p-4">
+						
+						<input type="text" class="hide_data" name="user_id" id="user_id" hidden>	
+					</div>
+					<div class="flex items-center justify-center mb-3">
+						<button onclick="closeDriverEnableModal()" class="px-3 py-1 mr-4 text-gray-800 border-2 border-gray-800 rounded bg-gray-50 hover:opacity-75">Okay</button>
+						<button onclick="enableDriverConfirm('<?php echo $user; ?>')" class="hidden px-3 py-1 bg-gray-800 rounded text-gray-50 hover:opacity-75">Enable</button>						
+					</div>
+					<p class="flex items-center justify-center text-green-500" id="userEdit_success"></p>				
+				</div>       
+			</div>
+			<!-- {{-- End of Enable Driver Modal --}} -->
 
 
 			<div class="box-content p-2 m-1 bg-red-600 rounded-lg ">
@@ -144,7 +201,8 @@
 							{
 								$ref_table = 'Users/'.$key;
 								$fetchDriverDetails = $database->getReference($ref_table)->getValue();
-								?><tr>
+								if($value['status']== "enabled"){
+									?><tr>
 					              <td class="px-6 py-4 whitespace-nowrap">
 								  <div class="user_id hide_data">
 								  </div>
@@ -164,9 +222,40 @@
 					              <td class="px-6 py-4 text-sm text-gray-500 whitespace-nowrap driver_licence"><?php echo $value['routes']; ?></td>
 					              <td class="px-6 py-4 text-sm font-medium text-right whitespace-nowrap">
 					                <button onclick="editModal()" class="px-3 py-1 text-gray-800 bg-blue-100 rounded hover:underline">Edit</button>
-									<button onClick="deleteDriver()" class="px-3 py-1 text-gray-800 bg-red-100 rounded hover:underline">Disable</button>
+									<button onclick="disableDriver('<?php echo $key; ?>')" class="px-3 py-1 text-gray-800 bg-red-100 rounded hover:underline" id="disable_btn">Disable</button>
+									<button onclick="enableDriver('<?php echo $key; ?>')" class="hidden px-3 py-1 text-gray-800 bg-green-400 rounded hover:underline"  id="enable_btn">Enable</button>
 					              </td>
 					            </tr><?php
+								}
+								else{
+									?>
+									<tr class="bg-gray-50">
+					              <td class="px-6 py-4 whitespace-nowrap">
+								  <div class="user_id hide_data">
+								  </div>
+					                <div class="flex items-center">
+					                  <div class="ml-4">
+					                    <div class="text-sm font-medium text-gray-900 opacity-25"><?php echo $count; ?></div>
+					                  </div>
+					                </div>
+					              </td>
+					              <td class="px-6 py-4 text-center opacity-25 whitespace-nowrap">
+					                <div class="text-sm text-gray-900 driver_name"><?php echo $fetchDriverDetails['fullName']; ?></div>
+					                <div class="mt-2 text-sm text-gray-900 driver_name"><?php echo $fetchDriverDetails['number']; ?></div>
+					              </td>
+					              <td class="px-6 py-4 text-sm text-gray-500 opacity-25 whitespace-nowrap driver_phone_number"><?php echo $value['licenceNo']; ?></td>
+					              <td class="px-6 py-4 text-sm text-gray-500 opacity-25 whitespace-nowrap driver_licence"><?php echo $value['matatuPlate']; ?></td>
+					              <td class="px-6 py-4 text-sm text-gray-500 opacity-25 whitespace-nowrap driver_licence"><?php echo $value['seats']; ?></td>
+					              <td class="px-6 py-4 text-sm text-gray-500 opacity-25 whitespace-nowrap driver_licence"><?php echo $value['routes']; ?></td>
+					              <td class="px-6 py-4 text-sm font-medium text-right whitespace-nowrap">
+					                <button onclick="editModal()" class="px-3 py-1 text-gray-800 bg-blue-100 rounded hover:underline">Edit</button>
+									<button onclick="disableDriver('<?php echo $key; ?>')" class="hidden px-3 py-1 text-gray-800 bg-red-100 rounded hover:underline" id="disable_btn">Disable</button>
+									<button onclick="enableDriver('<?php echo $key; ?>')" class="px-3 py-1 text-gray-800 bg-green-400 rounded hover:underline"  id="enable_btn">Enable</button>
+					              </td>
+					            </tr>
+								<?php
+								}
+								$count =$count+1;
 							}
 						}else
 						{
@@ -184,6 +273,7 @@
 			
 		</article>
 	</section>
+	<script defer src="https://use.fontawesome.com/releases/v5.0.8/js/all.js" integrity="sha384-SlE991lGASHoBfWbelyBPLsUlwY1GwNDJo3jSJO04KZ33K2bwfV9YBauFfnzvynJ" crossorigin="anonymous"></script>
 <script type="text/javascript" src="js/components.js"></script>
 </body>
 </html>
