@@ -1,5 +1,9 @@
 <?php
 session_start();
+if(isset($_SESSION['verified_user_id'])){
+    header("location: ./Dashboard.php"); 
+    exit();
+}
 ?>
 <!DOCTYPE html>
 <html lang="en">
@@ -91,7 +95,7 @@ session_start();
                     unset($_SESSION['status']);
                 }
             ?>
-            <form method="POST" action="">
+            <form method="POST" action="LoginLogic.php">
                 <h1 class="title">Login</h1>
                 <!-- <div class="social-container">
                     <a href="#" class="social"><i class="fa fa-facebook-f"></i></a>
@@ -144,7 +148,7 @@ session_start();
 
 
                 <div class="col-md-8">
-                    <button type="button" class="px-3 py-1 mb-2 bg-red-800 rounded outline-none btn btn-primary" onclick="login() ">
+                    <button type="submit" name="admin_login_btn" class="px-3 py-1 mb-2 bg-red-800 rounded outline-none btn btn-primary">
                         Login
                     </button>
                     <br>                    

@@ -204,7 +204,7 @@ if(isset($_POST['admin_register_btn'])){
 				'profileImagePath' => $aProfilePhotoPath,
 				'status' => 'enabled'
 		]);
-
+		$auth->sendEmailVerificationLink($aEmail);
 		$_SESSION['status'] = "Admin Registered Successfully!";
 		header('Location: Login.php');
 		exit();
