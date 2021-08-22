@@ -295,3 +295,80 @@ $(document).ready(function () {
     });
     
 });
+
+// //register admin
+// $(document).ready(function () {
+//     $('#adminRegister').submit(function (e) {
+//         e.preventDefault();
+//         //clearMessageField();
+//         let formDataAdmin = new FormData($(this)[0]);
+//         console.log(formDataAdmin);
+//         formDataAdmin.append("type","createAdmin");
+//         let formEmptyAdmin = false;
+//         for(var valueAdmin of formDataAdmin.entries()){
+//             formEmptyAdmin = (valueAdmin[1] == "")? true:false;
+//         }
+//         if(!formEmptyAdmin){
+//             $.ajax({
+//                 url:'Logic.php',
+//                 enctype:'multipart/form-data',
+//                 data:formDataAdmin,
+//                 processData: false,
+//                 contentType: false,
+//                 type: 'POST',
+//                 success:function (values) {
+                   
+//                 },
+//                 error: function (e) {
+//                     alert(e.responseText);
+//                     console.log("ERROR : ", e);
+//                 }     
+//             });
+//         }else{
+//             // $(".error").text("All fields are required");
+//             console.log("All fields are required");
+//         }
+        
+//     });
+    
+// });
+
+//filter users
+function filterUsers() {
+  var input, filter, table, tr, td, i, txtValue;
+  input = document.getElementById("search_users");
+  filter = input.value.toUpperCase();
+  table = document.getElementById("users_table");
+  tr = table.getElementsByTagName("tr");
+  for (i = 0; i < tr.length; i++) {
+    td = tr[i].getElementsByTagName("td")[1];
+    if (td) {
+      txtValue = td.textContent || td.innerText;
+      if (txtValue.toUpperCase().indexOf(filter) > -1) {
+        tr[i].style.display = "";
+      } else {
+        tr[i].style.display = "none";
+      }
+    }
+  }
+}
+
+//filter users
+function filterDrivers() {
+  var input, filter, table, tr, td, i, txtValue;
+  input = document.getElementById("search_drivers");
+  filter = input.value.toUpperCase();
+  table = document.getElementById("drivers_table");
+  tr = table.getElementsByTagName("tr");
+  for (i = 0; i < tr.length; i++) {
+    td = tr[i].getElementsByTagName("td")[1];
+    if (td) {
+      txtValue = td.textContent || td.innerText;
+      if (txtValue.toUpperCase().indexOf(filter) > -1) {
+        tr[i].style.display = "";
+      } else {
+        tr[i].style.display = "none";
+      }
+    }
+  }
+}
