@@ -163,7 +163,8 @@
             </div>
 			
 			<div class="m-2">
-				<table class="box-border min-w-full divide-y divide-gray-200">
+				<input id="search_drivers" onkeyup="filterDrivers()" class="w-full h-12 px-8 mb-4 text-lg rounded shadow-lg focus:ring-2 focus:ring-indigo-500 focus:outline-none focus:shadow-outline" type="search" placeholder="Search by name">
+				<table class="box-border min-w-full divide-y divide-gray-200" id="drivers_table">
 			          <thead class="bg-gray-50">
 			            <tr>
 			              <th scope="col" class="px-6 py-3 text-xs font-medium tracking-wider text-left text-gray-500 uppercase">

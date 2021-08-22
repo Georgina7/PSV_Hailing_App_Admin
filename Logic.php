@@ -1,5 +1,5 @@
 <?php
-
+session_start();
 include("dbconn.php");
 
 if(isset($_POST['type'])){
@@ -159,12 +159,62 @@ if(isset($_POST['type'])){
 			// $database->getReference($dUid)->set();
 		}
 		break;
-		default:
-		echo "Not executed";
-		break; 
+
+
 	}
 }
+//create Admin
+if(isset($_POST['admin_register_btn'])){
+	$aEmail = $_POST['admin_email'];
+	$aName = $_POST['admin_name'];
+	$aPassword = $_POST['admin_password'];
+	$aUid = md5($aEmail);
 
+	$adminUserProperties = [
+	'uid' => $aUid,
+	'email' => $aEmail,
+	'emailVerified' => false,
+	'password' => $aPassword,
+	'displayName' => $aName,
+	'disabled' => false,
+	];
+
+	$createdAdmin = $auth->createUser($adminUserProperties);
+	if($createdAdmin)
+	{
+		$adminUserRef ='Users/'.$aUid;
+		$aProfilePhotoPath = "";
+		$database->getReference($adminUserRef)
+	->set(
+			$adminUser_data=[
+				'email' => $aEmail,
+				'fullName' => $aName,
+				'number' => '',
+				'profileImagePath' => $aProfilePhotoPath,
+				'status' => 'enabled'
+		]);
+
+		//Add Admin to Admin Child
+		$adminRef ='Admins/'.$aUid;
+		$database->getReference($adminRef)
+	->set(
+			$admin_data=[
+				'email' => $aEmail,
+				'fullName' => $aName,
+				'profileImagePath' => $aProfilePhotoPath,
+				'status' => 'enabled'
+		]);
+
+		$_SESSION['status'] = "Admin Registered Successfully!";
+		header('Location: Login.php');
+		exit();
+	}
+	else{
+		$_SESSION['status'] = "Admin Registration Failed!";
+		header('Location: Login.php');
+		exit();
+	}
+}
 // if(isset($_POST['add_user_btn']))
 // {
 // 	$nEmail = $_POST['email'];

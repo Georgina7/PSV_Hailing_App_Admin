@@ -1,3 +1,6 @@
+<?php
+session_start();
+?>
 <!DOCTYPE html>
 <html lang="en">
 
@@ -18,7 +21,7 @@
     <div class="card-body" id="card-body">
         <!-- This is the start of the sign up div -->
         <div class="form-login sign-in-container ">
-            <form method="POST" action="">
+            <form id="adminRegister" method="POST" action="Logic.php">
 
                 <h1 class="title">Sign Up</h1>
                 <!-- <div class="social-container">
@@ -29,9 +32,9 @@
                 <span class="text">or use another email account</span> -->
 
 
-                <div class="col-md-6 mt-3">
-                    <input id="email" type="email" class="form-control @error('email') is-invalid @enderror outline-none"
-                        name="email" value="" placeholder="Email" required autocomplete="email">
+                <div class="mt-3 col-md-6">
+                    <input id="admin_email" type="email" class="form-control @error('email') is-invalid @enderror outline-none"
+                        name="admin_email" value="" placeholder="Email" required autocomplete="email">
 
                     
                     <span class="invalid-feedback" role="alert">
@@ -43,18 +46,25 @@
 
 
 
-
-                <div class="col-md-6 mt-2">
-                    <input id="password" type="password" class="form-control @error('password') is-invalid @enderror outline-none"
-                        name="password" placeholder="Password" required autocomplete="new-password">                    
+                <div class="mt-2 col-md-6">
+                    <input id="admin_name" type="text" class="form-control @error('password') is-invalid @enderror outline-none"
+                        name="admin_name" placeholder="Full Name">                    
+                    <span class="invalid-feedback" role="alert">
+                        <!-- <strong>{{ $message }}</strong> -->
+                    </span>
+                  
+                </div>
+                <div class="mt-2 col-md-6">
+                    <input id="admin_password" type="password" class="form-control @error('password') is-invalid @enderror outline-none"
+                        name="admin_password" placeholder="Password" required autocomplete="new-password">                    
                     <span class="invalid-feedback" role="alert">
                         <!-- <strong>{{ $message }}</strong> -->
                     </span>
                   
                 </div>
 
-                <div class="col-md-6 mt-2">
-                    <input id="password-confirm" type="password" class="form-control outline-none" name="password_confirmation"
+                <div class="mt-2 col-md-6">
+                    <input id="admin_password-confirm" type="password" class="outline-none form-control" name="admin_password_confirmation"
                         placeholder="Confirm Password" required autocomplete="new-password">
                 </div>
 
@@ -64,7 +74,7 @@
 
 
                 <div class="col-md-6">
-                    <button type="button" class="btn btn-primary outline-none bg-red-800 px-3 py-1 rounded mb-2 mt-2">
+                    <button type="submit" id="admin_register_btn" name="admin_register_btn" class="px-3 py-1 mt-2 mb-2 bg-red-800 rounded outline-none btn btn-primary">
                         Register
                     </button>
                 </div>
@@ -75,6 +85,12 @@
         <!-- Start of Login Div -->
 
         <div class="form-login register-container ">
+            <?php
+                if(isset($_SESSION['status'])){
+                    echo "<h5 class='h-12 pt-2 text-center text-green-800 bg-green-300 text-md'>".$_SESSION['status']."</h5>";
+                    unset($_SESSION['status']);
+                }
+            ?>
             <form method="POST" action="">
                 <h1 class="title">Login</h1>
                 <!-- <div class="social-container">
@@ -87,7 +103,7 @@
 
 
 
-                <div class="col-md-8 mt-3">
+                <div class="mt-3 col-md-8">
                     <input id="email_login" type="email" class="form-control @error('email') is-invalid @enderror outline-none p-2 rounded"
                         name="email" value="" placeholder="Email" required autocomplete="email"
                         autofocus>
@@ -128,7 +144,7 @@
 
 
                 <div class="col-md-8">
-                    <button type="button" class="btn btn-primary outline-none bg-red-800 px-3 py-1 rounded mb-2" onclick="login() ">
+                    <button type="button" class="px-3 py-1 mb-2 bg-red-800 rounded outline-none btn btn-primary" onclick="login() ">
                         Login
                     </button>
                     <br>                    
