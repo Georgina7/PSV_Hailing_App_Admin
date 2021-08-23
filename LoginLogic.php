@@ -29,7 +29,7 @@ try {
         }
     } catch (Exception $th) 
     {
-        echo $e->getMessage();
+        echo $th->getMessage();
         $_SESSION['status'] = "Wrong Password";
         header("location: ./Login.php");   
         exit(); 

@@ -177,6 +177,26 @@ if(isset($_POST['type'])){
 			// $database->getReference($dUid)->set();
 		}
 		break;
+		case 'updateAdmin':
+			$admin_id = $_SESSION['verified_user_id'];
+			$ref_table = 'Admins/'.$admin_id;
+			if($_POST['phone_number'] == ""){
+				$nNumber = "";
+				$database -> getReference($ref_table)->update([
+				'fullName' => $_POST['name'],
+				'number' => $nNumber,
+			]);
+			}
+			else{
+			$nNo = $_POST['phone_number'];
+			$nNumber = trim($nNo,"0");
+			$database -> getReference($ref_table)->update([
+				'fullName' => $_POST['name'],
+				'number' => '+254'.$nNumber,
+			]);
+			}
+			
+			break;
 
 
 	}
@@ -220,6 +240,7 @@ if(isset($_POST['admin_register_btn'])){
 				'email' => $aEmail,
 				'fullName' => $aName,
 				'profileImagePath' => $aProfilePhotoPath,
+				'number' => "",
 				'status' => 'enabled'
 		]);
 		$auth->sendEmailVerificationLink($aEmail);

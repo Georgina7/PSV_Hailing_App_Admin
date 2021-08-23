@@ -32,7 +32,7 @@ include("dbconn.php");
                                 $value = $database->getReference($ref_table)->getValue();
                             ?>
                             <img class="w-full h-auto mx-auto"
-                                src="https://lavinephotography.com.au/wp-content/uploads/2017/01/PROFILE-Photography-112.jpg"
+                                src="https://media.geeksforgeeks.org/wp-content/uploads/20200123100652/geeksforgeeks12.jpg"
                                 alt="">
                         </div>
                         <h1 class="my-1 text-xl font-bold leading-8 text-gray-900"><?php echo $value['fullName']; ?></h1>
@@ -59,6 +59,7 @@ include("dbconn.php");
                             </span>
                             <span class="justify-center text-xl tracking-wide">Profile</span>
                         </div>
+                        <form id="adminProfile">
                         <div class="pb-8 text-gray-700">
                             <div class="grid pt-6 text-sm md:grid-cols-2">
                                 <div class="grid grid-cols-2">
@@ -67,15 +68,15 @@ include("dbconn.php");
                                     <div class="px-4 py-2">
                                         <input placeholder="Full Name" value="<?php echo $value['fullName']; ?>"
                                             class="w-full px-3 py-2 rounded shadow appearance-none leading-tighttext-gray-700 focus:outline-none focus:shadow-outline"
-                                            id="username" type="text">
+                                            id="username" name="name" type="text">
                                     </div>
                                 </div>
                                 <div class="grid grid-cols-2">
                                     <div class="px-4 py-4 font-semibold">Email:</div>
                                     <div class="px-4 py-2">
-                                        <input placeholder="Email"
+                                        <input placeholder="Email" readonly
                                             class="w-full px-3 py-2 leading-tight text-gray-700 rounded shadow appearance-none focus:outline-none focus:shadow-outline"
-                                            id="username" value="<?php echo $value['email']; ?>" type="email">
+                                            id="username" name="email" value="<?php echo $value['email']; ?>" type="email">
                                     </div>
                                 </div>
                                 <div class="grid grid-cols-2">
@@ -83,7 +84,7 @@ include("dbconn.php");
                                     <div class="px-4 py-2">
                                         <input placeholder="Phone Number"
                                             class="w-full px-3 py-2 leading-tight text-gray-700 rounded shadow appearance-none focus:outline-none focus:shadow-outline"
-                                            id="username" value="<?php echo $value['number']; ?>" type="text">
+                                            id="username" name="phone_number" value="<?php echo $value['number']; ?>" type="text">
                                     </div>
                                 </div>
                                 <div class="grid grid-cols-2">
@@ -97,8 +98,11 @@ include("dbconn.php");
                                 </div>
                             </div>
                         </div>
+                        <p class="flex items-center justify-center text-green-500" id="update_success"></p>
                         <button
+                        id="adminEditProfile"
                         class="block w-full p-3 my-4 text-sm font-semibold text-blue-800 rounded-lg hover:bg-gray-100 focus:outline-none focus:shadow-outline focus:bg-gray-100 hover:shadow-xs">Update Details</button>
+                        </form>
                     </div>
                     <!-- End of about section -->
 

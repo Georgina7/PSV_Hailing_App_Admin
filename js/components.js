@@ -375,6 +375,44 @@ $(document).ready(function () {
     
 });
 
+//admin Profile
+$(document).ready(function () {
+    $('#adminProfile').submit(function (event1) {
+        event1.preventDefault();
+        //clearMessageField();
+        let formData1 = new FormData($(this)[0]);
+        console.log(formData1);
+        formData1.append("type","updateAdmin");
+        let formEmpty1 = false;
+        for(var value1 of formData1.entries()){
+            formEmpty1 = (value1[1] == "")? true:false;
+        }
+        if(!formEmpty1){
+            $.ajax({
+                url:'Logic.php',
+                enctype:'multipart/form-data',
+                data:formData1,
+                processData: false,
+                contentType: false,
+                type: 'POST',
+                success:function (values) {
+                    $("#update_success").text("Updated Created Successfully!");
+                    location.reload();
+                },
+                error: function (e) {
+                    alert(e.responseText);
+                    console.log("ERROR : ", e);
+                }     
+            });
+        }else{
+            // $(".error").text("All fields are required");
+            console.log("All fields are required");
+        }
+        
+    });
+    
+});
+
 // //register admin
 // $(document).ready(function () {
 //     $('#adminRegister').submit(function (e) {
