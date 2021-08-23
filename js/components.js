@@ -1,4 +1,5 @@
 const edit_modal = document.getElementById('edit_modal');
+const driver_edit_modal = document.getElementById('driver_edit_modal');
 //const edit_modal_driver = document.getElementById('edit_modal_driver');
 const add_modal = document.getElementById('add_modal');
 const disable_modal = document.getElementById('disable_user_modal');
@@ -28,6 +29,33 @@ function userEditModal(userID){
     xmlhttp.open("POST","Logic.php",true);
     xmlhttp.setRequestHeader("Content-type", "application/x-www-form-urlencoded");
     let data = "user_id=" + userID + "&type=getUserData";
+    xmlhttp.send(data);
+	//console.log(userID);
+	
+}
+function driverEditModal(userID){
+    let xmlhttp= new XMLHttpRequest();
+    xmlhttp.onreadystatechange= function() {
+        if (this.readyState==4 && this.status==200) {
+            //console.log("Ndio hii: " + this.responseText);
+            let userObject = JSON.parse(this.responseText);
+            // let driverObject = JSON.parse(this.responseText);
+            // document.querySelector("#driver_edit_name").value = driverObject.fullName;
+            // document.querySelector("#driver_edit_phone_number").value = driverObject.number;
+            // document.querySelector("#driver_edit_email").value = driverObject.email;
+            document.querySelector("#driver_edit_licence").value = userObject.licenceNo;
+            document.querySelector("#driver_edit_seat").value = userObject.seats;
+            document.querySelector("#driver_edit_plate").value = userObject.matatuPlate;
+            document.querySelector("#driver_edit_routes").value = userObject.routes;
+            
+            document.querySelector("#user_id").value = userID;
+            driver_edit_modal.classList.remove('hidden');
+			driver_edit_modal.classList.add('flex');
+        }
+    };
+    xmlhttp.open("POST","Logic.php",true);
+    xmlhttp.setRequestHeader("Content-type", "application/x-www-form-urlencoded");
+    let data = "user_id=" + userID + "&type=getDriverData";
     xmlhttp.send(data);
 	//console.log(userID);
 	
@@ -175,6 +203,10 @@ function closeDriverEnableModal(){
     driver_disable_success_msg.classList.add('hidden');
     location.reload();
 }
+function closeDriverEditModal(){
+	driver_edit_modal.classList.remove('flex');
+	driver_edit_modal.classList.add('hidden');
+}
 
 $(document).ready(function(){
     $('#userEdit').submit(function(event){
@@ -220,6 +252,53 @@ $(document).ready(function(){
         }
     });
 });
+
+//Driver Edit
+$(document).ready(function(){
+    $('#driverEdit').submit(function(event){
+        event.preventDefault();
+        //clearMessageField();
+        let formData = new FormData($(this)[0]);
+        console.log(formData);
+        formData.append("type","updateDriver");
+        let formEmpty = false;
+        for(var value of formData.entries()){
+            formEmpty = (value[1] == "")? true:false;
+        }
+        if (!formEmpty) {
+        	//console.log("All fields present");
+            $.ajax({
+                url:'Logic.php',
+                enctype:'multipart/form-data',
+                data: formData,
+                processData: false,
+                contentType: false,
+                type: 'POST',
+                success: function(data){
+                	$("#driver_edit_success").text("Update Successful");
+                    location.reload();
+                	//setTimeout(function(){ location.reload(); }, 1400);
+                    // if (data=="Successful") {
+                    // 	console.log("Successful");
+                    //     // setTimeout(function(){ location.reload(); }, 1400);
+                    //     // $("#eventEdit_success").text("Event Updated Successfully");
+                    // } else {
+                    //     // $("#eventEdit_error").text(data);
+                    //     console.log("Unsuccessful");
+                    // }
+                },
+                error: function (e) {
+                    alert(e.responseText);
+                    console.log("ERROR : ", e);
+                }     
+            });
+        }else{
+            // $(".error").text("All fields are required");
+            console.log("All fields are required");
+        }
+    });
+});
+
 $(document).ready(function () {
     $('#userAdd').submit(function (event1) {
         event1.preventDefault();

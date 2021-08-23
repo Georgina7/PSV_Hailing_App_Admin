@@ -10,6 +10,14 @@ if(isset($_POST['type'])){
 			$fetchUserData = $database->getReference($ref_table)->getValue();
 			echo (json_encode($fetchUserData));
 			break;
+		case 'getDriverData':
+			// $ref_table = 'Users/'.$_POST['user_id'];
+			// $fetchDriverData = $database->getReference($ref_table)->getValue();
+			// echo (json_encode($fetchDriverData));
+			$ref_table1 = 'Drivers/'.$_POST['user_id'];
+			$fetchDriverData1 = $database->getReference($ref_table1)->getValue();
+			echo (json_encode($fetchDriverData1));
+			break;
 		case 'updateUser':
 			$user_id = $_POST['user_id'];
 			$ref_table = 'Users/'.$user_id;
@@ -19,6 +27,16 @@ if(isset($_POST['type'])){
 				'email' => $_POST['email'],
 				'fullName' => $_POST['name'],
 				'number' => '+254'.$nNumber,
+			]);
+			break;
+		case 'updateDriver':
+			$user_id = $_POST['user_id'];
+			$ref_table = 'Drivers/'.$user_id;
+			$database -> getReference($ref_table)->update([
+				'licenceNo' => $_POST['driver_edit_licence'],
+				'matatuPlate' => $_POST['driver_edit_plate'],
+				'routes' => $_POST['driver_edit_routes'],
+				'seats' => $_POST['driver_edit_seat'],
 			]);
 			break;
 			//Disable User
