@@ -1,6 +1,12 @@
 <?php
 include("dbconn.php");
 include("authentication.php");
+if(!isset($_SESSION['verified_user_id'])){
+    $_SESSION['status'] = "Your Session Expired!";
+    header("location: ./Login.php"); 
+    exit();
+}
+
 ?>
 <!DOCTYPE html>
 <html>
