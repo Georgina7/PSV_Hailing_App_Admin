@@ -377,6 +377,12 @@ $(document).ready(function () {
 
 //admin Profile
 $(document).ready(function () {
+$("#uploadImageDiv").click(function (){
+  $("#uploadImage").click();
+});  
+});
+
+$(document).ready(function () {
     $('#adminProfile').submit(function (event1) {
         event1.preventDefault();
         //clearMessageField();

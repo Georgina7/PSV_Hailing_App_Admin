@@ -30,10 +30,20 @@ include("dbconn.php");
                                 $admin_id = $_SESSION['verified_user_id'];
                                 $ref_table = 'Admins/'.$admin_id;
                                 $value = $database->getReference($ref_table)->getValue();
-                            ?>
+                            
+                            if($value['profileImagePath']==""){
+                                ?>
                             <img class="w-full h-auto mx-auto"
-                                src="https://media.geeksforgeeks.org/wp-content/uploads/20200123100652/geeksforgeeks12.jpg"
+                                src="Image/default_profile.jpg"
                                 alt="">
+                                <?php
+                            }else{?>
+                             <img class="w-full h-auto mx-auto"
+                                src="<?php echo $value['profileImagePath']; ?>"
+                                alt="">
+                                <?php
+                            }
+                                ?>
                         </div>
                         <h1 class="my-1 text-xl font-bold leading-8 text-gray-900"><?php echo $value['fullName']; ?></h1>
                         <h3 class="leading-6 text-gray-600 font-lg text-semibold">Administrator</h3>
@@ -90,10 +100,8 @@ include("dbconn.php");
                                 <div class="grid grid-cols-2">
                                     <div class="px-4 py-4 font-semibold">Profile Photo</div>
                                     <div class="px-2 py-1">
-                                        <label>
-                                            <input class="hidden text-sm cursor-pointer w-36" type="file" multiple>
-                                            <div class="h-auto px-3 py-2 font-semibold text-center text-white bg-indigo-600 border border-gray-300 rounded cursor-pointer py-21 text hover:bg-indigo-500">Select Photo</div>
-                                        </label>
+                                        <input class="hidden text-sm cursor-pointer w-36" name="uploadImage" id="uploadImage" type="file" multiple>
+                                        <div class="h-auto px-3 py-2 font-semibold text-center text-white bg-indigo-600 border border-gray-300 rounded cursor-pointer py-21 text hover:bg-indigo-500" id="uploadImageDiv">Select Photo</div>
                                     </div>
                                 </div>
                             </div>
