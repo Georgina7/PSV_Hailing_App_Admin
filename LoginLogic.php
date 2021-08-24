@@ -7,7 +7,7 @@ if(isset($_POST['admin_login_btn'])){
     $adminPassword = $_POST['password'];
 
 try {
-    $user = $auth->getUserByEmail("$adminEmail");
+    $user = $auth->getUserByEmail($adminEmail);
     try 
     {
         $signInResult = $auth->signInWithEmailAndPassword($adminEmail, $adminPassword);

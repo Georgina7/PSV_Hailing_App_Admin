@@ -43,7 +43,7 @@ if(!isset($_SESSION['verified_user_id'])){
                             <div id="myDropdown" class="absolute right-0 z-30 invisible w-64 p-3 mt-3 overflow-auto text-white bg-gray-800 dropdownlist">
                                 <a href="Profile.php" target="frame" class="block p-2 text-sm text-white no-underline hover:bg-gray-800 hover:no-underline"><i class="fa fa-user fa-fw"></i> Profile</a>
                                 <div class="border border-gray-800"></div>
-                                <a href="#" class="box-content px-4 py-2 m-1 mt-2 bg-red-600 rounded-lg text-gray-50 hover:opacity-75" onclick="logout()"><i class="fas fa-sign-out-alt fa-fw"></i> Log Out</a>
+                                <button onclick="logout()" class="box-content px-4 py-2 m-1 mt-2 bg-red-600 rounded-lg text-gray-50 hover:opacity-75"><i class="fas fa-sign-out-alt fa-fw"></i> Log Out</button>
                             </div>
                         </div>            
                 </div>
@@ -54,7 +54,18 @@ if(!isset($_SESSION['verified_user_id'])){
                 <center>
                     <h1 id="admin_name" class="text-3xl font-medium cursor-default text-gray-50"></h1>
                     <br>
-                    <div class="flex items-center justify-center w-24 h-24 overflow-hidden border-4 rounded-full justify-self-center"><img src=""></div>
+                    <div class="flex items-center justify-center w-24 h-24 overflow-hidden border-4 rounded-full justify-self-center"><?php 
+                    if($value['profileImagePath']==""){?>
+                    <img src="Image/default_profile.jpg" class="object-cover w-24 h-24 rounded-full">
+                    <?php
+                        }else{?>
+                            <img class="object-cover w-24 h-24 rounded-full"
+                            src="<?php echo $value['profileImagePath']; ?>"
+                            alt="">
+                            <?php
+                        }
+                    ?>
+                    </div>
                 </center>  
                 <br> 
                  <div class="box-content flex p-2 pl-4 m-2 my-1 space-x-3">

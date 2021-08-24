@@ -46,14 +46,23 @@ var firebaseConfig = {
   }
 
   function logout(){
-        firebase.auth().signOut().then(() => {
-        // Sign-out successful.
-        console.log("Logged Out")
-        location.href="Login.php"
-      }).catch((error) => {
-        // An error happened.
-        console.log("Not Logged Out");
-      });
+    let xmlhttp1= new XMLHttpRequest();
+    xmlhttp1.onreadystatechange= function() {
+        if (this.readyState==4 && this.status==200) {
+            firebase.auth().signOut().then(() => {
+            // Sign-out successful.
+            console.log("Logged Out")
+            location.href="Login.php"
+          }).catch((error) => {
+            // An error happened.
+            console.log("Not Logged Out");
+          });
+        }
+    };
+    xmlhttp1.open("POST","Logic.php",true);
+    xmlhttp1.setRequestHeader("Content-type", "application/x-www-form-urlencoded");
+    let data1 = "&type=logoutAdmin";
+    xmlhttp1.send(data1);
 }
 
 // function addUser() {

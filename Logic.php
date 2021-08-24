@@ -91,6 +91,14 @@ if(isset($_POST['type'])){
 					'status' => "enabled"
 			]);
 			break;
+		case 'logoutAdmin':
+			unset($_SESSION['verified_user_id']);
+			unset($_SESSION['idTokenString']);
+			$_SESSION['status'] = "Logged Out Succesfully!";
+			exit();
+			
+			
+			break;
 		
 		case 'createUser':
 			$nEmail = $_POST['email'];
@@ -180,21 +188,104 @@ if(isset($_POST['type'])){
 		case 'updateAdmin':
 			$admin_id = $_SESSION['verified_user_id'];
 			$ref_table = 'Admins/'.$admin_id;
-			if($_POST['phone_number'] == ""){
-				$nNumber = "";
-				$database -> getReference($ref_table)->update([
-				'fullName' => $_POST['name'],
-				'number' => $nNumber,
-			]);
+			$filename = $_FILES["uploadImage"]["name"];
+    		$tempname = $_FILES["uploadImage"]["tmp_name"];    
+        	$folder = "Image/".$filename;
+
+		// 	if (move_uploaded_file($tempname, $folder))  {
+        //    echo '<script>alert("Image In")</script>';
+        // 	}else{
+        //    echo '<script>alert("Image not In")</script>';
+      	// 	}
+			
+  			$imageFileType = strtolower(pathinfo($folder,PATHINFO_EXTENSION));
+
+			$extensions_arr = array("jpg","jpeg","png","gif");
+
+			// Check extension
+			if( in_array($imageFileType,$extensions_arr) ){
+				if (move_uploaded_file($tempname, $folder))  {
+					echo '<script>alert("Image In")</script>';
+				}else{
+					echo '<script>alert("Image not In")</script>';
+				}
+
+			}
+
+			if($filename != null){
+				if($_POST['phone_number'] != null){
+					$nNo = $_POST['phone_number'];
+					$nNumber = trim($nNo,"0,+254");
+					$database -> getReference($ref_table)->update([
+					'fullName' => $_POST['name'],
+					'number' => '+254'.$nNumber,
+					'profileImagePath' => $folder,
+					]);
+				}
+				else{
+					$nNo = "";
+					$nNumber = trim($nNo,"0");
+					$database -> getReference($ref_table)->update([
+					'fullName' => $_POST['name'],
+					'number' => $nNumber,
+					'profileImagePath' => $folder,
+					]);
+				}
+
 			}
 			else{
-			$nNo = $_POST['phone_number'];
-			$nNumber = trim($nNo,"0");
-			$database -> getReference($ref_table)->update([
-				'fullName' => $_POST['name'],
-				'number' => '+254'.$nNumber,
-			]);
+				if($_POST['phone_number'] != null){
+					$nNo = $_POST['phone_number'];
+					$nNumber = trim($nNo,"0,+254");
+					$database -> getReference($ref_table)->update([
+					'fullName' => $_POST['name'],
+					'number' => '+254'.$nNumber,
+					]);
+				}
+				else{
+					$nNo = "";
+					$nNumber = trim($nNo,"0");
+					$database -> getReference($ref_table)->update([
+					'fullName' => $_POST['name'],
+					'number' => $nNumber,
+					]);
+				}
 			}
+			// if(!empty($_POST['phone_number'])){
+			// 	$nNo = $_POST['phone_number'];
+			// 	$nNumber = trim($nNo,"0");
+			// 	$database -> getReference($ref_table)->update([
+			// 	'fullName' => $_POST['name'],
+			// 	'number' => '+254'.$nNumber,
+			// 	'profileImagePath' => $folder,
+			// 	]);
+			// }
+			// elseif (empty($_POST['phone_number'])) {
+			// 	$nNo = "";
+			// 	$nNumber = trim($nNo,"0");
+			// 	$database -> getReference($ref_table)->update([
+			// 	'fullName' => $_POST['name'],
+			// 	'number' => '+254'.$nNumber,
+		
+			// 	]);
+			// }
+			// elseif ($_FILES["uploadImage"] == null) {
+			// 	$nNo = $_POST['phone_number'];
+			// 	$nNumber = trim($nNo,"0");
+			// 	$database -> getReference($ref_table)->update([
+			// 	'fullName' => $_POST['name'],
+			// 	'number' => '+254'.$nNumber,
+			// 	'profileImagePath' => "",
+			// 	]);
+			// }
+			// else{
+			// 	$nNumber = "";
+			// 	$database -> getReference($ref_table)->update([
+			// 	'fullName' => $_POST['name'],
+			// 	'number' => $nNumber,
+			// 	'profileImagePath' => "",
+			// 	]);
+			// }
 			
 			break;
 
