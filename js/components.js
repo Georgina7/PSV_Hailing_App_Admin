@@ -419,6 +419,66 @@ $(document).ready(function () {
     
 });
 
+$(document).ready(function () {
+    $('#adminChangePassword').submit(function (event1) {
+        event1.preventDefault();
+        //clearMessageField();
+        let formData1 = new FormData($(this)[0]);
+        console.log(formData1);
+        formData1.append("type","changePassword");
+        let formEmpty1 = false;
+        for(var value1 of formData1.entries()){
+            formEmpty1 = (value1[1] == "")? true:false;
+        }
+        if(!formEmpty1){
+            $.ajax({
+                url:'Logic.php',
+                enctype:'multipart/form-data',
+                data:formData1,
+                processData: false,
+                contentType: false,
+                type: 'POST',
+                success:function (values) {
+                    $("#success").text("Password Updated Successfully!");
+                    location.reload();
+                },
+                error: function (e) {
+                    $("#error").text("Password Update Failed!");
+                    console.log("ERROR : ", e);
+                }     
+            });
+        }else{
+            // $(".error").text("All fields are required");
+            console.log("All fields are required");
+        }
+        
+    });
+    
+});
+
+
+// $(document).ready(function () {
+//     $("#adminChangePassword").submit(function (event) {
+//         event.preventDefault();
+//         var password = $("input[id = 'new_password']").val();
+//         var conf_password = $("input[id = 'confirm_new_password']").val();
+//         var type = "changePassword";
+//         $.post("Logic.php", {
+//             password: password,
+//             conf_password: conf_password,
+//             type: type
+//         },
+//         function (data, status) {
+//             if (data=="Successful") {
+//                 window.location.href="dashboard.php";
+//                 $("#success").text(data);
+//             } else {
+//                 $("#error").text(data);
+//             }
+//         });
+//     });
+// });
+
 // //register admin
 // $(document).ready(function () {
 //     $('#adminRegister').submit(function (e) {
@@ -456,6 +516,21 @@ $(document).ready(function () {
     
 // });
 
+//check password input
+var check = function() {
+    if(document.getElementById('n_password').value != null && 
+    document.getElementById('c_password').value  != null){
+        if (document.getElementById('n_password').value ==
+            document.getElementById('c_password').value) {
+            document.getElementById('message').style.color = 'green';
+            document.getElementById('message').innerHTML = 'Passwords match';
+        }
+        else {
+            document.getElementById('message').style.color = 'red';
+            document.getElementById('message').innerHTML = 'Passwords do not match!!';
+        }
+    }
+}
 //filter users
 function filterUsers() {
   var input, filter, table, tr, td, i, txtValue;

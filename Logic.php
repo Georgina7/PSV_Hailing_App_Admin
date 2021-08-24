@@ -185,6 +185,18 @@ if(isset($_POST['type'])){
 			// $database->getReference($dUid)->set();
 		}
 		break;
+		case 'changePassword':
+			$n_password = $_POST['new_password'];
+			$c_new_password = $_POST['confirm_new_password'];
+			$uid = $_SESSION['verified_user_id'];
+
+			if($n_password != $c_new_password){
+				echo 'Passwords do not match!!';
+			}
+			else{
+				$updatedUser = $auth->changeUserPassword($uid, $n_password);
+			}
+		break;
 		case 'updateAdmin':
 			$admin_id = $_SESSION['verified_user_id'];
 			$ref_table = 'Admins/'.$admin_id;
