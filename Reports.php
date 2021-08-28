@@ -91,16 +91,40 @@ include("dbconn.php");
                                 <div class="p-5 bg-yellow-600 rounded-full"><i class="fas fa-user-plus fa-2x fa-inverse"></i></div>
                             </div>
                             <div class="flex-1 text-right md:text-center">
-                                <h5 class="font-bold text-gray-600 uppercase">New Users</h5>
-                                <h3 class="text-3xl font-bold">2 <span class="text-yellow-600"><i class="fas fa-caret-up"></i></span></h3>
+                                <h5 class="font-bold text-gray-600 uppercase">Total Riders</h5>
+                                <h3 class="text-3xl font-bold"><?php $total_riders = $total_users - ($total_admins+$total_drivers); echo $total_riders;?> <span class="text-yellow-600"><i class="fas fa-caret-up"></i></span></h3>
                             </div>
                         </div>
                     </div>
                     <!--/Metric Card-->
                 </div>
                 <div class="w-full p-6 md:w-1/2 xl:w-1/3">
+                    <!--Graph Card-->
+                    <div class="bg-white border-transparent rounded-lg shadow-xl">
+                        <div class="p-2 text-gray-800 uppercase border-b-2 border-gray-300 rounded-tl-lg rounded-tr-lg bg-gradient-to-b from-gray-300 to-gray-100">
+                            <h5 class="font-bold text-gray-600 uppercase">Users Graph</h5>
+                        </div>
+                        <div class="p-5"><canvas id="chartjs-4" class="chartjs" width="undefined" height="undefined"></canvas>
+                            <script>
+                                new Chart(document.getElementById("chartjs-4"), {
+                                    "type": "doughnut",
+                                    "data": {
+                                        "labels": ["Admins", "Drivers", "Riders"],
+                                        "datasets": [{
+                                            "label": "Issues",
+                                            "data": [<?php echo $total_admins;?>,<?php  echo $total_drivers;?> , <?php echo $total_riders; ?>],
+                                            "backgroundColor": ["rgb(255, 99, 132)", "rgb(54, 162, 235)", "rgb(245, 158, 11)"]
+                                        }]
+                                    }
+                                });
+                            </script>
+                        </div>
+                    </div>
+                    <!--/Graph Card-->
+                </div>
+                <!-- <div class="w-full p-6 md:w-1/2 xl:w-1/3"> -->
                     <!--Metric Card-->
-                    <div class="p-5 border-b-4 border-indigo-500 rounded-lg shadow-xl bg-gradient-to-b from-indigo-200 to-indigo-100">
+                    <!-- <div class="p-5 border-b-4 border-indigo-500 rounded-lg shadow-xl bg-gradient-to-b from-indigo-200 to-indigo-100">
                         <div class="flex flex-row items-center">
                             <div class="flex-shrink pr-4">
                                 <div class="p-5 bg-indigo-600 rounded-full"><i class="fas fa-tasks fa-2x fa-inverse"></i></div>
@@ -110,12 +134,12 @@ include("dbconn.php");
                                 <h3 class="text-3xl font-bold">7 tasks</h3>
                             </div>
                         </div>
-                    </div>
+                    </div> -->
                     <!--/Metric Card-->
-                </div>
-                <div class="w-full p-6 md:w-1/2 xl:w-1/3">
+                <!-- </div> -->
+                <!-- <div class="w-full p-6 md:w-1/2 xl:w-1/3"> -->
                     <!--Metric Card-->
-                    <div class="p-5 border-b-4 border-red-500 rounded-lg shadow-xl bg-gradient-to-b from-red-200 to-red-100">
+                    <!-- <div class="p-5 border-b-4 border-red-500 rounded-lg shadow-xl bg-gradient-to-b from-red-200 to-red-100">
                         <div class="flex flex-row items-center">
                             <div class="flex-shrink pr-4">
                                 <div class="p-5 bg-red-600 rounded-full"><i class="fas fa-inbox fa-2x fa-inverse"></i></div>
@@ -125,7 +149,7 @@ include("dbconn.php");
                                 <h3 class="text-3xl font-bold">3 <span class="text-red-500"><i class="fas fa-caret-up"></i></span></h3>
                             </div>
                         </div>
-                    </div>
+                    </div> -->
                     <!--/Metric Card-->
                 </div>
             </div>
@@ -242,30 +266,7 @@ include("dbconn.php");
                     <!--/Graph Card-->
                 </div>
 
-                <div class="w-full p-6 md:w-1/2 xl:w-1/3">
-                    <!--Graph Card-->
-                    <div class="bg-white border-transparent rounded-lg shadow-xl">
-                        <div class="p-2 text-gray-800 uppercase border-b-2 border-gray-300 rounded-tl-lg rounded-tr-lg bg-gradient-to-b from-gray-300 to-gray-100">
-                            <h5 class="font-bold text-gray-600 uppercase">Graph</h5>
-                        </div>
-                        <div class="p-5"><canvas id="chartjs-4" class="chartjs" width="undefined" height="undefined"></canvas>
-                            <script>
-                                new Chart(document.getElementById("chartjs-4"), {
-                                    "type": "doughnut",
-                                    "data": {
-                                        "labels": ["P1", "P2", "P3"],
-                                        "datasets": [{
-                                            "label": "Issues",
-                                            "data": [300, 50, 100],
-                                            "backgroundColor": ["rgb(255, 99, 132)", "rgb(54, 162, 235)", "rgb(255, 205, 86)"]
-                                        }]
-                                    }
-                                });
-                            </script>
-                        </div>
-                    </div>
-                    <!--/Graph Card-->
-                </div>
+                
 
                 <div class="w-full p-6 md:w-1/2 xl:w-1/3">
                     <!--Table Card-->

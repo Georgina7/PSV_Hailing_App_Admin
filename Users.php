@@ -181,7 +181,7 @@ if(!isset($_SESSION['verified_user_id'])){
 			          </thead>
 			          <tbody class="bg-white divide-y divide-gray-200">
 			          <?php
-			          	include('dbconn.php');
+			          	// include('dbconn.php');
 						$ref_table = 'Users';
 						$fetchUserData = $database->getReference($ref_table)->getValue();
 						$count = 1;
