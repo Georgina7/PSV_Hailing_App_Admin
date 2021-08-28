@@ -73,6 +73,13 @@ if(isset($_POST['type'])){
 			}
 			
 			break;
+			case 'addStop':
+			$stop_id = $_POST['stop_id'];
+			$ref_table = 'Routes/'.$stop_id;
+			$stop = $_POST['stop'];			
+			$database -> getReference($ref_table)->set($stop);
+			
+			break;
 			//Disable User
 		case 'disableUserData':
 			$user_id = $_POST['user_id'];

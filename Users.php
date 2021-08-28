@@ -27,7 +27,7 @@ if(!isset($_SESSION['verified_user_id'])){
 
 <!-- {{-- EDIT Modal --}} -->
     		<div id="edit_modal" class="fixed inset-0 items-center justify-center hidden bg-black bg-opacity-50 ">
-				<div class="p-3 rounded-lg bg-gray-50">
+				<div class="p-3 bg-white rounded-lg">
 					<div class="flex items-center justify-between">
 						<h4 class="text-lg font-semibold">Edit User</h4>
 						<svg onclick="closeEditModal()" xmlns="http://www.w3.org/2000/svg" class="w-6 h-6" fill="none" viewBox="0 0 24 24" stroke="currentColor">
@@ -38,15 +38,15 @@ if(!isset($_SESSION['verified_user_id'])){
 					<div class="grid grid-cols-6 gap-6 p-4">
 						<div class="col-span-6 sm:col-span-3">
 			                <label for="name" class="block text-sm font-medium text-gray-700">Name</label>
-			                <input type="text" name="name" id="edit_name" class="block w-full p-2 mt-1 border-gray-300 rounded-md shadow-sm focus:ring-indigo-500 focus:border-indigo-500 sm:text-sm">
+			                <input type="text" name="name" id="edit_name" class="block w-full p-2 mt-1 border-gray-300 rounded-md shadow-sm focus:ring-2 focus:ring-blue-500 focus:outline-none focus:shadow-outline sm:text-sm">
 			            </div>
 						<div class="col-span-6 sm:col-span-3">
 			                <label for="phone_number" class="block text-sm font-medium text-gray-700">Phone Number</label>
-			                <input type="text" name="phone_number" id="edit_phone_number" class="block w-full p-2 mt-1 border-gray-300 rounded-md shadow-sm focus:ring-indigo-500 focus:border-indigo-500 sm:text-sm">
+			                <input type="text" name="phone_number" id="edit_phone_number" class="block w-full p-2 mt-1 border-gray-300 rounded-md shadow-sm focus:ring-2 focus:ring-blue-500 focus:outline-none focus:shadow-outline sm:text-sm">
 			            </div>
 						<div class="col-span-6 sm:col-span-3">
 			                <label for="email" class="block text-sm font-medium text-gray-700">Email</label>
-			                <input type="text" name="email" id="edit_email" class="block w-full p-2 mt-1 border-gray-300 rounded-md shadow-sm focus:ring-indigo-500 focus:border-indigo-500 sm:text-sm">
+			                <input type="text" name="email" id="edit_email" class="block w-full p-2 mt-1 border-gray-300 rounded-md shadow-sm focus:ring-2 focus:ring-blue-500 focus:outline-none focus:shadow-outline sm:text-sm">
 			            </div>	
 						<input type="text" class="hide_data" name="user_id" id="user_id" hidden>	
 					</div>
@@ -60,7 +60,7 @@ if(!isset($_SESSION['verified_user_id'])){
 
 <!-- {{-- START OF ADD MODAL --}} -->
     		<div id="add_modal" class="absolute inset-0 items-center justify-center hidden bg-black bg-opacity-50 ">
-				<div class="p-3 rounded-lg bg-gray-50">
+				<div class="p-3 bg-white rounded-lg">
 					<div class="flex items-center justify-between">
 						<h4 class="text-lg font-semibold">Add Driver</h4>
 						<svg onclick="closeAddModal()" xmlns="http://www.w3.org/2000/svg" class="w-6 h-6" fill="none" viewBox="0 0 24 24" stroke="currentColor">
@@ -74,15 +74,15 @@ if(!isset($_SESSION['verified_user_id'])){
 					<div class="grid grid-cols-6 gap-6 p-4">
 						<div class="col-span-6 sm:col-span-3">
 			                <label for="name" class="block text-sm font-medium text-gray-700">Name</label>
-			                <input id="new_name" type="text" name="name" placeholder="Barry " class="block w-full p-2 mt-1 border-gray-300 rounded-md shadow-sm focus:ring-indigo-500 focus:border-indigo-500 sm:text-sm">
+			                <input id="new_name" type="text" name="name" placeholder="Barry " class="block w-full p-2 mt-1 border-gray-300 rounded-md shadow-sm focus:ring-2 focus:ring-blue-500 focus:outline-none focus:shadow-outline sm:text-sm">
 			            </div>
 						<div class="col-span-6 sm:col-span-3">
 			                <label for="phone_number" class="block text-sm font-medium text-gray-700">Phone Number</label>
-			                <input id="new_number" type="text" name="phone_number"  placeholder="0712345678" class="block w-full p-2 mt-1 border-gray-300 rounded-md shadow-sm focus:ring-indigo-500 focus:border-indigo-500 sm:text-sm">
+			                <input id="new_number" type="text" name="phone_number"  placeholder="0712345678" class="block w-full p-2 mt-1 border-gray-300 rounded-md shadow-sm focus:ring-2 focus:ring-blue-500 focus:outline-none focus:shadow-outline sm:text-sm">
 			            </div>
 						<div class="col-span-6 sm:col-span-3">
 			                <label for="licence" class="block text-sm font-medium text-gray-700">Email</label>
-			                <input id="new_email" type="email" name="email"  placeholder="johndoe@gmail.com" class="block w-full p-2 mt-1 border-gray-300 rounded-md shadow-sm focus:ring-indigo-500 focus:border-indigo-500 sm:text-sm">
+			                <input id="new_email" type="email" name="email"  placeholder="johndoe@gmail.com" class="block w-full p-2 mt-1 border-gray-300 rounded-md shadow-sm focus:ring-2 focus:ring-blue-500 focus:outline-none focus:shadow-outline sm:text-sm">
 			            </div>					
 					</div>
 					<div class="flex items-center justify-center">
@@ -95,7 +95,7 @@ if(!isset($_SESSION['verified_user_id'])){
 		</div>
 		<!-- {{-- Disable User Modal --}} -->
 								<div id="disable_user_modal" class="fixed inset-0 items-center justify-center hidden bg-black bg-opacity-50 ">
-									<div class="p-3 rounded-lg bg-gray-50">
+									<div class="p-3 bg-white rounded-lg">
 										<div class="flex items-center justify-between p-4 text-center">
 											<h4 class="justify-start text-lg font-semibold">Disable User</h4>
 											<svg onclick="closeDisableModal()" xmlns="http://www.w3.org/2000/svg" class="w-6 h-6" fill="none" viewBox="0 0 24 24" stroke="currentColor">
@@ -123,7 +123,7 @@ if(!isset($_SESSION['verified_user_id'])){
 			<!-- {{-- End of Disable User Modal --}} -->
 						<!-- {{-- Enable User Modal --}} -->
 								<div id="enable_user_modal" class="fixed inset-0 items-center justify-center hidden bg-black bg-opacity-50 ">
-									<div class="p-3 rounded-lg bg-gray-50">
+									<div class="p-3 bg-white rounded-lg">
 										<div class="flex items-center justify-between p-4 text-center">
 											<h4 class="justify-start text-lg font-semibold">Enable User</h4>
 											<svg onclick="closeEnableModal()" xmlns="http://www.w3.org/2000/svg" class="w-6 h-6" fill="none" viewBox="0 0 24 24" stroke="currentColor">
@@ -153,12 +153,12 @@ if(!isset($_SESSION['verified_user_id'])){
 				<!-- {{-- END OF ADD MODAL --}} -->
 
 
-			<div class="box-content p-2 m-1 bg-red-600 rounded-lg ">
+			<div class="box-content p-2 m-1 bg-blue-600 rounded-lg ">
                 <center class="text-lg cursor-default text-gray-50">Users</center>
             </div>
 			
 			<div class="m-2">
-				<input id="search_users" onkeyup="filterUsers()" class="w-full h-12 px-8 mb-4 text-lg rounded shadow-lg focus:ring-2 focus:ring-indigo-500 focus:outline-none focus:shadow-outline" type="search" placeholder="Search by name">
+				<input id="search_users" onkeyup="filterUsers()" class="w-full h-12 px-8 mb-4 text-lg rounded shadow-lg focus:ring-2 focus:ring-blue-500 focus:outline-none focus:shadow-outline" type="search" placeholder="Search by name">
 				<table class="box-border min-w-full divide-y divide-gray-200" id="users_table">
 			          <thead class="bg-gray-50">
 			            <tr>
@@ -261,7 +261,7 @@ if(!isset($_SESSION['verified_user_id'])){
 			        </table>
 
 			</div>
-			<button  onclick="addModal()" class="fixed bottom-0 right-0 p-2 px-4 m-3 bg-red-600 rounded-lg text-gray-50 hover:opacity-75">Add</button>		
+			<button  onclick="addModal()" class="fixed bottom-0 right-0 p-2 px-4 m-3 bg-blue-600 rounded-lg text-gray-50 hover:opacity-75">Add</button>		
 			
 		</article>
 	</section>
