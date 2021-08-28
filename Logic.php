@@ -18,11 +18,16 @@ if(isset($_POST['type'])){
 			$fetchDriverData1 = $database->getReference($ref_table1)->getValue();
 			echo (json_encode($fetchDriverData1));
 			break;
+		case 'getTripData':
+			$ref_table = 'Trips/'.$_POST['trip_id'];
+			$fetchTripData = $database->getReference($ref_table)->getValue();
+			echo (json_encode($fetchTripData));
+			break;
 		case 'updateUser':
 			$user_id = $_POST['user_id'];
 			$ref_table = 'Users/'.$user_id;
 			$nNo = $_POST['phone_number'];
-			$nNumber = trim($nNo,"0");
+			$nNumber = trim($nNo,"0,+254");
 			$database -> getReference($ref_table)->update([
 				'email' => $_POST['email'],
 				'fullName' => $_POST['name'],
@@ -38,6 +43,35 @@ if(isset($_POST['type'])){
 				'routes' => $_POST['driver_edit_routes'],
 				'seats' => $_POST['driver_edit_seat'],
 			]);
+			break;
+		case 'updateTrip':
+			$trip_id = $_POST['trip_id'];
+			$ref_table = 'Trips/'.$trip_id;
+			$source = $_POST['trip_source'];
+			$destination = $_POST['trip_destination'];
+			$day = $_POST['trip_day'];
+			$date = $_POST['trip_date'];
+			$time = $_POST['trip_time'];
+			$time1 = $_POST['trip_time_1'];
+			$status = $_POST['trip_status'];
+			$date_time = $day.', '.$date.' '.$time.' '.$time1;
+			if($date != null && $time != null){
+					$database -> getReference($ref_table)->update([
+					'source' => $source,
+					'destination' => $destination,
+					'date_time' => $date_time,
+					'status' => $status,
+					]);
+				}
+				
+			else {
+				$database -> getReference($ref_table)->update([
+				'source' => $source,
+				'destination' => $destination,
+				'status' => $status,
+				]);
+			}
+			
 			break;
 			//Disable User
 		case 'disableUserData':
@@ -104,7 +138,7 @@ if(isset($_POST['type'])){
 			$nEmail = $_POST['email'];
 			$nName = $_POST['name'];
 			$nNo = $_POST['phone_number'];
-			$nNumber = trim($nNo,"0");
+			$nNumber = trim($nNo,"0,+254");
 			$uid = md5($nNumber);
 
 			$userProperties = [
@@ -144,7 +178,7 @@ if(isset($_POST['type'])){
 			$dRoutes = $_POST['driver_routes'];
 			$dPlate = $_POST['driver_plate'];
 			$dAvailabilty = 'active';
-			$dNumber = trim($dNo,"0");
+			$dNumber = trim($dNo,"0,+254");
 			$dUid = md5($dNumber);
 
 			$driverUserProperties = [
@@ -184,6 +218,41 @@ if(isset($_POST['type'])){
 
 			// $database->getReference($dUid)->set();
 		}
+		break;
+		case 'addTrip':
+			$ref ='Trips';
+			$tDay = $_POST['add_trip_day'];
+			$tDate = $_POST['add_trip_date'];
+			$tTime = $_POST['add_trip_time'];
+			$tTime1 = $_POST['add_trip_time_1'];
+			$tSource =  $_POST['add_trip_source'];
+			$tDest = $_POST['add_trip_dest'];
+			$tDriver = $_POST['add_trip_driver'];
+			$tRider =  $_POST['add_trip_rider'];
+			$tMessage = $_POST['add_trip_msg'];
+			$tSeats = $_POST['add_trip_seats'];
+			$tStatus =  'pending';
+			$Date_Time = $tDay.', '.$tDate.' '.$tTime.' '.$tTime1;
+
+			// if(!empty($tDay) && !empty($tDate) && !empty($tTime) && !empty($tSource) && !empty($tDest) &&  !empty($tRider) && !empty($tMessage) && !empty($tSeats)){
+		
+		$tripRef ='Trips';
+		$database->getReference($tripRef)
+		->push(	
+			$tripProperties=[
+				'status' => $tStatus,
+				'date_time' => $Date_Time,
+				'source' => $tSource,
+				'destination' => $tDest,
+				'seat' => $tSeats,
+				'shortMessage' => $tMessage,
+				'driverID' => $tDriver,
+				'pwdID' => $tRider,
+			]);
+		
+		
+			
+
 		break;
 		case 'changePassword':
 			$n_password = $_POST['new_password'];
@@ -236,7 +305,7 @@ if(isset($_POST['type'])){
 				}
 				else{
 					$nNo = "";
-					$nNumber = trim($nNo,"0");
+					$nNumber = trim($nNo,"0,+254");
 					$database -> getReference($ref_table)->update([
 					'fullName' => $_POST['name'],
 					'number' => $nNumber,
@@ -256,7 +325,7 @@ if(isset($_POST['type'])){
 				}
 				else{
 					$nNo = "";
-					$nNumber = trim($nNo,"0");
+					$nNumber = trim($nNo,"0,+254");
 					$database -> getReference($ref_table)->update([
 					'fullName' => $_POST['name'],
 					'number' => $nNumber,

@@ -1,7 +1,9 @@
 const edit_modal = document.getElementById('edit_modal');
 const driver_edit_modal = document.getElementById('driver_edit_modal');
+const trip_edit_modal = document.getElementById('trip_edit_modal');
 //const edit_modal_driver = document.getElementById('edit_modal_driver');
 const add_modal = document.getElementById('add_modal');
+const trip_add_modal = document.getElementById('trip_add_modal');
 const disable_modal = document.getElementById('disable_user_modal');
 const enable_modal = document.getElementById('enable_user_modal');
 const driver_disable_modal = document.getElementById('driver_disable_user_modal');
@@ -12,6 +14,25 @@ const disable_success_msg = document.getElementById('disable_success_message');
 const enable_success_msg = document.getElementById('enable_success_message');
 const driver_disable_success_msg = document.getElementById('driver_disable_success_message');
 const driver_enable_success_msg = document.getElementById('driver_enable_success_message');
+google.maps.event.addDomListener(window, 'load', initialize);
+ 
+function initialize() {
+    var input = document.getElementById('trip_destination');
+    var input2 = document.getElementById('trip_source');
+    var autocomplete = new google.maps.places.Autocomplete(input);
+    autocomplete.addListener('place_changed', function() {
+        var place = autocomplete.getPlace();
+
+    });
+}
+function initialize() {
+var input2 = document.getElementById('trip_source');
+    var autocomplete = new google.maps.places.Autocomplete(input2);
+    autocomplete.addListener('place_changed', function() {
+        var place = autocomplete.getPlace();
+
+    });
+}
 function userEditModal(userID){
     let xmlhttp= new XMLHttpRequest();
     xmlhttp.onreadystatechange= function() {
@@ -56,6 +77,30 @@ function driverEditModal(userID){
     xmlhttp.open("POST","Logic.php",true);
     xmlhttp.setRequestHeader("Content-type", "application/x-www-form-urlencoded");
     let data = "user_id=" + userID + "&type=getDriverData";
+    xmlhttp.send(data);
+	//console.log(userID);
+	
+}
+function tripEditModal(tripID){
+    let xmlhttp= new XMLHttpRequest();
+    xmlhttp.onreadystatechange= function() {
+        if (this.readyState==4 && this.status==200) {
+            //console.log("Ndio hii: " + this.responseText);
+            let tripObject = JSON.parse(this.responseText);
+            document.querySelector("#trip_date").value = tripObject.date;
+            document.querySelector("#trip_time").value = tripObject.time;
+            document.querySelector("#trip_source").value = tripObject.source;
+            document.querySelector("#trip_destination").value = tripObject.destination;
+            document.querySelector("#trip_status").value = tripObject.status;
+            
+            document.querySelector("#trip_id").value = tripID;
+            trip_edit_modal.classList.remove('hidden');
+			trip_edit_modal.classList.add('flex');
+        }
+    };
+    xmlhttp.open("POST","Logic.php",true);
+    xmlhttp.setRequestHeader("Content-type", "application/x-www-form-urlencoded");
+    let data = "trip_id=" + tripID + "&type=getTripData";
     xmlhttp.send(data);
 	//console.log(userID);
 	
@@ -174,6 +219,14 @@ function closeAddModal(){
 	add_modal.classList.remove('flex');
 	add_modal.classList.add('hidden');
 }
+function trip_addModal() {
+    trip_add_modal.classList.remove('hidden');
+	trip_add_modal.classList.add('flex'); 
+}
+function closeTripAddModal(){
+	trip_add_modal.classList.remove('flex');
+	trip_add_modal.classList.add('hidden');
+}
 
 function closeEditModal(){
 	edit_modal.classList.remove('flex');
@@ -206,6 +259,10 @@ function closeDriverEnableModal(){
 function closeDriverEditModal(){
 	driver_edit_modal.classList.remove('flex');
 	driver_edit_modal.classList.add('hidden');
+}
+function closeTripEditModal(){
+	trip_edit_modal.classList.remove('flex');
+	trip_edit_modal.classList.add('hidden');
 }
 
 $(document).ready(function(){
@@ -299,6 +356,43 @@ $(document).ready(function(){
     });
 });
 
+
+$(document).ready(function(){
+    $('#tripEdit').submit(function(event){
+        event.preventDefault();
+        //clearMessageField();
+        let formData = new FormData($(this)[0]);
+        console.log(formData);
+        formData.append("type","updateTrip");
+        let formEmpty = false;
+        for(var value of formData.entries()){
+            formEmpty = (value[1] == "")? true:false;
+        }
+        if (!formEmpty) {
+        	//console.log("All fields present");
+            $.ajax({
+                url:'Logic.php',
+                enctype:'multipart/form-data',
+                data: formData,
+                processData: false,
+                contentType: false,
+                type: 'POST',
+                success: function(data){
+                	$("#trip_edit_success").text("Update Successful");
+                    location.reload();
+                },
+                error: function (e) {
+                    alert(e.responseText);
+                    console.log("ERROR : ", e);
+                }     
+            });
+        }else{
+            // $(".error").text("All fields are required");
+            console.log("All fields are required");
+        }
+    });
+});
+
 $(document).ready(function () {
     $('#userAdd').submit(function (event1) {
         event1.preventDefault();
@@ -359,6 +453,44 @@ $(document).ready(function () {
                 type: 'POST',
                 success:function (values) {
                     $("#driver_add_success").text("Driver Created Successfully!");
+                    location.reload();
+                },
+                error: function (e) {
+                    alert(e.responseText);
+                    console.log("ERROR : ", e);
+                }     
+            });
+        }else{
+            // $(".error").text("All fields are required");
+            console.log("All fields are required");
+        }
+        
+    });
+    
+});
+
+//Trip
+$(document).ready(function () {
+    $('#tripAdd').submit(function (eventDriver) {
+        eventDriver.preventDefault();
+        //clearMessageField();
+        let formDataTrip = new FormData($(this)[0]);
+        console.log(formDataTrip);
+        formDataTrip.append("type","addTrip");
+        let formEmptyTrip = false;
+        for(var valueTrip of formDataTrip.entries()){
+            formEmptyTrip = (valueTrip[1] == "")? true:false;
+        }
+        if(!formEmptyTrip){
+            $.ajax({
+                url:'Logic.php',
+                enctype:'multipart/form-data',
+                data:formDataTrip,
+                processData: false,
+                contentType: false,
+                type: 'POST',
+                success:function (values) {
+                    $("#trip_add_success").text("Trip Added Successfully!");
                     location.reload();
                 },
                 error: function (e) {
@@ -551,12 +683,32 @@ function filterUsers() {
   }
 }
 
-//filter users
+//filter drivers
 function filterDrivers() {
   var input, filter, table, tr, td, i, txtValue;
   input = document.getElementById("search_drivers");
   filter = input.value.toUpperCase();
   table = document.getElementById("drivers_table");
+  tr = table.getElementsByTagName("tr");
+  for (i = 0; i < tr.length; i++) {
+    td = tr[i].getElementsByTagName("td")[1];
+    if (td) {
+      txtValue = td.textContent || td.innerText;
+      if (txtValue.toUpperCase().indexOf(filter) > -1) {
+        tr[i].style.display = "";
+      } else {
+        tr[i].style.display = "none";
+      }
+    }
+  }
+}
+
+//filter trips
+function filterTrips() {
+  var input, filter, table, tr, td, i, txtValue;
+  input = document.getElementById("search_trips");
+  filter = input.value.toUpperCase();
+  table = document.getElementById("trips_table");
   tr = table.getElementsByTagName("tr");
   for (i = 0; i < tr.length; i++) {
     td = tr[i].getElementsByTagName("td")[1];
@@ -584,3 +736,17 @@ function toggleDD(myDropMenu) {
         }
     }
 }
+
+//date picker
+
+$(function(){
+  var pickerOpts1 = 
+  {
+      dateFormat: "dd MM yy",
+      onSelect: function(dateText, inst) {
+        var date = $(this).datepicker('getDate');
+        $('#add_trip_day').val($.datepicker.formatDate('DD', date));
+      }
+  };
+  $("#add_trip_date").datepicker(pickerOpts1);
+});
