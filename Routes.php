@@ -14,9 +14,10 @@ if(!isset($_SESSION['verified_user_id'])){
 	<meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1">
 	<meta name="csrf-token" content="{{ csrf_token() }}">
-    <title>Drivers</title>
+    <title>Routes</title>
     <!-- <link href="{{ asset('css/app.css') }}" rel="stylesheet"> -->
-    <link href="https://unpkg.com/tailwindcss@^1.0/dist/tailwind.min.css" rel="stylesheet">
+    <link rel="stylesheet" href="build/styles.css">
+	<link href="http://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.3.0/css/font-awesome.css" rel="stylesheet"  type='text/css'>
 	<script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.5.0/jquery.min.js" integrity="sha256-xNzN2a4ltkB44Mc/Jz3pT4iU1cmeR0FkXs4pru/JxaQ=" crossorigin="anonymous"></script>
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
 </head>
@@ -24,41 +25,9 @@ if(!isset($_SESSION['verified_user_id'])){
 	<section>
 		<article>
 
-<!-- {{-- EDIT Modal --}} -->
-    		<!-- <div id="edit_modal" class="fixed inset-0 items-center justify-center hidden bg-black bg-opacity-50 ">
-				<div class="p-3 rounded-lg bg-gray-50">
-					<div class="flex items-center justify-between">
-						<h4 class="text-lg font-semibold">Edit Driver</h4>
-						<svg onclick="closeEditModal()" xmlns="http://www.w3.org/2000/svg" class="w-6 h-6" fill="none" viewBox="0 0 24 24" stroke="currentColor">
-						  <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M6 18L18 6M6 6l12 12" />
-						</svg>
-					</div>
-					<form action="/edit_drivers" method="POST">
-					
-					<div class="grid grid-cols-6 gap-6 p-4">
-						<div class="col-span-6 sm:col-span-3">
-			                <label for="name" class="block text-sm font-medium text-gray-700">Name</label>
-			                <input type="text" name="name" id="edit_name" class="block w-full p-2 mt-1 border-gray-300 rounded-md shadow-sm focus:ring-indigo-500 focus:border-indigo-500 sm:text-sm">
-			            </div>
-						<div class="col-span-6 sm:col-span-3">
-			                <label for="phone_number" class="block text-sm font-medium text-gray-700">Phone Number</label>
-			                <input type="text" name="phone_number" id="edit_phone_number" class="block w-full p-2 mt-1 border-gray-300 rounded-md shadow-sm focus:ring-indigo-500 focus:border-indigo-500 sm:text-sm">
-			            </div>
-						<div class="col-span-6 sm:col-span-3">
-			                <label for="licence" class="block text-sm font-medium text-gray-700">Driver's Licence</label>
-			                <input type="text" name="licence" id="edit_licence" class="block w-full p-2 mt-1 border-gray-300 rounded-md shadow-sm focus:ring-indigo-500 focus:border-indigo-500 sm:text-sm">
-			            </div>	
-						<input type="text" class="hide_data" name="user_id" id="user_id">	
-					</div>
-					<div class="flex items-center justify-center mb-3">
-						<button class="px-3 py-1 bg-gray-800 rounded text-gray-50 hover:opacity-75">Edit</button>
-					</div>					
-				</div>
-				</form>        
-    		</div> -->
 
 <!-- {{-- START OF ADD MODAL --}} -->
-    		<div id="add_modal" class="absolute inset-0 items-center justify-center hidden bg-black bg-opacity-50 ">
+    		<!-- <div id="add_modal" class="absolute inset-0 items-center justify-center hidden bg-black bg-opacity-50 ">
 				<div class="p-3 rounded-lg bg-gray-50">
 					<div class="flex items-center justify-between">
 						<h4 class="text-lg font-semibold">Add Stop</h4>
@@ -89,12 +58,12 @@ if(!isset($_SESSION['verified_user_id'])){
 				</div>  
 			</div>
 			</form>
-		</div>
+		</div> -->
 				
 				<!-- {{-- END OF ADD MODAL --}} -->
 
 
-			<div class="box-content p-2 m-1 bg-red-600 rounded-lg ">
+			<div class="box-content p-2 m-1 bg-blue-600 rounded-lg ">
                 <center class="text-lg cursor-default text-gray-50">Routes</center>
             </div>
 			
@@ -127,8 +96,7 @@ if(!isset($_SESSION['verified_user_id'])){
 							if($fetchDestData > 0){
 								$count = 0;
 								$count ++;	
-								foreach($fetchDestData as $dest => $valueDest){		
-																
+								foreach($fetchDestData as $dest => $valueDest){	
 						?>			  
 						
 							<tr>
@@ -151,8 +119,44 @@ if(!isset($_SESSION['verified_user_id'])){
 									<!-- <button onClick="deleteDriver()" class="px-3 py-1 text-gray-800 bg-red-100 rounded hover:underline">Delete</button> -->
 								</td>
 							</tr>
-						<?php						
-							}
+<!-- {{-- EDIT Modal --}} -->
+    		<div id="stop_edit_modal" class="fixed inset-0 items-center justify-center hidden bg-black bg-opacity-50 ">
+				<div class="p-3 rounded-lg bg-gray-50">
+					<div class="flex items-center justify-between">
+						<h4 class="text-lg font-semibold">Add Stops</h4>
+						<svg onclick="closeStopModal()" xmlns="http://www.w3.org/2000/svg" class="w-6 h-6" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+						  <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M6 18L18 6M6 6l12 12" />
+						</svg>
+					</div>
+					<form id="stopAdd">
+					<div class="grid grid-cols-6 gap-6 p-4">
+						<div class="col-span-12 sm:col-span-6">
+			               <div class="flex flex-row w-auto">
+			                	<input type="text" name="stop" id="stop" class="block w-full p-2 mt-1 ml-20 border-gray-300 rounded-md shadow-sm focus:ring-2 focus:ring-blue-500 sm:text-sm" required>
+								<button class="px-3 py-1 bg-gray-800 rounded text-gray-50 hover:opacity-75">Add</button>
+							</div>
+			            </div>
+						<p class="flex items-center justify-center text-green-500" id="stop_add_success"></p>	
+					</form>
+						<div class="col-span-auto sm:col-span-3">
+						<label for="stops" class="block text-sm font-medium text-gray-700">Stops</label>
+			             
+						<div class="col-span-8 sm:col-span-3">
+							<?php 
+							foreach($valueDest as $stop => $stopBool)
+							{
+							?>
+			                <p name="stops" id="stops" class="block w-full p-2 mt-1 border-gray-300 rounded-md shadow-sm focus:ring-2 focus:ring-blue-500 sm:text-sm"><?php echo $stop;?></p>
+							<?php						
+							}?>
+			            </div>
+						       
+			            </div>	
+					</div>			
+				</div>      
+    		</div>
+						<?php
+						}
 							
 						}
 						else{
@@ -165,10 +169,14 @@ if(!isset($_SESSION['verified_user_id'])){
 			        </table>
 
 			</div>
-			<button onclick="addModal()" class="fixed bottom-0 right-0 p-2 px-4 m-3 bg-red-600 rounded-lg text-gray-50 hover:opacity-75">Add</button>
+			<button onclick="addModal()" class="fixed bottom-0 right-0 p-2 px-4 m-3 bg-blue-600 rounded-lg text-gray-50 hover:opacity-75">Add</button>
 			
 		</article>
 	</section>
-<script src="{{url('/js/components.js')}}"></script>
+	<script defer src="https://use.fontawesome.com/releases/v5.0.8/js/all.js" integrity="sha384-SlE991lGASHoBfWbelyBPLsUlwY1GwNDJo3jSJO04KZ33K2bwfV9YBauFfnzvynJ" crossorigin="anonymous"></script>
+	<script type="text/javascript" src="js/components.js"></script>
+	<script src="https://www.gstatic.com/firebasejs/8.9.1/firebase-app.js"></script>
+	<script src="https://www.gstatic.com/firebasejs/8.9.1/firebase-database.js"></script>
+	<script type="text/javascript" src="js/firebaseConfig.js"></script>
 </body>
 </html>

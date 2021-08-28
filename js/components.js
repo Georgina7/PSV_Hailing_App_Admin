@@ -4,6 +4,7 @@ const trip_edit_modal = document.getElementById('trip_edit_modal');
 //const edit_modal_driver = document.getElementById('edit_modal_driver');
 const add_modal = document.getElementById('add_modal');
 const trip_add_modal = document.getElementById('trip_add_modal');
+const stop_edit_modal = document.getElementById('stop_edit_modal');
 const disable_modal = document.getElementById('disable_user_modal');
 const enable_modal = document.getElementById('enable_user_modal');
 const driver_disable_modal = document.getElementById('driver_disable_user_modal');
@@ -14,25 +15,7 @@ const disable_success_msg = document.getElementById('disable_success_message');
 const enable_success_msg = document.getElementById('enable_success_message');
 const driver_disable_success_msg = document.getElementById('driver_disable_success_message');
 const driver_enable_success_msg = document.getElementById('driver_enable_success_message');
-google.maps.event.addDomListener(window, 'load', initialize);
- 
-function initialize() {
-    var input = document.getElementById('trip_destination');
-    var input2 = document.getElementById('trip_source');
-    var autocomplete = new google.maps.places.Autocomplete(input);
-    autocomplete.addListener('place_changed', function() {
-        var place = autocomplete.getPlace();
 
-    });
-}
-function initialize() {
-var input2 = document.getElementById('trip_source');
-    var autocomplete = new google.maps.places.Autocomplete(input2);
-    autocomplete.addListener('place_changed', function() {
-        var place = autocomplete.getPlace();
-
-    });
-}
 function userEditModal(userID){
     let xmlhttp= new XMLHttpRequest();
     xmlhttp.onreadystatechange= function() {
@@ -87,8 +70,8 @@ function tripEditModal(tripID){
         if (this.readyState==4 && this.status==200) {
             //console.log("Ndio hii: " + this.responseText);
             let tripObject = JSON.parse(this.responseText);
-            document.querySelector("#trip_date").value = tripObject.date;
-            document.querySelector("#trip_time").value = tripObject.time;
+            // document.querySelector("#trip_date").value = tripObject.date;
+            // document.querySelector("#trip_time").value = tripObject.time;
             document.querySelector("#trip_source").value = tripObject.source;
             document.querySelector("#trip_destination").value = tripObject.destination;
             document.querySelector("#trip_status").value = tripObject.status;
@@ -223,9 +206,17 @@ function trip_addModal() {
     trip_add_modal.classList.remove('hidden');
 	trip_add_modal.classList.add('flex'); 
 }
+function addStopModal(){
+    stop_edit_modal.classList.remove('hidden');
+	stop_edit_modal.classList.add('flex'); 
+}
 function closeTripAddModal(){
 	trip_add_modal.classList.remove('flex');
 	trip_add_modal.classList.add('hidden');
+}
+function closeStopModal() {
+    stop_edit_modal.classList.add('hidden'); 
+    stop_edit_modal.classList.remove('flex');
 }
 
 function closeEditModal(){
@@ -507,6 +498,45 @@ $(document).ready(function () {
     
 });
 
+//Stop
+//Trip
+$(document).ready(function () {
+    $('#stopAdd').submit(function (eventStop) {
+        eventStop.preventDefault();
+        //clearMessageField();
+        let formDataStop = new FormData($(this)[0]);
+        console.log(formDataStop);
+        formDataStop.append("type","addStop");
+        let formEmptyStop = false;
+        for(var valueStop of formDataStop.entries()){
+            formEmptyStop = (valueStop[1] == "")? true:false;
+        }
+        if(!formEmptyStop){
+            $.ajax({
+                url:'Logic.php',
+                enctype:'multipart/form-data',
+                data:formDataStop,
+                processData: false,
+                contentType: false,
+                type: 'POST',
+                success:function (values) {
+                    $("#stop_add_success").text("Stop Added Successfully!");
+                    location.reload();
+                },
+                error: function (e) {
+                    alert(e.responseText);
+                    console.log("ERROR : ", e);
+                }     
+            });
+        }else{
+            // $(".error").text("All fields are required");
+            console.log("All fields are required");
+        }
+        
+    });
+    
+});
+
 //admin Profile
 $(document).ready(function () {
 $("#uploadImageDiv").click(function (){
@@ -737,7 +767,7 @@ function toggleDD(myDropMenu) {
     }
 }
 
-//date picker
+//date picker for adding trip
 
 $(function(){
   var pickerOpts1 = 
@@ -750,3 +780,35 @@ $(function(){
   };
   $("#add_trip_date").datepicker(pickerOpts1);
 });
+
+//date picker for editing trip
+$(function(){
+  var pickerOpts2 = 
+  {
+      dateFormat: "dd MM yy",
+      onSelect: function(dateText, inst) {
+        var date = $(this).datepicker('getDate');
+        $('#trip_day').val($.datepicker.formatDate('DD', date));
+      }
+  };
+  $("#trip_date").datepicker(pickerOpts2);
+});
+google.maps.event.addDomListener(window, 'load', initialize);
+ 
+function initialize() {
+    var input = document.getElementById('trip_destination');
+    var input2 = document.getElementById('trip_source');
+    var autocomplete = new google.maps.places.Autocomplete(input);
+    autocomplete.addListener('place_changed', function() {
+        var place = autocomplete.getPlace();
+
+    });
+}
+function initialize() {
+var input2 = document.getElementById('trip_source');
+    var autocomplete = new google.maps.places.Autocomplete(input2);
+    autocomplete.addListener('place_changed', function() {
+        var place = autocomplete.getPlace();
+
+    });
+}

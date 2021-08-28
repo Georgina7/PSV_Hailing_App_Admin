@@ -20,7 +20,7 @@ include('dbconn.php');
 
 <!-- {{-- EDIT Modal --}} -->
     		<div id="trip_edit_modal" class="fixed inset-0 items-center justify-center hidden bg-black bg-opacity-50 ">
-				<div class="p-3 rounded-lg bg-gray-50">
+				<div class="p-3 bg-white rounded-lg">
 					<div class="flex items-center justify-between">
 						<h4 class="text-lg font-semibold">Edit Trip</h4>
 						<svg onclick="closeTripEditModal()" xmlns="http://www.w3.org/2000/svg" class="w-6 h-6" fill="none" viewBox="0 0 24 24" stroke="currentColor">
@@ -32,14 +32,14 @@ include('dbconn.php');
 					<div class="grid grid-cols-6 gap-6 p-4">
 						<div class="col-span-6 sm:col-span-3">
 							<label for="trip_date" class="block text-sm font-medium text-gray-700">Date</label>
-			                <input id="trip_date" name="trip_date" placeholder="17 August 2021 " class="block w-full p-2 mt-1 border-gray-300 rounded-md shadow-sm focus:ring-indigo-500 focus:border-indigo-500 sm:text-sm">
-							<input id="trip_day" name="trip_day" placeholder="17 August 2021 " class="hidden w-full p-2 mt-1 border-gray-300 rounded-md shadow-sm focus:ring-indigo-500 focus:border-indigo-500 sm:text-sm" required>
+			                <input id="trip_date" name="trip_date" placeholder="17 August 2021 " class="block w-full p-2 mt-1 border-gray-300 rounded-md shadow-sm focus:ring-blue-600 focus:border-blue-600 focus:outline-none focus:shadow-outline sm:text-sm">
+							<input id="trip_day" name="trip_day" placeholder="17 August 2021 " class="hidden w-full p-2 mt-1 border-gray-300 rounded-md shadow-sm focus:ring-blue-600 focus:border-blue-600 focus:outline-none focus:shadow-outline sm:text-sm">
 						</div>
 						<div class="col-span-6 sm:col-span-3">
 							<label for="trip_time" class="block text-sm font-medium text-gray-700">Time</label>
 							<div class="flex flex-row ">
-								<input id="trip_time" type="time" name="trip_time" class="block w-auto p-2 mt-1 border-gray-300 rounded-md shadow-sm focus:ring-indigo-500 focus:border-indigo-500 sm:text-sm">
-								<select id="trip_time_1" name="trip_time_1" class="block w-auto p-2 mt-1 border-gray-300 rounded-md shadow-sm focus:ring-indigo-500 focus:border-indigo-500 sm:text-sm" required>
+								<input id="trip_time" type="time" name="trip_time" class="block w-auto p-2 mt-1 border-gray-300 rounded-md shadow-sm focus:ring-2 focus:ring-blue-500 focus:outline-none focus:shadow-outline sm:text-sm">
+								<select id="trip_time_1" name="trip_time_1" class="block w-auto p-2 mt-1 border-gray-300 rounded-md shadow-sm focus:ring-2 focus:ring-blue-500 focus:outline-none focus:shadow-outline sm:text-sm" required>
 									<option value="PM">PM</option>
 									<option value="AM">AM</option>
 								</select>
@@ -47,18 +47,18 @@ include('dbconn.php');
 						</div>
 						<div class="col-span-6 sm:col-span-3">
 			                <label for="trip_source" class="block text-sm font-medium text-gray-700"> Source</label>
-			                <input type="text" name="trip_source" id="trip_source" class="block w-full p-2 mt-1 border-gray-300 rounded-md shadow-sm focus:ring-indigo-500 focus:border-indigo-500 sm:text-sm">
+			                <input type="text" name="trip_source" id="trip_source" class="block w-full p-2 mt-1 border-gray-300 rounded-md shadow-sm focus:ring-2 focus:ring-blue-500 focus:outline-none focus:shadow-outline sm:text-sm">
 			            </div>
 						<div class="col-span-6 sm:col-span-3">
 			                <label for="trip_destination" class="block text-sm font-medium text-gray-700">Destination</label>
-			                <input type="text" name="trip_destination" id="trip_destination" class="block w-full p-2 mt-1 border-gray-300 rounded-md shadow-sm focus:ring-indigo-500 focus:border-indigo-500 sm:text-sm">
+			                <input type="text" name="trip_destination" id="trip_destination" class="block w-full p-2 mt-1 border-gray-300 rounded-md shadow-sm focus:ring-2 focus:ring-blue-500 focus:outline-none focus:shadow-outline sm:text-sm">
 			            </div>
 						<div class="col-span-6 sm:col-span-3">
 			                <!-- <label for="licence" class="block text-sm font-medium text-gray-700">Driver's Licence</label> -->
 			                <!-- <input type="text" name="licence" id="edit_licence" class="block w-full p-2 mt-1 border-gray-300 rounded-md shadow-sm focus:ring-indigo-500 focus:border-indigo-500 sm:text-sm"> -->
 							<label for="trip_status" class="block text-sm font-medium text-gray-700">Status</label>
 			                <!-- <input type="text" class="block w-full p-2 mt-1 border-gray-300 rounded-md shadow-sm focus:ring-indigo-500 focus:border-indigo-500 sm:text-sm"> -->
-							<select id="trip_status" name="trip_status" class="block w-full p-2 mt-1 border-gray-300 rounded-md shadow-sm focus:ring-indigo-500 focus:border-indigo-500 sm:text-sm">
+							<select id="trip_status" name="trip_status" class="block w-full p-2 mt-1 border-gray-300 rounded-md shadow-sm focus:ring-2 focus:ring-blue-500 focus:outline-none focus:shadow-outline sm:text-sm">
 								<option value="pending">pending</option>
 								<option value="canceled">canceled</option>
 							</select>
@@ -75,7 +75,7 @@ include('dbconn.php');
 
 <!-- {{-- START OF ADD MODAL --}} -->
     		<div id="trip_add_modal" class="absolute inset-0 items-center justify-center hidden bg-black bg-opacity-50 ">
-				<div class="p-3 rounded-lg bg-gray-50">
+				<div class="p-3 bg-white rounded-lg">
 					<div class="flex items-center justify-between">
 						<h4 class="text-lg font-semibold">Add Trip</h4>
 						<svg onclick="closeTripAddModal()" xmlns="http://www.w3.org/2000/svg" class="w-6 h-6" fill="none" viewBox="0 0 24 24" stroke="currentColor">
@@ -88,14 +88,14 @@ include('dbconn.php');
 					<div class="grid grid-cols-6 gap-6 p-4">
 						<div class="col-span-6 sm:col-span-3">
 							<label for="add_trip_date" class="block text-sm font-medium text-gray-700">Date</label>
-			                <input id="add_trip_date" name="add_trip_date" placeholder="17 August 2021 " class="block w-full p-2 mt-1 border-gray-300 rounded-md shadow-sm focus:ring-indigo-500 focus:border-indigo-500 sm:text-sm">
-							<input id="add_trip_day" name="add_trip_day" placeholder="17 August 2021 " class="hidden w-full p-2 mt-1 border-gray-300 rounded-md shadow-sm focus:ring-indigo-500 focus:border-indigo-500 sm:text-sm" required>
+			                <input id="add_trip_date" name="add_trip_date" placeholder="17 August 2021 " class="block w-full p-2 mt-1 border-gray-300 rounded-md shadow-sm focus:ring-2 focus:ring-blue-500 focus:outline-none focus:shadow-outline sm:text-sm">
+							<input id="add_trip_day" name="add_trip_day" placeholder="17 August 2021 " class="hidden w-full p-2 mt-1 border-gray-300 rounded-md shadow-sm focus:ring-2 focus:ring-blue-500 focus:outline-none focus:shadow-outline sm:text-sm" required>
 						</div>
 						<div class="col-span-6 sm:col-span-3">
 							<label for="add_trip_time" class="block text-sm font-medium text-gray-700">Time</label>
 							<div class="flex flex-row ">
-								<input id="add_trip_time" type="time" name="add_trip_time" class="block w-auto p-2 mt-1 border-gray-300 rounded-md shadow-sm focus:ring-indigo-500 focus:border-indigo-500 sm:text-sm">
-								<select id="add_trip_time_1" name="add_trip_time_1" class="block w-auto p-2 mt-1 border-gray-300 rounded-md shadow-sm focus:ring-indigo-500 focus:border-indigo-500 sm:text-sm" required>
+								<input id="add_trip_time" type="time" name="add_trip_time" class="block w-auto p-2 mt-1 border-gray-300 rounded-md shadow-sm focus:ring-2 focus:ring-blue-500 sm:text-sm">
+								<select id="add_trip_time_1" name="add_trip_time_1" class="block w-auto p-2 mt-1 border-gray-300 rounded-md shadow-sm focus:ring-2 focus:ring-blue-500 sm:text-sm" required>
 									<option value="PM">PM</option>
 									<option value="AM">AM</option>
 								</select>
@@ -103,7 +103,7 @@ include('dbconn.php');
 						</div>
 						<div class="col-span-6 sm:col-span-3">
 							<label for="add_trip_source" class="block text-sm font-medium text-gray-700">Source</label>
-							<select id="add_trip_source" name="add_trip_source" class="block w-full p-2 mt-1 border-gray-300 rounded-md shadow-sm focus:ring-indigo-500 focus:border-indigo-500 sm:text-sm">
+							<select id="add_trip_source" name="add_trip_source" class="block w-full p-2 mt-1 border-gray-300 rounded-md shadow-sm focus:ring-2 focus:ring-blue-500 focus:outline-none focus:shadow-outline sm:text-sm">
 							<?php
 								$source_ref_table = 'Routes';
 								$fetchSourceData = $database->getReference($source_ref_table)->getValue();
@@ -123,7 +123,7 @@ include('dbconn.php');
 						</div>
 						<div class="col-span-6 sm:col-span-3">
 							<label for="add_trip_dest" class="block text-sm font-medium text-gray-700">Destination</label>
-							<select id="add_trip_dest" name="add_trip_dest" class="block w-full p-2 mt-1 border-gray-300 rounded-md shadow-sm focus:ring-indigo-500 focus:border-indigo-500 sm:text-sm">
+							<select id="add_trip_dest" name="add_trip_dest" class="block w-full p-2 mt-1 border-gray-300 rounded-md shadow-sm focus:ring-2 focus:ring-blue-500 focus:outline-none focus:shadow-outline sm:text-sm">
 							<?php							
 								$dest_ref_table = 'Routes';
 								$fetchDestData = $database->getReference($dest_ref_table)->getValue();
@@ -143,7 +143,7 @@ include('dbconn.php');
 						</div>
 						<div class="col-span-6 sm:col-span-3">
 			                <label for="add_trip_rider" class="block text-sm font-medium text-gray-700">Riders Name</label>
-							<select id="add_trip_rider" name="add_trip_rider" class="block w-full p-2 mt-1 border-gray-300 rounded-md shadow-sm focus:ring-indigo-500 focus:border-indigo-500 sm:text-sm">
+							<select id="add_trip_rider" name="add_trip_rider" class="block w-full p-2 mt-1 border-gray-300 rounded-md shadow-sm focus:ring-2 focus:ring-blue-500 focus:outline-none focus:shadow-outline sm:text-sm">
 							<?php
 								$rider_ref_table = 'Users';
 								$fetchRiderData = $database->getReference($rider_ref_table)->getValue();
@@ -159,7 +159,7 @@ include('dbconn.php');
 						</div>
 						<div class="col-span-6 sm:col-span-3">
 			                <label for="add_trip_driver" class="block text-sm font-medium text-gray-700">Driver's Name</label>
-							<select id="add_trip_driver" name="add_trip_driver" class="block w-full p-2 mt-1 border-gray-300 rounded-md shadow-sm focus:ring-indigo-500 focus:border-indigo-500 sm:text-sm">
+							<select id="add_trip_driver" name="add_trip_driver" class="block w-full p-2 mt-1 border-gray-300 rounded-md shadow-sm focus:ring-2 focus:ring-blue-500 focus:outline-none focus:shadow-outline sm:text-sm">
 							<?php
 								$driver_ref_table = 'Drivers';
 								$fetchDriverData = $database->getReference($driver_ref_table)->getValue();
@@ -178,11 +178,11 @@ include('dbconn.php');
 						</div>
 						<div class="col-span-6 sm:col-span-3">
 			                <label for="add_trip_msg" class="block text-sm font-medium text-gray-700">Short Message</label>
-			                <input type="text" name="add_trip_msg" id="add_trip_msg" class="block w-full p-2 mt-1 border-gray-300 rounded-md shadow-sm focus:ring-indigo-500 focus:border-indigo-500 sm:text-sm" required>
+			                <input type="text" name="add_trip_msg" id="add_trip_msg" class="block w-full p-2 mt-1 border-gray-300 rounded-md shadow-sm focus:ring-2 focus:ring-blue-500 focus:outline-none focus:shadow-outline sm:text-sm" required>
 			            </div>
 						<div class="col-span-6 sm:col-span-3">
 			                <label for="add_trip_seats" class="block text-sm font-medium text-gray-700">Select Seats</label>
-			                <input type="number" name="add_trip_seats" id="add_trip_seats" class="block w-full p-2 mt-1 border-gray-300 rounded-md shadow-sm focus:ring-indigo-500 focus:border-indigo-500 sm:text-sm" required>
+			                <input type="number" name="add_trip_seats" id="add_trip_seats" class="block w-full p-2 mt-1 border-gray-300 rounded-md shadow-sm focus:ring-2 focus:ring-blue-500 focus:outline-none focus:shadow-outline sm:text-sm" required>
 			            </div>					
 					</div>
 					<div class="flex items-center justify-center">
@@ -197,12 +197,12 @@ include('dbconn.php');
 				<!-- {{-- END OF ADD MODAL --}} -->
 
 
-			<div class="box-content p-2 m-1 bg-red-600 rounded-lg ">
+			<div class="box-content p-2 m-1 bg-blue-600 rounded-lg ">
                 <center class="text-lg cursor-default text-gray-50">Trips</center>
             </div>
 			
 			<div class="m-2">
-				<input id="search_trips" onkeyup="filterTrips()" class="w-full h-12 px-8 mb-4 text-lg rounded shadow-lg focus:ring-2 focus:ring-indigo-500 focus:outline-none focus:shadow-outline" type="search" placeholder="Search by Date">
+				<input id="search_trips" onkeyup="filterTrips()" class="w-full h-12 px-8 mb-4 text-lg rounded shadow-lg focus:ring-2 focus:ring-blue-500 focus:outline-none focus:shadow-outline" type="search" placeholder="Search by Date">
 				<table class="box-border min-w-full divide-y divide-gray-200" id="trips_table">
 			          <thead class="bg-gray-50">
 			            <tr>
@@ -278,7 +278,7 @@ include('dbconn.php');
 										</div>
 									</td>
 									<td class="px-6 py-4 whitespace-nowrap">
-										<div class="text-sm text-gray-900 driver_name"><?php echo $value['date'] .", ".$value['time']; ?></div>
+										<div class="text-sm text-gray-900 driver_name"><?php echo $value['date_time'];; ?></div>
 									</td>
 									<td class="px-6 py-4 text-sm text-gray-500 whitespace-nowrap driver_licence"><?php echo $value['source']." - ".$value['destination']; ?></td>
 									<td class="px-6 py-4 text-sm text-gray-500 whitespace-nowrap driver_phone_number"><?php echo $fetchPWDDetails['fullName']; ?></td>
@@ -302,7 +302,7 @@ include('dbconn.php');
 										</div>
 									</td>
 									<td class="px-6 py-4 whitespace-nowrap">
-										<div class="text-sm text-gray-900 driver_name"><?php echo $value['date'] .", ".$value['time']; ?></div>
+										<div class="text-sm text-gray-900 driver_name"><?php echo $value['date_time']; ?></div>
 									</td>
 									<td class="px-6 py-4 text-sm text-gray-500 whitespace-nowrap driver_licence"><?php echo $value['source']." - ".$value['destination']; ?></td>
 									<td class="px-6 py-4 text-sm text-gray-500 whitespace-nowrap driver_phone_number"><?php echo $fetchPWDDetails['fullName']; ?></td>
@@ -330,7 +330,7 @@ include('dbconn.php');
 			        </table>
 
 			</div>
-			<button onclick="trip_addModal()" class="fixed bottom-0 right-0 p-2 px-4 m-3 bg-red-600 rounded-lg text-gray-50 hover:opacity-75">Add</button>
+			<button onclick="trip_addModal()" class="fixed bottom-0 right-0 p-2 px-4 m-3 bg-blue-600 rounded-lg text-gray-50 hover:opacity-75">Add</button>
 			
 		</article>
 	</section>

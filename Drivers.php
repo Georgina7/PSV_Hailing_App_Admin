@@ -28,7 +28,7 @@ if(!isset($_SESSION['verified_user_id'])){
 
 <!-- {{-- EDIT Modal --}} -->
     		<div id="driver_edit_modal" class="absolute inset-0 items-center justify-center hidden bg-black bg-opacity-50 ">
-				<div class="p-3 rounded-lg bg-gray-50">
+				<div class="p-3 bg-white rounded-lg">
 					<div class="flex items-center justify-between text-center">
 						<h4 class="text-lg font-semibold text-center">Edit Driver</h4>
 						<svg onclick="closeDriverEditModal()" xmlns="http://www.w3.org/2000/svg" class="w-6 h-6" fill="none" viewBox="0 0 24 24" stroke="currentColor">
@@ -53,19 +53,19 @@ if(!isset($_SESSION['verified_user_id'])){
 			            </div>	 -->
 						<div class="col-span-6 sm:col-span-3">
 			                <label for="driver_licence" class="block text-sm font-medium text-gray-700">Driver's Licence</label>
-			                <input type="text" name="driver_edit_licence" id="driver_edit_licence"  placeholder="DL-1234567" class="block w-full p-2 mt-1 border-gray-300 rounded-md shadow-sm focus:ring-indigo-500 focus:border-indigo-500 sm:text-sm">
+			                <input type="text" name="driver_edit_licence" id="driver_edit_licence"  placeholder="DL-1234567" class="block w-full p-2 mt-1 border-gray-300 rounded-md shadow-sm focus:ring-2 focus:ring-blue-500 focus:outline-none focus:shadow-outline sm:text-sm">
 			            </div>
 						<div class="col-span-6 sm:col-span-3">
 			                <label for="driver_seat" class="block text-sm font-medium text-gray-700">Seats</label>
-			                <input type="number" name="driver_edit_seat" id="driver_edit_seat" placeholder="3" class="block w-full p-2 mt-1 border-gray-300 rounded-md shadow-sm focus:ring-indigo-500 focus:border-indigo-500 sm:text-sm">
+			                <input type="number" name="driver_edit_seat" id="driver_edit_seat" placeholder="3" class="block w-full p-2 mt-1 border-gray-300 rounded-md shadow-sm focus:ring-2 focus:ring-blue-500 focus:outline-none focus:shadow-outline sm:text-sm">
 			            </div>
 						<div class="col-span-6 sm:col-span-3">
 			                <label for="driver_plate" class="block text-sm font-medium text-gray-700">Matatu No. Plate</label>
-			                <input type="text" name="driver_edit_plate" id="driver_edit_plate"  placeholder="KBC 778C" class="block w-full p-2 mt-1 border-gray-300 rounded-md shadow-sm focus:ring-indigo-500 focus:border-indigo-500 sm:text-sm">
+			                <input type="text" name="driver_edit_plate" id="driver_edit_plate"  placeholder="KBC 778C" class="block w-full p-2 mt-1 border-gray-300 rounded-md shadow-sm focus:ring-2 focus:ring-blue-500 focus:outline-none focus:shadow-outline sm:text-sm">
 			            </div>	
 						<div class="col-span-6 sm:col-span-3">
 			                <label for="driver_routes" class="block text-sm font-medium text-gray-700">Routes</label>
-			                <input type="text" name="driver_edit_routes" id="driver_edit_routes"  placeholder="Madaraka - CBD" class="block w-full p-2 mt-1 border-gray-300 rounded-md shadow-sm focus:ring-indigo-500 focus:border-indigo-500 sm:text-sm">
+			                <input type="text" name="driver_edit_routes" id="driver_edit_routes"  placeholder="Madaraka - CBD" class="block w-full p-2 mt-1 border-gray-300 rounded-md shadow-sm focus:ring-2 focus:ring-blue-500 focus:outline-none focus:shadow-outline sm:text-sm">
 			            </div>				
 					</div>
 					<input type="text" class="hide_data" name="user_id" id="user_id" hidden>	
@@ -80,7 +80,7 @@ if(!isset($_SESSION['verified_user_id'])){
 
 <!-- {{-- START OF ADD MODAL --}} -->
     		<div id="add_modal" class="absolute inset-0 items-center justify-center hidden bg-black bg-opacity-50 ">
-				<div class="p-3 rounded-lg bg-gray-50">
+				<div class="p-3 bg-white rounded-lg">
 					<div class="flex items-center justify-between text-center">
 						<h4 class="text-lg font-semibold text-center">Add Driver</h4>
 						<svg onclick="closeAddModal()" xmlns="http://www.w3.org/2000/svg" class="w-6 h-6" fill="none" viewBox="0 0 24 24" stroke="currentColor">
@@ -93,31 +93,31 @@ if(!isset($_SESSION['verified_user_id'])){
 					<div class="grid grid-cols-6 gap-6 p-4">
 						<div class="col-span-6 sm:col-span-3">
 			                <label for="name" class="block text-sm font-medium text-gray-700">Name</label>
-			                <input type="text" name="driver_name" placeholder="John Doe " class="block w-full p-2 mt-1 border-gray-300 rounded-md shadow-sm focus:ring-indigo-500 focus:border-indigo-500 sm:text-sm">
+			                <input type="text" name="driver_name" placeholder="John Doe " class="block w-full p-2 mt-1 border-gray-300 rounded-md shadow-sm focus:ring-2 focus:ring-blue-500 focus:outline-none focus:shadow-outline sm:text-sm">
 			            </div>
 						<div class="col-span-6 sm:col-span-3">
 			                <label for="phone_number" class="block text-sm font-medium text-gray-700">Phone Number</label>
-			                <input type="text" name="driver_phone_number"  placeholder="0712345678" class="block w-full p-2 mt-1 border-gray-300 rounded-md shadow-sm focus:ring-indigo-500 focus:border-indigo-500 sm:text-sm">
+			                <input type="text" name="driver_phone_number"  placeholder="0712345678" class="block w-full p-2 mt-1 border-gray-300 rounded-md shadow-sm focus:ring-2 focus:ring-blue-500 focus:outline-none focus:shadow-outline sm:text-sm">
 			            </div>
 						<div class="col-span-6 sm:col-span-3">
 			                <label for="email" class="block text-sm font-medium text-gray-700">Email</label>
-			                <input type="email" name="driver_email"  placeholder="johndoe@example.com" class="block w-full p-2 mt-1 border-gray-300 rounded-md shadow-sm focus:ring-indigo-500 focus:border-indigo-500 sm:text-sm">
+			                <input type="email" name="driver_email"  placeholder="johndoe@example.com" class="block w-full p-2 mt-1 border-gray-300 rounded-md shadow-sm focus:ring-2 focus:ring-blue-500 focus:outline-none focus:shadow-outline sm:text-sm">
 			            </div>	
 						<div class="col-span-6 sm:col-span-3">
 			                <label for="driver_licence" class="block text-sm font-medium text-gray-700">Driver's Licence</label>
-			                <input type="text" name="driver_licence"  placeholder="DL-1234567" class="block w-full p-2 mt-1 border-gray-300 rounded-md shadow-sm focus:ring-indigo-500 focus:border-indigo-500 sm:text-sm">
+			                <input type="text" name="driver_licence"  placeholder="DL-1234567" class="block w-full p-2 mt-1 border-gray-300 rounded-md shadow-sm focus:ring-2 focus:ring-blue-500 focus:outline-none focus:shadow-outline sm:text-sm">
 			            </div>
 						<div class="col-span-6 sm:col-span-3">
 			                <label for="driver_seat" class="block text-sm font-medium text-gray-700">Seats</label>
-			                <input type="number" name="driver_seat" placeholder="3" class="block w-full p-2 mt-1 border-gray-300 rounded-md shadow-sm focus:ring-indigo-500 focus:border-indigo-500 sm:text-sm">
+			                <input type="number" name="driver_seat" placeholder="3" class="block w-full p-2 mt-1 border-gray-300 rounded-md shadow-sm focus:ring-2 focus:ring-blue-500 focus:outline-none focus:shadow-outline sm:text-sm">
 			            </div>
 						<div class="col-span-6 sm:col-span-3">
 			                <label for="driver_plate" class="block text-sm font-medium text-gray-700">Matatu No. Plate</label>
-			                <input type="text" name="driver_plate"  placeholder="KBC 778C" class="block w-full p-2 mt-1 border-gray-300 rounded-md shadow-sm focus:ring-indigo-500 focus:border-indigo-500 sm:text-sm">
+			                <input type="text" name="driver_plate"  placeholder="KBC 778C" class="block w-full p-2 mt-1 border-gray-300 rounded-md shadow-sm focus:ring-2 focus:ring-blue-500 focus:outline-none focus:shadow-outline sm:text-sm">
 			            </div>	
 						<div class="col-span-6 sm:col-span-3">
 			                <label for="driver_routes" class="block text-sm font-medium text-gray-700">Routes</label>
-			                <input type="text" name="driver_routes"  placeholder="Madaraka - CBD" class="block w-full p-2 mt-1 border-gray-300 rounded-md shadow-sm focus:ring-indigo-500 focus:border-indigo-500 sm:text-sm">
+			                <input type="text" name="driver_routes"  placeholder="Madaraka - CBD" class="block w-full p-2 mt-1 border-gray-300 rounded-md shadow-sm focus:ring-2 focus:ring-blue-500 focus:outline-none focus:shadow-outline sm:text-sm">
 			            </div>				
 					</div>
 					<div class="flex items-center justify-center">
@@ -132,7 +132,7 @@ if(!isset($_SESSION['verified_user_id'])){
 				<!-- {{-- END OF ADD MODAL --}} -->
 				<!-- {{-- Disable Driver Modal --}} -->
 			<div id="driver_disable_user_modal" class="fixed inset-0 items-center justify-center hidden bg-black bg-opacity-50 ">
-				<div class="p-3 rounded-lg bg-gray-50">
+				<div class="p-3 bg-white rounded-lg">
 					<div class="flex items-center justify-between p-4 text-center">
 						<h4 class="justify-start text-lg font-semibold">Disable User</h4>
 						<svg onclick="closeDriverDisableModal()" xmlns="http://www.w3.org/2000/svg" class="w-6 h-6" fill="none" viewBox="0 0 24 24" stroke="currentColor">
@@ -160,7 +160,7 @@ if(!isset($_SESSION['verified_user_id'])){
 			<!-- {{-- End of Disable Driver Modal --}} -->
 						<!-- {{-- Enable Driver Modal --}} -->
 			<div id="driver_enable_user_modal" class="fixed inset-0 items-center justify-center hidden bg-black bg-opacity-50 ">
-				<div class="p-3 rounded-lg bg-gray-50">
+				<div class="p-3 bg-white rounded-lg">
 					<div class="flex items-center justify-between p-4 text-center">
 						<h4 class="justify-start text-lg font-semibold">Enable User</h4>
 						<svg onclick="closeDriverEnableModal()" xmlns="http://www.w3.org/2000/svg" class="w-6 h-6" fill="none" viewBox="0 0 24 24" stroke="currentColor">
@@ -188,12 +188,12 @@ if(!isset($_SESSION['verified_user_id'])){
 			<!-- {{-- End of Enable Driver Modal --}} -->
 
 
-			<div class="box-content p-2 m-1 bg-red-600 rounded-lg ">
+			<div class="box-content p-2 m-1 bg-blue-600 rounded-lg ">
                 <center class="text-lg cursor-default text-gray-50">Drivers</center>
             </div>
 			
 			<div class="m-2">
-				<input id="search_drivers" onkeyup="filterDrivers()" class="w-full h-12 px-8 mb-4 text-lg rounded shadow-lg focus:ring-2 focus:ring-indigo-500 focus:outline-none focus:shadow-outline" type="search" placeholder="Search by name">
+				<input id="search_drivers" onkeyup="filterDrivers()" class="w-full h-12 px-8 mb-4 text-lg rounded shadow-lg focus:ring-2 focus:ring-blue-500 focus:outline-none focus:shadow-outline" type="search" placeholder="Search by name">
 				<table class="box-border min-w-full divide-y divide-gray-200" id="drivers_table">
 			          <thead class="bg-gray-50">
 			            <tr>
@@ -300,7 +300,7 @@ if(!isset($_SESSION['verified_user_id'])){
 			        </table>
 
 			</div>
-			<button onclick="addModal()" class="fixed bottom-0 right-0 p-2 px-4 m-3 bg-red-600 rounded-lg text-gray-50 hover:opacity-75">Add</button>
+			<button onclick="addModal()" class="fixed bottom-0 right-0 p-2 px-4 m-3 bg-blue-600 rounded-lg text-gray-50 hover:opacity-75">Add</button>
 			
 		</article>
 	</section>

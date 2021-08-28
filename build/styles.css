@@ -15436,7 +15436,7 @@ video {
 
 .bg-red-800 {
   --tw-bg-opacity: 1;
-  background-color: rgba(153, 27, 27, var(--tw-bg-opacity));
+  background-color: rgba(255, 87, 34, var(--tw-bg-opacity));
 }
 
 .bg-red-900 {
@@ -15576,7 +15576,7 @@ video {
 
 .bg-blue-600 {
   --tw-bg-opacity: 1;
-  background-color: rgba(37, 99, 235, var(--tw-bg-opacity));
+  background-color: rgba(64, 224, 208, var(--tw-bg-opacity));
 }
 
 .bg-blue-700 {
@@ -22843,7 +22843,7 @@ video {
 
 .text-blue-600 {
   --tw-text-opacity: 1;
-  color: rgba(37, 99, 235, var(--tw-text-opacity));
+  color: rgba(64, 224, 208,var(--tw-text-opacity));
 }
 
 .text-blue-700 {
@@ -24097,7 +24097,7 @@ video {
 
 .hover\:text-blue-600:hover {
   --tw-text-opacity: 1;
-  color: rgba(37, 99, 235, var(--tw-text-opacity));
+  color: rgba(64, 224, 208, var(--tw-text-opacity));
 }
 
 .hover\:text-blue-700:hover {
@@ -29808,7 +29808,7 @@ video {
 
 .focus\:ring-blue-500:focus {
   --tw-ring-opacity: 1;
-  --tw-ring-color: rgba(59, 130, 246, var(--tw-ring-opacity));
+  --tw-ring-color: rgba(64, 224, 208, var(--tw-ring-opacity));
 }
 
 .focus\:ring-blue-600:focus {

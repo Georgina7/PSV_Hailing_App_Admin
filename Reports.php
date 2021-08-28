@@ -122,6 +122,47 @@ include("dbconn.php");
                     </div>
                     <!--/Graph Card-->
                 </div>
+                 <!-- <div class="w-full p-6 md:w-1/2 xl:w-1/3"> -->
+                    <!--Graph Card-->
+                    <!-- <div class="bg-white border-transparent rounded-lg shadow-xl">
+                        <div class="p-2 text-gray-800 uppercase border-b-2 border-gray-300 rounded-tl-lg rounded-tr-lg bg-gradient-to-b from-gray-300 to-gray-100">
+                            <h5 class="font-bold text-gray-600 uppercase">Trips Graph</h5>
+                        </div>
+                        <div class="p-5"><canvas id="chartjs-5" class="chartjs" width="undefined" height="undefined"></canvas> -->
+                         <!-- $ref_table = 'Trips';
+						$fetchTripData = $database->getReference($ref_table)->getValue();
+						if($fetchTripData > 0){
+							$count = 1;
+							foreach($fetchTripData as $trip => $value){
+
+                                if ($value['status'] == "completed") {
+                                    $total_trips_completed = $database->getReference($ref_table)->getSnapshot()->numChildren();
+                                }
+                                elseif($value['status'] == "pending"){
+                                    $total_trips_pending = $database->getReference($ref_table)->getSnapshot()->numChildren();
+                                }
+                                else{
+                                   $total_trips_canceled = $database->getReference($ref_table)->getSnapshot()->numChildren(); 
+                                }
+                            }}
+								 -->
+                            <!-- <script>
+                                new Chart(document.getElementById("chartjs-5"), {
+                                    "type": "doughnut",
+                                    "data": {
+                                        "labels": ["pending","canceled","completed"],
+                                        "datasets": [{
+                                            "label": "Issues",
+                                            "data": []],
+                                            "backgroundColor": ["rgb(255, 99, 132)", "rgb(54, 162, 235)", "rgb(245, 158, 11)"]
+                                        }]
+                                    }
+                                });
+                            </script>
+                        </div>
+                    </div> -->
+                    <!--/Graph Card-->
+                <!-- </div> -->
                 <!-- <div class="w-full p-6 md:w-1/2 xl:w-1/3"> -->
                     <!--Metric Card-->
                     <!-- <div class="p-5 border-b-4 border-indigo-500 rounded-lg shadow-xl bg-gradient-to-b from-indigo-200 to-indigo-100">
@@ -151,7 +192,7 @@ include("dbconn.php");
                         </div>
                     </div> -->
                     <!--/Metric Card-->
-                </div>
+                <!-- </div> -->
             </div>
 
 

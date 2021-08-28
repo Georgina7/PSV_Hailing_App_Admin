@@ -77,7 +77,7 @@ include("dbconn.php");
                                     <div class="px-4 py-4 font-semibold">Full Name:</div>
                                     <div class="px-4 py-2">
                                         <input placeholder="Full Name" value="<?php echo $value['fullName']; ?>"
-                                            class="w-full px-3 py-2 rounded shadow appearance-none leading-tighttext-gray-700 focus:outline-none focus:shadow-outline"
+                                            class="w-full px-3 py-2 rounded shadow appearance-none leading-tighttext-gray-700 focus:ring-2 focus:ring-blue-500 focus:outline-none focus:shadow-outline"
                                             id="username" name="name" type="text">
                                     </div>
                                 </div>
@@ -85,7 +85,7 @@ include("dbconn.php");
                                     <div class="px-4 py-4 font-semibold">Email:</div>
                                     <div class="px-4 py-2">
                                         <input placeholder="Email" readonly
-                                            class="w-full px-3 py-2 leading-tight text-gray-700 rounded shadow appearance-none focus:outline-none focus:shadow-outline"
+                                            class="w-full px-3 py-2 leading-tight text-gray-700 rounded shadow appearance-none focus:ring-2 focus:ring-blue-500 focus:outline-none focus:shadow-outline"
                                             id="username" name="email" value="<?php echo $value['email']; ?>" type="email">
                                     </div>
                                 </div>
@@ -93,7 +93,7 @@ include("dbconn.php");
                                     <div class="px-4 py-4 font-semibold">Phone Number:</div>
                                     <div class="px-4 py-2">
                                         <input placeholder="Phone Number"
-                                            class="w-full px-3 py-2 leading-tight text-gray-700 rounded shadow appearance-none focus:outline-none focus:shadow-outline"
+                                            class="w-full px-3 py-2 leading-tight text-gray-700 rounded shadow appearance-none focus:ring-2 focus:ring-blue-500 focus:outline-none focus:shadow-outline"
                                             id="username" name="phone_number" value="<?php echo $value['number']; ?>" type="text">
                                     </div>
                                 </div>
@@ -101,7 +101,7 @@ include("dbconn.php");
                                     <div class="px-4 py-4 font-semibold">Profile Photo</div>
                                     <div class="px-2 py-1">
                                         <input class="hidden text-sm cursor-pointer w-36" name="uploadImage" id="uploadImage" type="file" multiple>
-                                        <div class="h-auto px-3 py-2 font-semibold text-center text-white bg-indigo-600 border border-gray-300 rounded cursor-pointer py-21 text hover:bg-indigo-500" id="uploadImageDiv">Select Photo</div>
+                                        <div class="h-auto px-3 py-2 font-semibold text-center text-white bg-blue-600 border border-gray-300 rounded cursor-pointer py-21 text hover:opacity-50" id="uploadImageDiv">Select Photo</div>
                                     </div>
                                 </div>
                             </div>
@@ -109,7 +109,7 @@ include("dbconn.php");
                         <p class="flex items-center justify-center text-green-500" id="update_success"></p>
                         <button
                         id="adminEditProfile"
-                        class="block w-full p-3 my-4 text-sm font-semibold text-blue-800 rounded-lg hover:bg-gray-100 focus:outline-none focus:shadow-outline focus:bg-gray-100 hover:shadow-xs">Update Details</button>
+                        class="block w-full p-3 my-4 text-sm font-semibold text-blue-600 rounded-lg hover:bg-gray-100 focus:outline-none focus:shadow-outline focus:bg-gray-100 hover:shadow-xs">Update Details</button>
                         </form>
                     </div>
                     <!-- End of about section -->
@@ -156,14 +156,14 @@ include("dbconn.php");
                                     <li>
                                         <div class="px-4 py-2">
                                         <input placeholder="New Password"
-                                            class="w-full px-3 py-2 rounded shadow appearance-none leading-tighttext-gray-700 focus:outline-none focus:shadow-outline"
+                                            class="w-full px-3 py-2 rounded shadow appearance-none focus:ring-2 focus:ring-blue-500 leading-tighttext-gray-700 focus:outline-none focus:shadow-outline"
                                             id="n_password" name="new_password" type="password"  onkeyup='check();' required>
                                     </div>
                                     </li>
                                     <li>
                                        <div class="px-4 py-2">
                                         <input placeholder="Confirm Password"
-                                            class="w-full px-3 py-2 rounded shadow appearance-none leading-tighttext-gray-700 focus:outline-none focus:shadow-outline"
+                                            class="w-full px-3 py-2 rounded shadow appearance-none focus:ring-2 focus:ring-blue-500 leading-tighttext-gray-700 focus:outline-none focus:shadow-outline"
                                             id="c_password" name="confirm_new_password" type="password"  onkeyup='check();' required>
                                             <span id='message'></span
                                          </div>
@@ -177,7 +177,7 @@ include("dbconn.php");
                         <div>
                             <button
                             id="admin_change_password_btn"
-                            class="block w-full p-3 my-4 text-sm font-semibold text-blue-800 rounded-lg hover:bg-gray-100 focus:outline-none focus:shadow-outline focus:bg-gray-100 hover:shadow-xs">Update Details</button>
+                            class="block w-full p-3 my-4 text-sm font-semibold text-blue-600 rounded-lg hover:bg-gray-100 focus:outline-none focus:shadow-outline focus:bg-gray-100 hover:shadow-xs">Update Details</button>
                         </div>
                             </form>
                     </div>
