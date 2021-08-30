@@ -292,7 +292,7 @@ include('dbconn.php');
 								
 									<?php 
 									} else{?>
-									<tr class="w-auto bg-gray-50">
+									<tr class="w-auto bg-gray-100">
 									<td class="px-4 py-4 whitespace-nowrap">
 									<div class="trip_id hide_data">
 									</div>
@@ -305,10 +305,10 @@ include('dbconn.php');
 									<td class="px-6 py-4 whitespace-nowrap">
 										<div class="text-sm text-gray-900 driver_name"><?php echo $value['date_time']; ?></div>
 									</td>
-									<td class="px-4 py-4 text-sm text-gray-500 opacity-25 whitespace-nowrap driver_licence"><?php echo $value['source']." - ".$value['destination']; ?></td>
-									<td class="px-4 py-4 text-sm text-gray-500 opacity-25 whitespace-nowrap driver_phone_number"><?php echo $fetchPWDDetails['fullName']; ?></td>
-									<td class="px-4 py-4 text-sm text-gray-500 opacity-25 whitespace-nowrap driver_phone_number">Shem Nzamba</td>
-									<td class="px-4 py-4 text-sm text-gray-500 opacity-25 whitespace-nowrap driver_phone_number"><?php echo $value['status']; ?></td>				              
+									<td class="px-4 py-4 text-sm text-gray-500 whitespace-nowrap driver_licence"><?php echo $value['source']." - ".$value['destination']; ?></td>
+									<td class="px-4 py-4 text-sm text-gray-500 whitespace-nowrap driver_phone_number"><?php echo $fetchPWDDetails['fullName']; ?></td>
+									<td class="px-4 py-4 text-sm text-gray-500 whitespace-nowrap driver_phone_number">Shem Nzamba</td>
+									<td class="px-4 py-4 text-sm text-gray-500 whitespace-nowrap driver_phone_number"><?php echo $value['status']; ?></td>				              
 									<td class="px-4 py-4 text-sm font-medium text-right whitespace-nowrap">
 									</td>
 									</tr>

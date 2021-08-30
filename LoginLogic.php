@@ -35,14 +35,14 @@ try {
         }
     } catch (Exception $th) 
     {
-        echo $th->getMessage();
-        $_SESSION['status'] = "Wrong Password";
+        // echo $th->getMessage();
+        $_SESSION['status_1'] = "Wrong Password";
         header("location: ./Login.php");   
         exit(); 
     }
 } catch (\Kreait\Firebase\Exception\Auth\UserNotFound $e) {
-    echo $e->getMessage();
-    $_SESSION['status'] = "Invalid Email";
+    // echo $e->getMessage();
+    $_SESSION['status_1'] = "Invalid Email";
     header("location: ./Login.php");
     exit();
 }

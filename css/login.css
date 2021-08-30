@@ -70,8 +70,8 @@
     transition: transform 0.7s ease-in-out;
 }
 .overlay {
-    background: -webkit-linear-gradient(to right,#cf352e, #cf352e);
-    background: linear-gradient(to right,#c0342c, #000026);
+    background: -webkit-linear-gradient(to right,#FF5722, #FF5722);
+    background: linear-gradient(to right,#FF5722, #FF5722);
     background-repeat: no-repeat;
     background-size: cover;
     background-position: 0 0;
@@ -98,7 +98,7 @@
     transition: transform 0.6s ease-in-out;
 }
 .overlay-left {
-    background: linear-gradient(to right,rgba(255, 87, 34), #000026);
+    background: linear-gradient(to right,#40E0D0, #40E0D0);
     transform: translateX(-20%);
 }
 .overlay-right {

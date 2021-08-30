@@ -214,7 +214,7 @@ function addStopModal(routeID){
              
         for (let key of Object.keys(routeObject)) { 
         console.log(`${key}`);
-            // document.querySelector("#route_id").value = routeID;
+            document.querySelector("#route_id").value = routeID;
             document.querySelector("#stops").value = `${key}`;
             stop_edit_modal.classList.remove('hidden');
 			stop_edit_modal.classList.add('flex');
@@ -273,6 +273,9 @@ function closeDriverEditModal(){
 function closeTripEditModal(){
 	trip_edit_modal.classList.remove('flex');
 	trip_edit_modal.classList.add('hidden');
+}
+function reset() {
+    location.href = "Reset.php";
 }
 
 $(document).ready(function(){
@@ -635,6 +638,43 @@ $(document).ready(function () {
         
     });
     
+});
+
+//admin reset password form
+$(document).ready(function(){
+    $('#resetPassword').submit(function(event){
+        event.preventDefault();
+        //clearMessageField();
+        let formData = new FormData($(this)[0]);
+        console.log(formData);
+        formData.append("type","resetAdmin");
+        let formEmpty = false;
+        for(var value of formData.entries()){
+            formEmpty = (value[1] == "")? true:false;
+        }
+        if (!formEmpty) {
+        	//console.log("All fields present");
+            $.ajax({
+                url:'Logic.php',
+                enctype:'multipart/form-data',
+                data: formData,
+                processData: false,
+                contentType: false,
+                type: 'POST',
+                success: function(data){
+                	$("#reset_success").text("Reset link sent to your email!");
+                     setTimeout(function(){ window.location.href= 'Login.php';}, 1500);
+                },
+                error: function (e) {
+                    alert(e.responseText);
+                    console.log("ERROR : ", e);
+                }     
+            });
+        }else{
+            // $(".error").text("All fields are required");
+            console.log("All fields are required");
+        }
+    });
 });
 
 

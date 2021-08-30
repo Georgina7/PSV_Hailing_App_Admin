@@ -31,7 +31,7 @@ if(!isset($_SESSION['verified_user_id'])){
 				<div class="p-3 bg-white rounded-lg">
 					<div class="flex items-center justify-between text-center">
 						<h4 class="text-lg font-semibold text-center">Edit Driver</h4>
-						<svg onclick="closeDriverEditModal()" xmlns="http://www.w3.org/2000/svg" class="w-6 h-6" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+						<svg onclick="closeDriverEditModal()" xmlns="http://www.w3.org/2000/svg" class="w-6 h-6 text-blue-600 cursor-pointer" fill="none" viewBox="0 0 24 24" stroke="currentColor">
 						  <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M6 18L18 6M6 6l12 12" />
 						</svg>
 					</div>
@@ -70,7 +70,7 @@ if(!isset($_SESSION['verified_user_id'])){
 					</div>
 					<input type="text" class="hide_data" name="user_id" id="user_id" hidden>	
 					<div class="flex items-center justify-center">
-						<button class="px-3 py-1 bg-gray-800 rounded text-gray-50 hover:opacity-75">Edit</button>
+						<button class="px-3 py-1 bg-blue-600 rounded text-gray-50 hover:opacity-75">Edit</button>
 					</div>
 						<p class="flex items-center justify-center text-green-500" id="driver_edit_success"></p>	
 				</div>  
@@ -83,7 +83,7 @@ if(!isset($_SESSION['verified_user_id'])){
 				<div class="p-3 bg-white rounded-lg">
 					<div class="flex items-center justify-between text-center">
 						<h4 class="text-lg font-semibold text-center">Add Driver</h4>
-						<svg onclick="closeAddModal()" xmlns="http://www.w3.org/2000/svg" class="w-6 h-6" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+						<svg onclick="closeAddModal()" xmlns="http://www.w3.org/2000/svg" class="w-6 h-6 text-blue-600 cursor-pointer" fill="none" viewBox="0 0 24 24" stroke="currentColor">
 						  <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M6 18L18 6M6 6l12 12" />
 						</svg>
 					</div>
@@ -121,7 +121,7 @@ if(!isset($_SESSION['verified_user_id'])){
 			            </div>				
 					</div>
 					<div class="flex items-center justify-center">
-						<button class="px-3 py-1 bg-gray-800 rounded text-gray-50 hover:opacity-75">Add</button>
+						<button class="px-3 py-1 bg-blue-600 rounded text-gray-50 hover:opacity-75">Add</button>
 					</div>
 						<p class="flex items-center justify-center text-green-500" id="driver_add_success"></p>	
 				</div>  
@@ -151,7 +151,7 @@ if(!isset($_SESSION['verified_user_id'])){
 						<input type="text" class="hide_data" name="user_id_disable" id="user_id" hidden>	
 					</div>
 					<div class="flex items-center justify-center mb-3">
-						<button onclick="closeDriverDisableModal()" class="px-3 py-1 mr-4 text-gray-800 border-2 border-gray-800 rounded bg-gray-50 hover:opacity-75">Okay</button>
+						<button onclick="closeDriverDisableModal()" class="px-3 py-1 mr-4 text-gray-800 border-2 border-blue-600 rounded bg-gray-50 hover:opacity-75">Okay</button>
 						<button onclick="disableDriverConfirm('<?php echo $user; ?>')" class="hidden px-3 py-1 bg-gray-800 rounded text-gray-50 hover:opacity-75">Disable</button>						
 					</div>
 					<p class="flex items-center justify-center text-green-500" id="userEdit_success"></p>				

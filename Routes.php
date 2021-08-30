@@ -132,8 +132,9 @@ if(!isset($_SESSION['verified_user_id'])){
 					<div class="grid grid-cols-6 gap-6 p-4">
 						<div class="col-span-12 sm:col-span-6">
 			               <div class="flex flex-row w-auto">
+							   <input type="text" name="route_id" id="route_id" class="hidden w-full p-2 mt-1 ml-20 border-gray-300 rounded-md shadow-sm focus:ring-2 focus:ring-blue-500 sm:text-sm">
 			                	<input type="text" name="stop" id="stop" class="block w-full p-2 mt-1 ml-20 border-gray-300 rounded-md shadow-sm focus:ring-2 focus:ring-blue-500 sm:text-sm" required>
-								<button class="px-3 py-1 bg-blue-600 rounded text-gray-50 hover:opacity-75">Add</button>
+								<button class="p-2 mt-1 ml-2 bg-blue-600 rounded text-gray-50 hover:opacity-75">Add</button>
 							</div>
 			            </div>
 						<p class="flex items-center justify-center text-green-500" id="stop_add_success"></p>	
