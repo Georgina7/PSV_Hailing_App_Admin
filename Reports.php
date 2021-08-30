@@ -8,7 +8,7 @@ include("dbconn.php");
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
-    <title>Tailwind Admin Starter Template : Tailwind Toolbox</title>
+    <title>Reports</title>
     <meta name="author" content="name">
     <meta name="description" content="description here">
     <meta name="keywords" content="keywords,here">
@@ -88,11 +88,11 @@ include("dbconn.php");
                     <div class="p-5 border-b-4 border-yellow-600 rounded-lg shadow-xl bg-gradient-to-b from-yellow-200 to-yellow-100">
                         <div class="flex flex-row items-center">
                             <div class="flex-shrink pr-4">
-                                <div class="p-5 bg-yellow-600 rounded-full"><i class="fas fa-user-plus fa-2x fa-inverse"></i></div>
+                                <div class="p-5 bg-yellow-600 rounded-full"><i class="fas fa-users fa-2x fa-inverse"></i></div>
                             </div>
                             <div class="flex-1 text-right md:text-center">
                                 <h5 class="font-bold text-gray-600 uppercase">Total Riders</h5>
-                                <h3 class="text-3xl font-bold"><?php $total_riders = $total_users - ($total_admins+$total_drivers); echo $total_riders;?> <span class="text-yellow-600"><i class="fas fa-caret-up"></i></span></h3>
+                                <h3 class="text-3xl font-bold"><?php $total_riders = $total_users - ($total_admins+$total_drivers); echo $total_riders;?> <span class="text-yellow-600"><i class="fas fa-exchange-alt"></i></span></h3>
                             </div>
                         </div>
                     </div>
@@ -130,21 +130,22 @@ include("dbconn.php");
                         </div>
                         <div class="p-5"><canvas id="chartjs-5" class="chartjs" width="undefined" height="undefined"></canvas>
                          <?php $ref_table = 'Trips';
+                        $total_trips = $database->getReference($ref_table)->getSnapshot()->numChildren();
 						$fetchTripData = $database->getReference($ref_table)->getValue();
 						if($fetchTripData > 0){
-							$count = 1;
+					
 							foreach($fetchTripData as $trip => $value){
 
-                                if ($value['status'] == "completed") {
-                                    $total_trips_completed = 3;
+                                $arrayPending = array($value['status'] == 'pending');
+                                $total_trips_pending = count($arrayPending);
+
+                                $arrayCompleted = array($value['status'] == 'completed');
+                                $total_trips_completed = count($arrayPending);
+
+                                $total_trips_canceled = $total_trips - ($total_trips_completed + $total_trips_pending);
                                 }
-                                elseif($value['status'] == "pending"){
-                                    $total_trips_pending = $database->getReference($ref_table)->getSnapshot()->numChildren();
                                 }
-                                else{
-                                   $total_trips_canceled = $database->getReference($ref_table)->getSnapshot()->numChildren(); 
-                                }
-                            }}?>
+                            ?>
 								
                             <script>
                                 new Chart(document.getElementById("chartjs-5"), {
@@ -154,7 +155,7 @@ include("dbconn.php");
                                         "datasets": [{
                                             "label": "Issues",
                                             "data": [ <?php echo $total_trips_pending; ?>,<?php echo $total_trips_canceled; ?>,<?php echo $total_trips_completed; ?>],
-                                            "backgroundColor": ["rgb(255, 99, 132)", "rgb(54, 162, 235)", "rgb(245, 158, 11)"]
+                                            "backgroundColor": ["rgb(255, 61, 34, 1)", "rgb(113, 111, 183, 1)", "rgb(113, 231, 183, 1)"]
                                         }]
                                     }
                                 });
@@ -195,12 +196,12 @@ include("dbconn.php");
                 <!-- </div> -->
             </div>
 
-
+<!-- 
             <div class="flex flex-row flex-wrap flex-grow mt-2">
 
-                <div class="w-full p-6 md:w-1/2 xl:w-1/3">
+                <div class="w-full p-6 md:w-1/2 xl:w-1/3"> -->
                     <!--Graph Card-->
-                    <div class="bg-white border-transparent rounded-lg shadow-xl">
+                    <!-- <div class="bg-white border-transparent rounded-lg shadow-xl">
                         <div class="p-2 text-gray-800 uppercase border-b-2 border-gray-300 rounded-tl-lg rounded-tr-lg bg-gradient-to-b from-gray-300 to-gray-100">
                             <h5 class="font-bold text-gray-600 uppercase">Graph</h5>
                         </div>
@@ -236,13 +237,13 @@ include("dbconn.php");
                                 });
                             </script>
                         </div>
-                    </div>
+                    </div> -->
                     <!--/Graph Card-->
-                </div>
+                <!-- </div> -->
 
-                <div class="w-full p-6 md:w-1/2 xl:w-1/3">
+                <!-- <div class="w-full p-6 md:w-1/2 xl:w-1/3"> -->
                     <!--Graph Card-->
-                    <div class="bg-white border-transparent rounded-lg shadow-xl">
+                    <!-- <div class="bg-white border-transparent rounded-lg shadow-xl">
                         <div class="p-2 text-gray-800 uppercase border-b-2 border-gray-300 rounded-tl-lg rounded-tr-lg bg-gradient-to-b from-gray-300 to-gray-100">
                             <h5 class="font-bold text-gray-600 uppercase">Graph</h5>
                         </div>
@@ -265,13 +266,13 @@ include("dbconn.php");
                                 });
                             </script>
                         </div>
-                    </div>
+                    </div> -->
                     <!--/Graph Card-->
-                </div>
+                <!-- </div> -->
 
-                <div class="w-full p-6 md:w-1/2 xl:w-1/3">
+                <!-- <div class="w-full p-6 md:w-1/2 xl:w-1/3"> -->
                     <!--Graph Card-->
-                    <div class="bg-white border-transparent rounded-lg shadow-xl">
+                    <!-- <div class="bg-white border-transparent rounded-lg shadow-xl">
                         <div class="p-2 text-gray-800 uppercase border-b-2 border-gray-300 rounded-tl-lg rounded-tr-lg bg-gradient-to-b from-gray-300 to-gray-100">
                             <h5 class="font-bold text-gray-600 uppercase">Graph</h5>
                         </div>
@@ -303,15 +304,15 @@ include("dbconn.php");
                                 });
                             </script>
                         </div>
-                    </div>
+                    </div> -->
                     <!--/Graph Card-->
-                </div>
+                <!-- </div> -->
 
                 
 
-                <div class="w-full p-6 md:w-1/2 xl:w-1/3">
+                <!-- <div class="w-full p-6 md:w-1/2 xl:w-1/3"> -->
                     <!--Table Card-->
-                    <div class="bg-white border-transparent rounded-lg shadow-xl">
+                    <!-- <div class="bg-white border-transparent rounded-lg shadow-xl">
                         <div class="p-2 text-gray-800 uppercase border-b-2 border-gray-300 rounded-tl-lg rounded-tr-lg bg-gradient-to-b from-gray-300 to-gray-100">
                             <h5 class="font-bold text-gray-600 uppercase">Graph</h5>
                         </div>
@@ -348,8 +349,8 @@ include("dbconn.php");
 
                         </div>
                     </div>
-                    <!--/table Card-->
-                </div>
+                   
+                </div> -->
 		</article>
 	</section>
 	<script defer src="https://use.fontawesome.com/releases/v5.0.8/js/all.js" integrity="sha384-SlE991lGASHoBfWbelyBPLsUlwY1GwNDJo3jSJO04KZ33K2bwfV9YBauFfnzvynJ" crossorigin="anonymous"></script>

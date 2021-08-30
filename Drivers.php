@@ -1,11 +1,11 @@
 <?php
 include("dbconn.php");
 include("authentication.php");
-if(!isset($_SESSION['verified_user_id'])){
-    $_SESSION['status'] = "You are Logged out!";
-    header("location: ./Login.php"); 
-    exit();
-}
+// if(!isset($_SESSION['verified_user_id'])){
+//     $_SESSION['status'] = "You are Logged out!";
+//     header("location: ./Login.php"); 
+//     exit();
+// }
 
 ?>
 <!DOCTYPE html>
