@@ -27,7 +27,7 @@ if(isset($_SESSION['verified_user_id'])){
         <div class="form-login sign-in-container ">
             <form id="adminRegister" method="POST" action="Logic.php">
 
-                <h1 class="title">Sign Up</h1>
+                <h1 class="text-2xl title">Sign Up</h1>
                 <!-- <div class="social-container">
                     <a href="#" class="social"><i class="fa fa-facebook"></i></a>
                     <a href="#" class="social"><i class="fa fa-google"></i></a>
@@ -37,7 +37,7 @@ if(isset($_SESSION['verified_user_id'])){
 
 
                 <div class="mt-3 col-md-6">
-                    <input id="admin_email" type="email" class="form-control @error('email') is-invalid @enderror outline-none"
+                    <input id="admin_email" type="email" class="w-full h-12 px-8 mb-4 text-lg rounded shadow-lg focus:ring-2 focus:ring-blue-500 focus:outline-none focus:shadow-outline form-control @error('email') is-invalid @enderror outline-none"
                         name="admin_email" value="" placeholder="Email" required autocomplete="email">
 
                     
@@ -51,7 +51,7 @@ if(isset($_SESSION['verified_user_id'])){
 
 
                 <div class="mt-2 col-md-6">
-                    <input id="admin_name" type="text" class="form-control @error('password') is-invalid @enderror outline-none"
+                    <input id="admin_name" type="text" class="w-full h-12 px-8 mb-4 text-lg rounded shadow-lg focus:ring-2 focus:ring-blue-500 focus:outline-none focus:shadow-outline form-control @error('password') is-invalid @enderror outline-none"
                         name="admin_name" placeholder="Full Name">                    
                     <span class="invalid-feedback" role="alert">
                         <!-- <strong>{{ $message }}</strong> -->
@@ -59,7 +59,7 @@ if(isset($_SESSION['verified_user_id'])){
                   
                 </div>
                 <div class="mt-2 col-md-6">
-                    <input id="admin_password" type="password" class="form-control @error('password') is-invalid @enderror outline-none"
+                    <input id="admin_password" type="password" class="w-full h-12 px-8 mb-4 text-lg rounded shadow-lg focus:ring-2 focus:ring-blue-500 focus:outline-none focus:shadow-outline form-control @error('password') is-invalid @enderror outline-none"
                         name="admin_password" placeholder="Password" required autocomplete="new-password">                    
                     <span class="invalid-feedback" role="alert">
                         <!-- <strong>{{ $message }}</strong> -->
@@ -68,7 +68,7 @@ if(isset($_SESSION['verified_user_id'])){
                 </div>
 
                 <div class="mt-2 col-md-6">
-                    <input id="admin_password-confirm" type="password" class="outline-none form-control" name="admin_password_confirmation"
+                    <input id="admin_password-confirm" type="password" class="w-full h-12 px-8 mb-4 text-lg rounded shadow-lg outline-none focus:ring-2 focus:ring-blue-500 focus:outline-none focus:shadow-outline form-control" name="admin_password_confirmation"
                         placeholder="Confirm Password" required autocomplete="new-password">
                 </div>
 
@@ -78,7 +78,7 @@ if(isset($_SESSION['verified_user_id'])){
 
 
                 <div class="col-md-6">
-                    <button type="submit" id="admin_register_btn" name="admin_register_btn" class="px-3 py-1 mt-2 mb-2 bg-red-800 rounded outline-none btn btn-primary">
+                    <button type="submit" id="admin_register_btn" name="admin_register_btn" class="px-3 py-1 mt-2 mb-2 text-white bg-red-800 rounded outline-none btn btn-primary">
                         Register
                     </button>
                 </div>
@@ -94,9 +94,13 @@ if(isset($_SESSION['verified_user_id'])){
                     echo "<h5 class='h-12 pt-2 text-center text-green-800 bg-green-300 text-md'>".$_SESSION['status']."</h5>";
                     unset($_SESSION['status']);
                 }
+                if(isset($_SESSION['status_1'])){
+                    echo "<h5 class='h-12 pt-2 text-center text-white bg-red-800 text-md'>".$_SESSION['status_1']."</h5>";
+                    unset($_SESSION['status_1']);
+                }
             ?>
             <form method="POST" action="LoginLogic.php">
-                <h1 class="title">Login</h1>
+                <h1 class="mb-4 text-2xl title">Login</h1>
                 <!-- <div class="social-container">
                     <a href="#" class="social"><i class="fa fa-facebook-f"></i></a>
                     <a href="{{ url('auth/google') }}" class="social"><i class="fa fa-google"></i></a>
@@ -108,7 +112,7 @@ if(isset($_SESSION['verified_user_id'])){
 
 
                 <div class="mt-3 col-md-8">
-                    <input id="email_login" type="email" class="form-control @error('email') is-invalid @enderror outline-none p-2 rounded"
+                    <input id="email_login" type="email" class="w-full h-12 px-8 mb-4 text-lg shadow-lg focus:ring-2 focus:ring-blue-500 focus:outline-none focus:shadow-outline form-control @error('email') is-invalid @enderror outline-none p-2 rounded"
                         name="email" value="" placeholder="Email" required autocomplete="email"
                         autofocus>
 
@@ -122,7 +126,7 @@ if(isset($_SESSION['verified_user_id'])){
 
 
                 <div class="col-md-8">
-                    <input id="password_login" type="password" class="form-control @error('password') is-invalid @enderror outline-none p-2 rounded"
+                    <input id="password_login" type="password" class="w-full h-12 px-8 mb-4 text-lg shadow-lg focus:ring-2 focus:ring-blue-500 focus:outline-none focus:shadow-outline form-control @error('password') is-invalid @enderror outline-none p-2 rounded"
                         name="password" placeholder="Password" required autocomplete="current-password">
 
                     
@@ -134,7 +138,7 @@ if(isset($_SESSION['verified_user_id'])){
 
 
 
-                <div class="col-md-8">
+                <!-- <div class="col-md-8">
                     <div class="form-check">
                         <input class="form-check-input" type="checkbox" name="remember" id="remember" {{ old('remember')
                             ? 'checked' : '' }}>
@@ -143,12 +147,12 @@ if(isset($_SESSION['verified_user_id'])){
                             Remember Me
                         </label>
                     </div>
-                </div>
+                </div> -->
 
 
 
                 <div class="col-md-8">
-                    <button type="submit" name="admin_login_btn" class="px-3 py-1 mb-2 bg-red-800 rounded outline-none btn btn-primary">
+                    <button type="submit" name="admin_login_btn" class="px-3 py-1 mb-2 text-white bg-red-800 rounded outline-none btn btn-primary">
                         Login
                     </button>
                     <br>                    

@@ -94,8 +94,8 @@ if(!isset($_SESSION['verified_user_id'])){
 							$dest_ref_table = 'Routes';
 							$fetchDestData = $database->getReference($dest_ref_table)->getValue();
 							if($fetchDestData > 0){
-								$count = 0;
-								$count ++;	
+								$count = 1;
+									
 								foreach($fetchDestData as $dest => $valueDest){	
 						?>			  
 						
@@ -115,7 +115,7 @@ if(!isset($_SESSION['verified_user_id'])){
 								<!-- <td class="px-6 py-4 text-sm text-gray-500 whitespace-nowrap driver_phone_number">+254 705 999 817</td>
 								<td class="px-6 py-4 text-sm text-gray-500 whitespace-nowrap driver_licence">WL9899</td> -->
 								<td class="px-6 py-4 text-sm font-medium text-right whitespace-nowrap">
-									<button onclick="addStopModal()" class="px-3 py-1 text-gray-800 bg-blue-100 rounded hover:underline">Add Stop</button>
+									<button onclick="addStopModal('<?php echo $dest; ?>')" class="px-3 py-1 text-gray-800 bg-blue-100 rounded hover:underline">Add Stop</button>
 									<!-- <button onClick="deleteDriver()" class="px-3 py-1 text-gray-800 bg-red-100 rounded hover:underline">Delete</button> -->
 								</td>
 							</tr>
@@ -133,7 +133,7 @@ if(!isset($_SESSION['verified_user_id'])){
 						<div class="col-span-12 sm:col-span-6">
 			               <div class="flex flex-row w-auto">
 			                	<input type="text" name="stop" id="stop" class="block w-full p-2 mt-1 ml-20 border-gray-300 rounded-md shadow-sm focus:ring-2 focus:ring-blue-500 sm:text-sm" required>
-								<button class="px-3 py-1 bg-gray-800 rounded text-gray-50 hover:opacity-75">Add</button>
+								<button class="px-3 py-1 bg-blue-600 rounded text-gray-50 hover:opacity-75">Add</button>
 							</div>
 			            </div>
 						<p class="flex items-center justify-center text-green-500" id="stop_add_success"></p>	
@@ -141,14 +141,10 @@ if(!isset($_SESSION['verified_user_id'])){
 						<div class="col-span-auto sm:col-span-3">
 						<label for="stops" class="block text-sm font-medium text-gray-700">Stops</label>
 			             
-						<div class="col-span-8 sm:col-span-3">
-							<?php 
-							foreach($valueDest as $stop => $stopBool)
-							{
-							?>
-			                <p name="stops" id="stops" class="block w-full p-2 mt-1 border-gray-300 rounded-md shadow-sm focus:ring-2 focus:ring-blue-500 sm:text-sm"><?php echo $stop;?></p>
-							<?php						
-							}?>
+						<div class="col-span-8 sm:col-span-3">		
+							<!-- foreach($valueDest as $stop => $stopBool)
+							{ -->
+			                <input name="stops" id="stops" class="block w-full p-2 mt-1 border-gray-300 rounded-md shadow-sm focus:ring-2 focus:ring-blue-500 sm:text-sm"></input>
 			            </div>
 						       
 			            </div>	
@@ -156,6 +152,7 @@ if(!isset($_SESSION['verified_user_id'])){
 				</div>      
     		</div>
 						<?php
+						$count = $count + 1;
 						}
 							
 						}
@@ -169,7 +166,7 @@ if(!isset($_SESSION['verified_user_id'])){
 			        </table>
 
 			</div>
-			<button onclick="addModal()" class="fixed bottom-0 right-0 p-2 px-4 m-3 bg-blue-600 rounded-lg text-gray-50 hover:opacity-75">Add</button>
+			<!-- <button onclick="addModal()" class="fixed bottom-0 right-0 p-2 px-4 m-3 bg-blue-600 rounded-lg text-gray-50 hover:opacity-75">Add</button> -->
 			
 		</article>
 	</section>
