@@ -27,7 +27,7 @@ if(isset($_SESSION['verified_user_id'])){
         <div class="form-login sign-in-container ">
             <form id="adminRegister" method="POST" action="Logic.php">
 
-                <h1 class="text-2xl title">Sign Up</h1>
+                <h1 class="text-2xl text-blue-600 title">Sign Up</h1>
                 <!-- <div class="social-container">
                     <a href="#" class="social"><i class="fa fa-facebook"></i></a>
                     <a href="#" class="social"><i class="fa fa-google"></i></a>
@@ -37,7 +37,7 @@ if(isset($_SESSION['verified_user_id'])){
 
 
                 <div class="mt-3 col-md-6">
-                    <input id="admin_email" type="email" class="w-full h-12 px-8 mb-4 text-lg rounded shadow-lg focus:ring-2 focus:ring-blue-500 focus:outline-none focus:shadow-outline form-control @error('email') is-invalid @enderror outline-none"
+                    <input id="admin_email" type="email" class="w-full h-12 px-8 mb-4 text-lg rounded ring-blue-500 shadow-lg focus:ring-2 focus:ring-red-800 focus:outline-none focus:shadow-outline form-control @error('email') is-invalid @enderror outline-none"
                         name="admin_email" value="" placeholder="Email" required autocomplete="email">
 
                     
@@ -51,7 +51,7 @@ if(isset($_SESSION['verified_user_id'])){
 
 
                 <div class="mt-2 col-md-6">
-                    <input id="admin_name" type="text" class="w-full h-12 px-8 mb-4 text-lg rounded shadow-lg focus:ring-2 focus:ring-blue-500 focus:outline-none focus:shadow-outline form-control @error('password') is-invalid @enderror outline-none"
+                    <input id="admin_name" type="text" class="w-full h-12 px-8 mb-4 text-lg rounded shadow-lg ring-blue-500 focus:ring-2 focus:ring-red-800 focus:outline-none focus:shadow-outline form-control @error('password') is-invalid @enderror outline-none"
                         name="admin_name" placeholder="Full Name">                    
                     <span class="invalid-feedback" role="alert">
                         <!-- <strong>{{ $message }}</strong> -->
@@ -59,7 +59,7 @@ if(isset($_SESSION['verified_user_id'])){
                   
                 </div>
                 <div class="mt-2 col-md-6">
-                    <input id="admin_password" type="password" class="w-full h-12 px-8 mb-4 text-lg rounded shadow-lg focus:ring-2 focus:ring-blue-500 focus:outline-none focus:shadow-outline form-control @error('password') is-invalid @enderror outline-none"
+                    <input id="admin_password" type="password" class="w-full h-12 px-8 mb-4 text-lg rounded shadow-lg ring-blue-500 focus:ring-2 focus:ring-red-800 focus:outline-none focus:shadow-outline form-control @error('password') is-invalid @enderror outline-none"
                         name="admin_password" placeholder="Password" required autocomplete="new-password">                    
                     <span class="invalid-feedback" role="alert">
                         <!-- <strong>{{ $message }}</strong> -->
@@ -68,7 +68,7 @@ if(isset($_SESSION['verified_user_id'])){
                 </div>
 
                 <div class="mt-2 col-md-6">
-                    <input id="admin_password-confirm" type="password" class="w-full h-12 px-8 mb-4 text-lg rounded shadow-lg outline-none focus:ring-2 focus:ring-blue-500 focus:outline-none focus:shadow-outline form-control" name="admin_password_confirmation"
+                    <input id="admin_password-confirm" type="password" class="w-full h-12 px-8 mb-4 text-lg rounded shadow-lg outline-none ring-blue-500 focus:ring-2 focus:ring-red-800 focus:outline-none focus:shadow-outline form-control" name="admin_password_confirmation"
                         placeholder="Confirm Password" required autocomplete="new-password">
                 </div>
 
@@ -78,7 +78,7 @@ if(isset($_SESSION['verified_user_id'])){
 
 
                 <div class="col-md-6">
-                    <button type="submit" id="admin_register_btn" name="admin_register_btn" class="px-3 py-1 mt-2 mb-2 text-white bg-red-800 rounded outline-none btn btn-primary">
+                    <button type="submit" id="admin_register_btn" name="admin_register_btn" class="px-3 py-1 mt-2 mb-2 text-white bg-blue-600 rounded outline-none hover:opacity-50 btn btn-primary">
                         Register
                     </button>
                 </div>
@@ -95,12 +95,12 @@ if(isset($_SESSION['verified_user_id'])){
                     unset($_SESSION['status']);
                 }
                 if(isset($_SESSION['status_1'])){
-                    echo "<h5 class='h-12 pt-2 text-center text-white bg-red-800 text-md'>".$_SESSION['status_1']."</h5>";
+                    echo "<h5 class='h-12 pt-2 text-center text-red-700 bg-red-300 text-md'>".$_SESSION['status_1']."</h5>";
                     unset($_SESSION['status_1']);
                 }
             ?>
             <form method="POST" action="LoginLogic.php">
-                <h1 class="mb-4 text-2xl title">Login</h1>
+                <h1 class="mb-4 text-2xl text-red-800 title">Login</h1>
                 <!-- <div class="social-container">
                     <a href="#" class="social"><i class="fa fa-facebook-f"></i></a>
                     <a href="{{ url('auth/google') }}" class="social"><i class="fa fa-google"></i></a>
@@ -152,11 +152,11 @@ if(isset($_SESSION['verified_user_id'])){
 
 
                 <div class="col-md-8">
-                    <button type="submit" name="admin_login_btn" class="px-3 py-1 mb-2 text-white bg-red-800 rounded outline-none btn btn-primary">
+                    <button type="submit" name="admin_login_btn" class="px-3 py-1 mb-2 text-white bg-red-800 rounded outline-none hover:opacity-50 btn btn-primary">
                         Login
                     </button>
                     <br>                    
-                    <a class="btn btn-link frgt" href="{{ route('password.request') }}">
+                    <a class="mb-4 text-red-800 cursor-pointer btn btn-link frgt hover:opacity-50" onclick="reset()">
                     Forgot Your Password?
                     </a>
                 
@@ -169,16 +169,15 @@ if(isset($_SESSION['verified_user_id'])){
             <div class="overlay">
                 <div class="overlay-panel overlay-left">
 
-                    <h1>Hello</h1>
-                    <p>Sign in here to continue where we left off</p>
+                    <h1  class="mb-4 text-xl">Hello</h1>
+                    <p class="mb-2">Sign in here to continue where we left off</p>
                     <button class="ghost" id="Back">Login</button>
                 </div>
                 <div class="overlay-panel overlay-right">
 
-                    <h1>Welcome</h1>
-                    <p>Sign up here and travel with us</p>
+                    <h1 class="mb-4 text-xl">Welcome</h1>
+                    <p class="mb-2">Click down below to sign up</p>
                     <button class="ghost" id="Reset">Sign Up</button>
-                    <button class="ghost" id="cancel">Cancel</button>
                 </div>
             </div>
         </div>
@@ -189,7 +188,7 @@ if(isset($_SESSION['verified_user_id'])){
     <script src="https://www.gstatic.com/firebasejs/8.8.1/firebase-app.js"></script>
     <script src="https://www.gstatic.com/firebasejs/8.8.1/firebase-auth.js"></script>
     <script type="text/javascript" src="js/firebaseConfig.js"></script>
-
+    <script type="text/javascript" src="js/components.js"></script>
 </body>
 
 </html>

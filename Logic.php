@@ -80,10 +80,11 @@ if(isset($_POST['type'])){
 			
 			break;
 			case 'addStop':
-			$stop_id = $_POST['stop_id'];
-			$ref_table = 'Routes/'.$stop_id;
+			$route_id = $_POST['route_id'];
+			$ref_table = 'Routes/'.$route_id;
 			$stop = $_POST['stop'];			
-			$database -> getReference($ref_table)->set($stop);
+			$database -> getReference($ref_table)->update([
+				$stop=> 'true']);
 			
 			break;
 			//Disable User
@@ -145,6 +146,10 @@ if(isset($_POST['type'])){
 			exit();
 			
 			
+			break;
+		case 'resetAdmin':
+			$aEmail = $_POST['email_reset'];
+			$auth->sendPasswordResetLink($aEmail);
 			break;
 		
 		case 'createUser':
