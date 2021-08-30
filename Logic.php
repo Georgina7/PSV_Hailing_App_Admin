@@ -34,6 +34,12 @@ if(isset($_POST['type'])){
 				'number' => '+254'.$nNumber,
 			]);
 			break;
+		case 'getRouteStop':
+			$route_id =$_POST['route_id'];
+			$ref_table = 'Routes/'.$route_id;
+			$fetchRouteData = $database->getReference($ref_table)->getValue();
+			echo (json_encode($fetchRouteData));
+			break;
 		case 'updateDriver':
 			$user_id = $_POST['user_id'];
 			$ref_table = 'Drivers/'.$user_id;

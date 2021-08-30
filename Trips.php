@@ -66,7 +66,7 @@ include('dbconn.php');
 					</div>
 					<input type="text" class="hidden hide_data" name="trip_id" id="trip_id">	
 					<div class="flex items-center justify-center mb-3">
-						<button class="px-3 py-1 bg-gray-800 rounded text-gray-50 hover:opacity-75">Edit</button>
+						<button class="px-3 py-1 bg-blue-600 rounded text-gray-50 hover:opacity-75">Edit</button>
 					</div>
 					<p class="flex items-center justify-center text-green-500" id="trip_edit_success"></p>									
 				</div>
@@ -186,7 +186,7 @@ include('dbconn.php');
 			            </div>					
 					</div>
 					<div class="flex items-center justify-center">
-						<button type="submit" class="px-3 py-1 bg-gray-800 rounded text-gray-50 hover:opacity-75">Add</button>
+						<button type="submit" class="px-3 py-1 bg-blue-600 rounded text-gray-50 hover:opacity-75">Add</button>
 					</div>
 					<p class="flex items-center justify-center text-green-500" id="trip_add_success"></p>	
 				</div>  
@@ -239,11 +239,12 @@ include('dbconn.php');
 							foreach($fetchTripData as $trip => $value){
 								$ref_table1 = 'Users/'.$value['pwdID'];
 								$fetchPWDDetails = $database->getReference($ref_table1)->getValue();
+								$fetchDriverDetails = $database->getReference($ref_table1)->getValue();
 
 								if($value['status'] == "pending"){
 								?>
 								<tr>
-								<td class="px-6 py-4 whitespace-nowrap">
+								<td class="px-4 py-4 whitespace-nowrap">
 								<div class="trip_id hide_data">
 								</div>
 									<div class="flex items-center">
@@ -252,14 +253,14 @@ include('dbconn.php');
 										</div>
 									</div>
 								</td>
-								<td class="px-6 py-4 whitespace-nowrap">
+								<td class="px-4 py-4 whitespace-nowrap">
 									<div class="text-sm text-gray-900 trip_date"><?php echo $value['date_time'];?></div>
 								</td>
-								<td class="px-6 py-4 text-sm text-gray-500 whitespace-nowrap trip_source_destination"><?php echo $value['source']." - ".$value['destination']; ?></td>
-								<td class="px-6 py-4 text-sm text-gray-500 whitespace-nowrap trip_rider_name"><?php echo $fetchPWDDetails['fullName']; ?></td>
-								<td class="px-6 py-4 text-sm text-gray-500 whitespace-nowrap trip_driver_name">Shem Nzamba</td>
-								<td class="px-6 py-4 text-sm text-gray-500 whitespace-nowrap trip_status"><?php echo $value['status']; ?></td>				              
-								<td class="px-6 py-4 text-sm font-medium text-right whitespace-nowrap">
+								<td class="px-4 py-4 text-sm text-gray-500 whitespace-nowrap trip_source_destination"><?php echo $value['source']." - ".$value['destination']; ?></td>
+								<td class="px-4 py-4 text-sm text-gray-500 whitespace-nowrap trip_rider_name"><?php echo $fetchPWDDetails['fullName']; ?></td>
+								<td class="px-4 py-4 text-sm text-gray-500 whitespace-nowrap trip_driver_name"><?php $fetchDriverDetails['fullName']; ?></td>
+								<td class="px-4 py-4 text-sm text-gray-500 whitespace-nowrap trip_status"><?php echo $value['status']; ?></td>				              
+								<td class="px-4 py-4 text-sm font-medium text-right whitespace-nowrap">
 					                <button onclick="tripEditModal('<?php echo $trip; ?>')" class="px-3 py-1 text-gray-800 bg-blue-100 rounded hover:underline">Edit</button>
 								</td>
 								</tr>
@@ -268,7 +269,7 @@ include('dbconn.php');
 								else
 								{ if($value['status'] == "completed"){ ?>
 									<tr class="bg-blue-200">
-									<td class="px-6 py-4 whitespace-nowrap">
+									<td class="px-4 py-4 whitespace-nowrap">
 									<div class="trip_id hide_data">
 									</div>
 										<div class="flex items-center">
@@ -280,11 +281,11 @@ include('dbconn.php');
 									<td class="px-6 py-4 whitespace-nowrap">
 										<div class="text-sm text-gray-900 driver_name"><?php echo $value['date_time'];; ?></div>
 									</td>
-									<td class="px-6 py-4 text-sm text-gray-500 whitespace-nowrap driver_licence"><?php echo $value['source']." - ".$value['destination']; ?></td>
-									<td class="px-6 py-4 text-sm text-gray-500 whitespace-nowrap driver_phone_number"><?php echo $fetchPWDDetails['fullName']; ?></td>
-									<td class="px-6 py-4 text-sm text-gray-500 whitespace-nowrap driver_phone_number">Shem Nzamba</td>
-									<td class="px-6 py-4 text-sm text-gray-500 whitespace-nowrap driver_phone_number"><?php echo $value['status']; ?></td>				              
-									<td class="px-6 py-4 text-sm font-medium text-right whitespace-nowrap">
+									<td class="px-4 py-4 text-sm text-gray-500 whitespace-nowrap driver_licence"><?php echo $value['source']." - ".$value['destination']; ?></td>
+									<td class="px-4 py-4 text-sm text-gray-500 whitespace-nowrap driver_phone_number"><?php echo $fetchPWDDetails['fullName']; ?></td>
+									<td class="px-4 py-4 text-sm text-gray-500 whitespace-nowrap driver_phone_number">Shem Nzamba</td>
+									<td class="px-4 py-4 text-sm text-gray-500 whitespace-nowrap driver_phone_number"><?php echo $value['status']; ?></td>				              
+									<td class="px-4 py-4 text-sm font-medium text-right whitespace-nowrap">
 									</td>
 									</tr>
 
@@ -292,7 +293,7 @@ include('dbconn.php');
 									<?php 
 									} else{?>
 									<tr class="w-auto bg-gray-50">
-									<td class="px-6 py-4 whitespace-nowrap">
+									<td class="px-4 py-4 whitespace-nowrap">
 									<div class="trip_id hide_data">
 									</div>
 										<div class="flex items-center">
@@ -304,11 +305,11 @@ include('dbconn.php');
 									<td class="px-6 py-4 whitespace-nowrap">
 										<div class="text-sm text-gray-900 driver_name"><?php echo $value['date_time']; ?></div>
 									</td>
-									<td class="px-6 py-4 text-sm text-gray-500 whitespace-nowrap driver_licence"><?php echo $value['source']." - ".$value['destination']; ?></td>
-									<td class="px-6 py-4 text-sm text-gray-500 whitespace-nowrap driver_phone_number"><?php echo $fetchPWDDetails['fullName']; ?></td>
-									<td class="px-6 py-4 text-sm text-gray-500 whitespace-nowrap driver_phone_number">Shem Nzamba</td>
-									<td class="px-6 py-4 text-sm text-gray-500 whitespace-nowrap driver_phone_number"><?php echo $value['status']; ?></td>				              
-									<td class="px-6 py-4 text-sm font-medium text-right whitespace-nowrap">
+									<td class="px-4 py-4 text-sm text-gray-500 opacity-25 whitespace-nowrap driver_licence"><?php echo $value['source']." - ".$value['destination']; ?></td>
+									<td class="px-4 py-4 text-sm text-gray-500 opacity-25 whitespace-nowrap driver_phone_number"><?php echo $fetchPWDDetails['fullName']; ?></td>
+									<td class="px-4 py-4 text-sm text-gray-500 opacity-25 whitespace-nowrap driver_phone_number">Shem Nzamba</td>
+									<td class="px-4 py-4 text-sm text-gray-500 opacity-25 whitespace-nowrap driver_phone_number"><?php echo $value['status']; ?></td>				              
+									<td class="px-4 py-4 text-sm font-medium text-right whitespace-nowrap">
 									</td>
 									</tr>
 

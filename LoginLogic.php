@@ -16,11 +16,17 @@ try {
         try {
             $verifiedIdToken = $auth->verifyIdToken($idTokenString);
             $uid = $verifiedIdToken->claims()->get('sub');
+
+            if($user->emailVerified == true){
             $_SESSION['verified_user_id'] = $uid;
             $_SESSION['idTokenString'] = $idTokenString;
-            
             $_SESSION['status'] = "Login is Successful";
             header("location: ./Dashboard.php"); 
+            }
+            else {
+                $_SESSION['status_1'] = "Verify Email To Login!";
+                header("location: ./Login.php"); 
+            }
             exit();
         } catch (InvalidToken $e) {
             echo 'The token is invalid: '.$e->getMessage();

@@ -206,9 +206,28 @@ function trip_addModal() {
     trip_add_modal.classList.remove('hidden');
 	trip_add_modal.classList.add('flex'); 
 }
-function addStopModal(){
-    stop_edit_modal.classList.remove('hidden');
-	stop_edit_modal.classList.add('flex'); 
+function addStopModal(routeID){
+    let xmlhttp1= new XMLHttpRequest();
+    xmlhttp1.onreadystatechange= function() {
+        if (this.readyState==4 && this.status==200) {
+             let routeObject = JSON.parse(this.responseText);
+             
+        for (let key of Object.keys(routeObject)) { 
+        console.log(`${key}`);
+            // document.querySelector("#route_id").value = routeID;
+            document.querySelector("#stops").value = `${key}`;
+            stop_edit_modal.classList.remove('hidden');
+			stop_edit_modal.classList.add('flex');
+        }
+            // driver_enable_success_msg.classList.remove('hidden');
+        }
+    };
+    xmlhttp1.open("POST","Logic.php",true);
+    xmlhttp1.setRequestHeader("Content-type", "application/x-www-form-urlencoded");
+    let data1 = "route_id=" + routeID + "&type=getRouteStop";
+    xmlhttp1.send(data1);
+    // stop_edit_modal.classList.remove('hidden');
+	// stop_edit_modal.classList.add('flex'); 
 }
 function closeTripAddModal(){
 	trip_add_modal.classList.remove('flex');
