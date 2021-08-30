@@ -1,11 +1,11 @@
 <?php
 include("dbconn.php");
 include("authentication.php");
-if(!isset($_SESSION['verified_user_id'])){
-    $_SESSION['status'] = "Your Session Expired!";
-    header("location: ./Login.php"); 
-    exit();
-}
+// if(!isset($_SESSION['verified_user_id'])){
+//     $_SESSION['status'] = "Your Session Expired!";
+//     header("location: ./Login.php"); 
+//     exit();
+// }
 
 ?>
 <!DOCTYPE html>
@@ -38,7 +38,7 @@ if(!isset($_SESSION['verified_user_id'])){
 					<div class="grid grid-cols-6 gap-6 p-4">
 						<div class="col-span-6 sm:col-span-3">
 			                <label for="name" class="block text-sm font-medium text-gray-700">Name</label>
-			                <input type="text" name="name" id="edit_name" class="block w-full p-2 mt-1 border-gray-300 rounded-md shadow-sm focus:ring-2 focus:ring-blue-500 focus:outline-none focus:shadow-outline sm:text-sm">
+			                <input type="text" name="name" id="edit_name" class="block w-full p-2 mt-1 border-gray-300 rounded-md shadow-sm focus:ring-2 focus:ring-blue-500 focus:outline-none focus:shadow-outline sm:text-sm" required>
 			            </div>
 						<div class="col-span-6 sm:col-span-3">
 			                <label for="phone_number" class="block text-sm font-medium text-gray-700">Phone Number</label>
@@ -46,7 +46,7 @@ if(!isset($_SESSION['verified_user_id'])){
 			            </div>
 						<div class="col-span-6 sm:col-span-3">
 			                <label for="email" class="block text-sm font-medium text-gray-700">Email</label>
-			                <input type="text" name="email" id="edit_email" class="block w-full p-2 mt-1 border-gray-300 rounded-md shadow-sm focus:ring-2 focus:ring-blue-500 focus:outline-none focus:shadow-outline sm:text-sm">
+			                <input type="text" name="email" id="edit_email" class="block w-full p-2 mt-1 border-gray-300 rounded-md shadow-sm focus:ring-2 focus:ring-blue-500 focus:outline-none focus:shadow-outline sm:text-sm" required>
 			            </div>	
 						<input type="text" class="hide_data" name="user_id" id="user_id" hidden>	
 					</div>

@@ -23,7 +23,7 @@ include('dbconn.php');
 				<div class="p-3 bg-white rounded-lg">
 					<div class="flex items-center justify-between">
 						<h4 class="text-lg font-semibold">Edit Trip</h4>
-						<svg onclick="closeTripEditModal()" xmlns="http://www.w3.org/2000/svg" class="w-6 h-6" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+						<svg onclick="closeTripEditModal()" xmlns="http://www.w3.org/2000/svg" class="w-6 h-6 text-blue-600 cursor-pointer" fill="none" viewBox="0 0 24 24" stroke="currentColor">
 						  <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M6 18L18 6M6 6l12 12" />
 						</svg>
 					</div>
@@ -60,7 +60,7 @@ include('dbconn.php');
 			                <!-- <input type="text" class="block w-full p-2 mt-1 border-gray-300 rounded-md shadow-sm focus:ring-indigo-500 focus:border-indigo-500 sm:text-sm"> -->
 							<select id="trip_status" name="trip_status" class="block w-full p-2 mt-1 border-gray-300 rounded-md shadow-sm focus:ring-2 focus:ring-blue-500 focus:outline-none focus:shadow-outline sm:text-sm">
 								<option value="pending">pending</option>
-								<option value="canceled">canceled</option>
+								<option value="cancelled">cancelled</option>
 							</select>
 			            </div>	
 					</div>
@@ -78,7 +78,7 @@ include('dbconn.php');
 				<div class="p-3 bg-white rounded-lg">
 					<div class="flex items-center justify-between">
 						<h4 class="text-lg font-semibold">Add Trip</h4>
-						<svg onclick="closeTripAddModal()" xmlns="http://www.w3.org/2000/svg" class="w-6 h-6" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+						<svg onclick="closeTripAddModal()" xmlns="http://www.w3.org/2000/svg" class="w-6 h-6 text-blue-600 cursor-pointer" fill="none" viewBox="0 0 24 24" stroke="currentColor">
 						  <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M6 18L18 6M6 6l12 12" />
 						</svg>
 					</div>
@@ -149,11 +149,20 @@ include('dbconn.php');
 								$fetchRiderData = $database->getReference($rider_ref_table)->getValue();
 								if($fetchRiderData>0){
 									foreach($fetchRiderData as $rider => $val){
+									$reference = $database->getReference('Admins/'.$rider);
+									$snapshot = $reference->getSnapshot();
+									$reference_driver = $database->getReference('Drivers/'.$rider);
+									$snapshot_driver = $reference_driver->getSnapshot();
+									if(!$snapshot->exists()){
+										if(!$snapshot_driver->exists()){
 							?>
 								<option value="<?php echo $rider;?>"><?php echo $val['fullName'];?></option>
-							<?php	
+							<?php
+										}	
+									}
 								}
 								}
+
 							?>	
 							</select>
 						</div>
@@ -244,7 +253,7 @@ include('dbconn.php');
 								if($value['status'] == "pending"){
 								?>
 								<tr>
-								<td class="px-4 py-4 whitespace-nowrap">
+								<td class="px-2 py-4 overflow-hidden overflow-clip whitespace-nowrap">
 								<div class="trip_id hide_data">
 								</div>
 									<div class="flex items-center">
@@ -253,14 +262,14 @@ include('dbconn.php');
 										</div>
 									</div>
 								</td>
-								<td class="px-4 py-4 whitespace-nowrap">
+								<td class="w-auto px-2 py-4 overflow-hidden overflow-clip whitespace-nowrap">
 									<div class="text-sm text-gray-900 trip_date"><?php echo $value['date_time'];?></div>
 								</td>
-								<td class="px-4 py-4 text-sm text-gray-500 whitespace-nowrap trip_source_destination"><?php echo $value['source']." - ".$value['destination']; ?></td>
-								<td class="px-4 py-4 text-sm text-gray-500 whitespace-nowrap trip_rider_name"><?php echo $fetchPWDDetails['fullName']; ?></td>
-								<td class="px-4 py-4 text-sm text-gray-500 whitespace-nowrap trip_driver_name"><?php $fetchDriverDetails['fullName']; ?></td>
-								<td class="px-4 py-4 text-sm text-gray-500 whitespace-nowrap trip_status"><?php echo $value['status']; ?></td>				              
-								<td class="px-4 py-4 text-sm font-medium text-right whitespace-nowrap">
+								<td class="w-auto px-2 py-4 overflow-hidden text-sm text-gray-500 overflow-clip whitespace-nowrap trip_source_destination"><?php echo $value['source']." - ".$value['destination']; ?></td>
+								<td class="w-auto px-2 py-4 overflow-hidden text-sm text-gray-500 overflow-clip whitespace-nowrap trip_rider_name"><?php echo $fetchPWDDetails['fullName']; ?></td>
+								<td class="w-auto px-2 py-4 overflow-hidden text-sm text-gray-500 overflow-clip whitespace-nowrap trip_driver_name"><?php $fetchDriverDetails['fullName']; ?></td>
+								<td class="w-auto px-2 py-4 overflow-hidden text-sm text-gray-500 overflow-clip whitespace-nowrap trip_status"><?php echo $value['status']; ?></td>				              
+								<td class="w-auto px-2 py-4 overflow-hidden text-sm font-medium text-right overflow-clip whitespace-nowrap">
 					                <button onclick="tripEditModal('<?php echo $trip; ?>')" class="px-3 py-1 text-gray-800 bg-blue-100 rounded hover:underline">Edit</button>
 								</td>
 								</tr>
@@ -268,8 +277,8 @@ include('dbconn.php');
 								}
 								else
 								{ if($value['status'] == "completed"){ ?>
-									<tr class="bg-blue-200">
-									<td class="px-4 py-4 whitespace-nowrap">
+									<tr class="w-auto overflow-hidden bg-blue-200">
+									<td class="w-auto px-2 py-4 overflow-hidden overflow-clip whitespace-nowrap">
 									<div class="trip_id hide_data">
 									</div>
 										<div class="flex items-center">
@@ -278,14 +287,14 @@ include('dbconn.php');
 										</div>
 										</div>
 									</td>
-									<td class="px-6 py-4 whitespace-nowrap">
+									<td class="w-auto px-2 py-4 overflow-hidden overflow-clip whitespace-nowrap">
 										<div class="text-sm text-gray-900 driver_name"><?php echo $value['date_time'];; ?></div>
 									</td>
-									<td class="px-4 py-4 text-sm text-gray-500 whitespace-nowrap driver_licence"><?php echo $value['source']." - ".$value['destination']; ?></td>
-									<td class="px-4 py-4 text-sm text-gray-500 whitespace-nowrap driver_phone_number"><?php echo $fetchPWDDetails['fullName']; ?></td>
-									<td class="px-4 py-4 text-sm text-gray-500 whitespace-nowrap driver_phone_number">Shem Nzamba</td>
-									<td class="px-4 py-4 text-sm text-gray-500 whitespace-nowrap driver_phone_number"><?php echo $value['status']; ?></td>				              
-									<td class="px-4 py-4 text-sm font-medium text-right whitespace-nowrap">
+									<td class="w-auto px-2 py-4 overflow-hidden text-sm text-gray-500 overflow-clip whitespace-nowrap driver_licence"><?php echo $value['source']." - ".$value['destination']; ?></td>
+									<td class="w-auto px-2 py-4 overflow-hidden text-sm text-gray-500 overflow-clip whitespace-nowrap driver_phone_number"><?php echo $fetchPWDDetails['fullName']; ?></td>
+									<td class="w-auto px-2 py-4 overflow-hidden text-sm text-gray-500 overflow-clip whitespace-nowrap driver_phone_number">Shem Nzamba</td>
+									<td class="w-auto px-2 py-4 overflow-hidden text-sm text-gray-500 overflow-clip whitespace-nowrap driver_phone_number"><?php echo $value['status']; ?></td>				              
+									<td class="w-auto px-2 py-4 overflow-hidden text-sm font-medium text-right overflow-clip whitespace-nowrap">
 									</td>
 									</tr>
 
@@ -293,7 +302,7 @@ include('dbconn.php');
 									<?php 
 									} else{?>
 									<tr class="w-auto bg-gray-100">
-									<td class="px-4 py-4 whitespace-nowrap">
+									<td class="px-2 py-4 overflow-hidden overflow-clip whitespace-nowrap">
 									<div class="trip_id hide_data">
 									</div>
 										<div class="flex items-center">
@@ -302,14 +311,14 @@ include('dbconn.php');
 										</div>
 										</div>
 									</td>
-									<td class="px-6 py-4 whitespace-nowrap">
+									<td class="px-2 py-4 whitespace-nowrap">
 										<div class="text-sm text-gray-900 driver_name"><?php echo $value['date_time']; ?></div>
 									</td>
-									<td class="px-4 py-4 text-sm text-gray-500 whitespace-nowrap driver_licence"><?php echo $value['source']." - ".$value['destination']; ?></td>
-									<td class="px-4 py-4 text-sm text-gray-500 whitespace-nowrap driver_phone_number"><?php echo $fetchPWDDetails['fullName']; ?></td>
-									<td class="px-4 py-4 text-sm text-gray-500 whitespace-nowrap driver_phone_number">Shem Nzamba</td>
-									<td class="px-4 py-4 text-sm text-gray-500 whitespace-nowrap driver_phone_number"><?php echo $value['status']; ?></td>				              
-									<td class="px-4 py-4 text-sm font-medium text-right whitespace-nowrap">
+									<td class="px-2 py-4 overflow-hidden text-sm text-gray-500 overflow-clip whitespace-nowrap driver_licence"><?php echo $value['source']." - ".$value['destination']; ?></td>
+									<td class="px-2 py-4 overflow-hidden text-sm text-gray-500 overflow-clip whitespace-nowrap driver_phone_number"><?php echo $fetchPWDDetails['fullName']; ?></td>
+									<td class="px-2 py-4 overflow-hidden text-sm text-gray-500 overflow-clip whitespace-nowrap driver_phone_number">Shem Nzamba</td>
+									<td class="px-2 py-4 overflow-hidden text-sm text-gray-500 overflow-clip whitespace-nowrap driver_phone_number"><?php echo $value['status']; ?></td>				              
+									<td class="px-2 py-4 overflow-hidden text-sm font-medium text-right overflow-clip whitespace-nowrap">
 									</td>
 									</tr>
 

@@ -287,6 +287,7 @@ if(isset($_POST['type'])){
 		case 'updateAdmin':
 			$admin_id = $_SESSION['verified_user_id'];
 			$ref_table = 'Admins/'.$admin_id;
+			$ref_table2 = 'Users/'.$admin_id;
 			$filename = $_FILES["uploadImage"]["name"];
     		$tempname = $_FILES["uploadImage"]["tmp_name"];    
         	$folder = "Image/".$filename;
@@ -320,6 +321,9 @@ if(isset($_POST['type'])){
 					'number' => '+254'.$nNumber,
 					'profileImagePath' => $folder,
 					]);
+					$database -> getReference($ref_table2)->update([
+					'fullName' => $_POST['name'],
+					]);
 				}
 				else{
 					$nNo = "";
@@ -328,6 +332,9 @@ if(isset($_POST['type'])){
 					'fullName' => $_POST['name'],
 					'number' => $nNumber,
 					'profileImagePath' => $folder,
+					]);
+					$database -> getReference($ref_table2)->update([
+					'fullName' => $_POST['name'],
 					]);
 				}
 
@@ -340,6 +347,9 @@ if(isset($_POST['type'])){
 					'fullName' => $_POST['name'],
 					'number' => '+254'.$nNumber,
 					]);
+					$database -> getReference($ref_table2)->update([
+					'fullName' => $_POST['name'],
+					]);
 				}
 				else{
 					$nNo = "";
@@ -347,6 +357,9 @@ if(isset($_POST['type'])){
 					$database -> getReference($ref_table)->update([
 					'fullName' => $_POST['name'],
 					'number' => $nNumber,
+					]);
+					$database -> getReference($ref_table2)->update([
+					'fullName' => $_POST['name'],
 					]);
 				}
 			}
@@ -431,7 +444,7 @@ if(isset($_POST['admin_register_btn'])){
 				'fullName' => $aName,
 				'profileImagePath' => $aProfilePhotoPath,
 				'number' => "",
-				'status' => 'enabled'
+				// 'status' => 'enabled'
 		]);
 		$auth->sendEmailVerificationLink($aEmail);
 		$_SESSION['status'] = "Admin Registered Successfully!";

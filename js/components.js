@@ -215,7 +215,15 @@ function addStopModal(routeID){
         for (let key of Object.keys(routeObject)) { 
         console.log(`${key}`);
             document.querySelector("#route_id").value = routeID;
-            document.querySelector("#stops").value = `${key}`;
+            var newItem = document.createElement("LI");
+            var textnode = document.createTextNode(`${key}`);
+            newItem.appendChild(textnode);
+
+            var list = document.getElementById("myList");
+            list.insertBefore(newItem, list.childNodes[0]);
+                
+            
+            // document.querySelector("#stops").value = `${key}`;
             stop_edit_modal.classList.remove('hidden');
 			stop_edit_modal.classList.add('flex');
         }
@@ -236,6 +244,7 @@ function closeTripAddModal(){
 function closeStopModal() {
     stop_edit_modal.classList.add('hidden'); 
     stop_edit_modal.classList.remove('flex');
+    location.reload();
 }
 
 function closeEditModal(){
@@ -586,7 +595,7 @@ $(document).ready(function () {
                 contentType: false,
                 type: 'POST',
                 success:function (values) {
-                    $("#update_success").text("Updated Created Successfully!");
+                    $("#update_success").text("Updated Successfully!");
                     location.reload();
                 },
                 error: function (e) {
@@ -852,22 +861,22 @@ $(function(){
   };
   $("#trip_date").datepicker(pickerOpts2);
 });
-google.maps.event.addDomListener(window, 'load', initialize);
- 
-function initialize() {
-    var input = document.getElementById('trip_destination');
-    var input2 = document.getElementById('trip_source');
+
+google.maps.event.addDomListener(window, 'load', initialize1);
+function initialize1() {
+var input = document.getElementById('trip_destination');
     var autocomplete = new google.maps.places.Autocomplete(input);
     autocomplete.addListener('place_changed', function() {
         var place = autocomplete.getPlace();
 
     });
 }
+google.maps.event.addDomListener(window, 'load', initialize);
 function initialize() {
 var input2 = document.getElementById('trip_source');
-    var autocomplete = new google.maps.places.Autocomplete(input2);
-    autocomplete.addListener('place_changed', function() {
-        var place = autocomplete.getPlace();
+    var autocomplete2 = new google.maps.places.Autocomplete(input2);
+    autocomplete2.addListener('place_changed', function() {
+        var place2 = autocomplete2.getPlace();
 
     });
 }

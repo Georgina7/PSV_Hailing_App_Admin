@@ -1,11 +1,11 @@
 <?php
 include("dbconn.php");
 include("authentication.php");
-if(!isset($_SESSION['verified_user_id'])){
-    $_SESSION['status'] = "Your Session Expired!";
-    header("location: ./Login.php"); 
-    exit();
-}
+// if(!isset($_SESSION['verified_user_id'])){
+//     $_SESSION['status'] = "Your Session Expired!";
+//     header("location: ./Login.php"); 
+//     exit();
+// }
 
 ?>
 <!DOCTYPE html>
@@ -124,7 +124,7 @@ if(!isset($_SESSION['verified_user_id'])){
 				<div class="p-3 rounded-lg bg-gray-50">
 					<div class="flex items-center justify-between">
 						<h4 class="text-lg font-semibold">Add Stops</h4>
-						<svg onclick="closeStopModal()" xmlns="http://www.w3.org/2000/svg" class="w-6 h-6" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+						<svg onclick="closeStopModal()" xmlns="http://www.w3.org/2000/svg" class="w-6 h-6 text-blue-600 cursor-pointer" fill="none" viewBox="0 0 24 24" stroke="currentColor">
 						  <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M6 18L18 6M6 6l12 12" />
 						</svg>
 					</div>
@@ -133,19 +133,21 @@ if(!isset($_SESSION['verified_user_id'])){
 						<div class="col-span-12 sm:col-span-6">
 			               <div class="flex flex-row w-auto">
 							   <input type="text" name="route_id" id="route_id" class="hidden w-full p-2 mt-1 ml-20 border-gray-300 rounded-md shadow-sm focus:ring-2 focus:ring-blue-500 sm:text-sm">
-			                	<input type="text" name="stop" id="stop" class="block w-full p-2 mt-1 ml-20 border-gray-300 rounded-md shadow-sm focus:ring-2 focus:ring-blue-500 sm:text-sm" required>
+			                	<input type="text" name="stop" id="stop" class="block w-full p-2 mt-1 border-gray-300 rounded-md shadow-sm focus:outline-none focus:shadow-outline focus:ring-2 focus:ring-blue-500 sm:text-sm" required>
 								<button class="p-2 mt-1 ml-2 bg-blue-600 rounded text-gray-50 hover:opacity-75">Add</button>
 							</div>
-			            </div>
-						<p class="flex items-center justify-center text-green-500" id="stop_add_success"></p>	
+							<p class="flex items-center justify-center mt-4 text-green-500" id="stop_add_success"></p>
+			        </div>	
 					</form>
 						<div class="col-span-auto sm:col-span-3">
-						<label for="stops" class="block text-sm font-medium text-gray-700">Stops</label>
+						<label for="stops" class="block text-lg font-medium text-gray-700">Stops</label>
 			             
-						<div class="col-span-8 sm:col-span-3">		
+						<ul id="myList" class="text-base">
+  							<li class="hidden">hidden</li>
+						</ul>	
 							<!-- foreach($valueDest as $stop => $stopBool)
 							{ -->
-			                <input name="stops" id="stops" class="block w-full p-2 mt-1 border-gray-300 rounded-md shadow-sm focus:ring-2 focus:ring-blue-500 sm:text-sm"></input>
+			                <input name="stops" id="stops" class="hidden w-full p-2 mt-1 border-gray-300 rounded-md shadow-sm focus:ring-2 focus:ring-blue-500 sm:text-sm"></input>
 			            </div>
 						       
 			            </div>	
